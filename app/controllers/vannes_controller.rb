@@ -3,6 +3,7 @@ class VannesController < ApplicationController
   # GET /vannes.json
   def index
     @vannes = Vanne.all
+    @vanne = Vanne.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +26,7 @@ class VannesController < ApplicationController
   # GET /vannes/new.json
   def new
     @vanne = Vanne.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @vanne }
@@ -41,10 +42,11 @@ class VannesController < ApplicationController
   # POST /vannes.json
   def create
     @vanne = Vanne.new(params[:vanne])
-
+    @vanne.date = Date.today
+    
     respond_to do |format|
       if @vanne.save
-        format.html { redirect_to @vanne, :notice => 'Vanne was successfully created.' }
+        format.html { redirect_to vannes_path }
         format.json { render :json => @vanne, :status => :created, :location => @vanne }
       else
         format.html { render :action => "new" }

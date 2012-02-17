@@ -1,20 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Contenu:</b>
+<article>
   <%= @vanne.contenu %>
-</p>
 
-<p>
-  <b>Membre:</b>
-  <%= @vanne.membre_id %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @vanne.date %>
-</p>
-
-
-<%= link_to 'Edit', edit_vanne_path(@vanne) %> |
-<%= link_to 'Back', vannes_path %>
+  <footer>
+  Posté par <%= if @vanne.membre then link_to @vanne.membre.pseudo, @vanne.membre else "Anonyme" end %>
+  le <time><%= link_to @vanne.date, @vanne %></time>
+  <%= link_to 'Destroy', @vanne, :confirm => 'Are you sure?', :method => :delete %>
+  </footer>
+</article>

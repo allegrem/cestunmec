@@ -1,17 +1,30 @@
+<div id="new_vanne_scroll">
+  <script>
+    function scroll_new_vanne() {
+      if (new_vanne_scroll_hidden.style.display == 'block') {
+	new_vanne_scroll_hidden.style.display = 'none';
+      }
+      else {
+	new_vanne_scroll_hidden.style.display = 'block';
+      }
+    }
+  </script>
+  
+  <h2><%= link_to 'Envie de poster ta propre vanne ?', "", :onclick => "scroll_new_vanne(); return false;" %></h2>
+  
+  <div id="new_vanne_scroll_hidden">
+    <%= render 'form' %>
+  </div>
+</div>
+
 <% @vannes.each do |vanne| %>
 <article>
   <%= vanne.contenu %>
 
   <footer>
-  Posté par <%= link_to vanne.membre.pseudo, vanne.membre %>
-  le <time><%= vanne.date %></time>
-  <%= link_to 'Show', vanne %>
-  <%= link_to 'Edit', edit_vanne_path(vanne) %>
-  <%= link_to 'Destroy', vanne, :confirm => 'Are you sure?', :method => :delete %>
+  Posté par <%= if vanne.membre then link_to vanne.membre.pseudo, vanne.membre else "Anonyme" end %>
+  le <time><%= link_to vanne.date, vanne %></time>
+  <%= link_to 'Supprimer', vanne, :confirm => 'Are you sure?', :method => :delete %>
   </footer>
 </article>
 <% end %>
-
-<br />
-
-<%= link_to 'New Vanne', new_vanne_path %> | <%= link_to 'Membres', membres_path %>

@@ -11,10 +11,10 @@ article {
   
   width: 70%;
   border-radius: 10px;
-  margin-left: 15%;
+  margin-left: 13%;
   margin-bottom: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 2%;
+  padding-right: 2%;
   
   text-align: center;
   font-size: 30px;
@@ -27,4 +27,32 @@ article footer {
   font-size: 15px;
   border-top: none;
   color: rgb(100,90,80);
+}
+
+
+#new_vanne_scroll {
+  background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1));
+  background: -o-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  background: linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  
+  width: 60%;
+  border-radius: 10px;
+  margin-left: 20%;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  
+  text-align: center;
+  color: black;
+}
+
+#new_vanne_scroll h2 {
+  color: black;
+  margin-bottom: 0px;
+}
+
+
+#new_vanne_scroll_hidden {
+  display: none;
 }

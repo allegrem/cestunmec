@@ -12,18 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :contenu %><br />
-    <%= f.text_area :contenu %>
-  </div>
-  <div class="field">
-    <%= f.label :membre_id %><br />
-    <%= f.number_field :membre_id %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.text_area :contenu, :cols => 60, :rows => 10, :placeholder => "Entre ta vanne ici !!" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Poste ta vanne' %>
   </div>
 <% end %>

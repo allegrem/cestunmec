@@ -9,7 +9,7 @@
 <body>
 
 <header>
-<h1>C'est un mec,</h1>
+<h1><%= link_to "C'est un mec,", "/" %></h1>
 il s'appelle On, et il a un phare, c'est le Pharaon !
 </header>
 
@@ -31,7 +31,8 @@ Les dernières | Les buzzantes | Les meilleures
   <h3>Mon compte</h3>
   <p>
     Connexion <br />
-    <%= link_to 'Inscription', new_membre_path %> <br /> <br /> <br />
+    <%= link_to 'Inscription', new_membre_path %> <br /> 
+    <%= link_to 'Membres', membres_path %> <br /> <br />
   </p>
   
   <h3>Le site</h3>
