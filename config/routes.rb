@@ -1,4 +1,8 @@
 Cestunmec::Application.routes.draw do
+  resources :vannes
+
+  resources :membres
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

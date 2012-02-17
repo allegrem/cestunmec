@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contenu:</b>
+  <%= @vanne.contenu %>
+</p>
+
+<p>
+  <b>Membre:</b>
+  <%= @vanne.membre_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @vanne.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_vanne_path(@vanne) %> |
+<%= link_to 'Back', vannes_path %>
