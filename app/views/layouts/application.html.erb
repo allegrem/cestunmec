@@ -8,12 +8,45 @@
 </head>
 <body>
 
-<h1>C'est un mec</h1>
-<p>il s'appelle On, et il a un phare, c'est le Pharaon !</p>
+<header>
+<h1>C'est un mec,</h1>
+il s'appelle On, et il a un phare, c'est le Pharaon !
+</header>
 
-<hr />
+<nav>
+Les dernières | Les buzzantes | Les meilleures 
+</nav>
 
 <%= yield %>
+
+<footer id="main_footer">
+  <h3>Les Vannes</h3>
+  <p>
+    Les dernières <br />
+    Les buzzantes <br />
+    Les meilleures <br />
+    Rechercher
+  </p>
+  
+  <h3>Mon compte</h3>
+  <p>
+    Connexion <br />
+    <%= link_to 'Inscription', new_membre_path %> <br /> <br /> <br />
+  </p>
+  
+  <h3>Le site</h3>
+  <p>
+    Facebook <br />
+    Twitter <br />
+    Version mobile <br /> <br />
+  </p>
+  
+  <h3>Contact</h3>
+  <p>
+    L'équipe du site <br />
+    Contact <br /> <br />
+  </p>
+</footer>
 
 </body>
 </html>

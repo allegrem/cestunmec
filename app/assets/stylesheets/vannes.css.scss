@@ -1,3 +1,30 @@
 // Place all the styles related to the vannes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+article {
+  background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1));
+  background: -o-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  background: linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  
+  width: 70%;
+  border-radius: 10px;
+  margin-left: 15%;
+  margin-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  
+  text-align: center;
+  font-size: 30px;
+  font-family: "Comic Sans MS";
+}
+
+
+article footer {
+  margin-top: 10px;
+  font-size: 15px;
+  border-top: none;
+  color: rgb(100,90,80);
+}

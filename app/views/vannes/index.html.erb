@@ -1,13 +1,15 @@
 <% @vannes.each do |vanne| %>
-<p>
+<article>
   <%= vanne.contenu %>
-  <hr />
-  <%= link_to vanne.membre.pseudo, vanne.membre %>
-  <%= vanne.date %>
+
+  <footer>
+  Posté par <%= link_to vanne.membre.pseudo, vanne.membre %>
+  le <time><%= vanne.date %></time>
   <%= link_to 'Show', vanne %>
   <%= link_to 'Edit', edit_vanne_path(vanne) %>
   <%= link_to 'Destroy', vanne, :confirm => 'Are you sure?', :method => :delete %>
-</p>
+  </footer>
+</article>
 <% end %>
 
 <br />
