@@ -10,13 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217202557) do
+ActiveRecord::Schema.define(:version => 20120218130120) do
 
   create_table "membres", :force => true do |t|
     t.string   "pseudo"
-    t.string   "passwd"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "hashed_passwd"
+    t.string   "salt"
+    t.string   "email"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "vannes", :force => true do |t|

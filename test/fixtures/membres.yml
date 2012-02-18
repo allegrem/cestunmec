@@ -2,8 +2,12 @@
 
 one:
   pseudo: MyString
-  passwd: MyString
+  hashed_passwd: MyString
+  salt: MyString
+  email: MyString
 
 two:
   pseudo: MyString
-  passwd: MyString
+  hashed_passwd: MyString
+  salt: MyString
+  email: MyString

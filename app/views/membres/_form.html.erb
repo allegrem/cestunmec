@@ -1,4 +1,5 @@
 <%= form_for(@membre) do |f| %>
+
   <% if @membre.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@membre.errors.count, "error") %> prohibited this membre from being saved:</h2>
@@ -11,15 +12,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :pseudo %><br />
+  <div>
+    <%= f.label :pseudo %>:
     <%= f.text_field :pseudo %>
   </div>
-  <div class="field">
-    <%= f.label :passwd %><br />
-    <%= f.text_field :passwd %>
+  <div>
+    <%= f.label :email %>:
+    <%= f.text_field :email %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    <%= f.label :passwd, 'Mot de passe' %>:
+    <%= f.password_field :passwd %>
   </div>
+  <div>
+    <%= f.label :passwd_confirmation, 'Confirmation du mot de passe' %>:
+    <%= f.password_field :passwd_confirmation %>
+  </div>
+  <div>
+    <%= f.submit 'Deviens un vanneur !' %>
+  </div>
+  
 <% end %>

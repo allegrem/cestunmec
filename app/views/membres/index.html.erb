@@ -1,25 +1,21 @@
-<h1>Listing membres</h1>
+<div id="main_frame">
+
+<h1>Liste des vanneurs</h1>
 
 <table>
   <tr>
     <th>Pseudo</th>
-    <th>Passwd</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @membres.each do |membre| %>
   <tr>
-    <td><%= membre.pseudo %></td>
-    <td><%= membre.passwd %></td>
-    <td><%= link_to 'Show', membre %></td>
-    <td><%= link_to 'Edit', edit_membre_path(membre) %></td>
-    <td><%= link_to 'Destroy', membre, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to membre.pseudo, membre %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Membre', new_membre_path %> | <%= link_to 'Vannes', vannes_path %>
+Si toi aussi, tu rêves de devenir un vanneur célèbre, <%= link_to 'inscris-toi', new_membre_path %> !
+
+</div>
