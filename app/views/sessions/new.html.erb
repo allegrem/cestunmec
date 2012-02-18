@@ -1,0 +1,25 @@
+<div id="main_frame">
+
+<h2>Connexion</h2>
+
+<% if flash[:alert] %>
+  <p id="notice" ><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_tag do %>
+  <div>
+    <label for="pseudo" >Pseudo :</label>
+    <%= text_field_tag :pseudo, params[:pseudo] %>
+  </div>
+  
+  <div>
+    <label for="passwd" >Mot de passe :</label>
+    <%= password_field_tag :passwd, params[:passwd] %>
+  </div>
+  
+  <div>
+    <%= submit_tag "Connexion" %>
+  </div>
+<% end %>
+
+</div>
