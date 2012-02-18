@@ -24,7 +24,9 @@
   <footer>
   Posté par <%= if vanne.membre then link_to vanne.membre.pseudo, vanne.membre else "Anonyme" end %>
   le <time><%= link_to vanne.date, vanne %></time>
-  <%= link_to 'Supprimer', vanne, :confirm => 'Are you sure?', :method => :delete %>
+  <% if vanne.membre == @current_membre %>
+    <%= link_to 'Supprimer', vanne, :confirm => 'Attention ! Supprimer une vanne est une décision irréversible et beaucoup de vanneurs risquent de s\'en attrister. Es-tu sûr de vouloir supprimer cette vanne ?', :method => :delete %>
+  <% end %>
   </footer>
 </article>
 <% end %>

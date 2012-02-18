@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
   def get_membre
     if session[:membre_id]
-      @membre = Membre.find(session[:membre_id])
+      @current_membre = Membre.find(session[:membre_id])
     end
   end
 end

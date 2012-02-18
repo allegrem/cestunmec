@@ -43,7 +43,7 @@ class VannesController < ApplicationController
   def create
     @vanne = Vanne.new(params[:vanne])
     @vanne.date = Date.today
-    @vanne.membre_id = @membre.id  if @membre
+    @vanne.membre_id = @current_membre.id  if @current_membre
     
     respond_to do |format|
       if @vanne.save

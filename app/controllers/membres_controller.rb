@@ -35,6 +35,10 @@ class MembresController < ApplicationController
   # GET /membres/1/edit
   def edit
     @membre = Membre.find(params[:id])
+    
+    if @membre != @current_membre
+      redirect_to root_url
+    end
   end
 
   # POST /membres
@@ -44,7 +48,8 @@ class MembresController < ApplicationController
 
     respond_to do |format|
       if @membre.save
-        format.html { redirect_to @membre, :notice => 'Membre was successfully created.' }
+	session[:membre_id] = @membre.id  #on connecte automatiquement
+        format.html { redirect_to @membre }
         format.json { render :json => @membre, :status => :created, :location => @membre }
       else
         format.html { render :action => "new" }
@@ -57,14 +62,18 @@ class MembresController < ApplicationController
   # PUT /membres/1.json
   def update
     @membre = Membre.find(params[:id])
-
-    respond_to do |format|
-      if @membre.update_attributes(params[:membre])
-        format.html { redirect_to @membre, :notice => 'Membre was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @membre.errors, :status => :unprocessable_entity }
+    
+    if @membre != @current_membre
+      redirect_to root_url
+    else
+      respond_to do |format|
+	if @membre.update_attributes(params[:membre])
+	  format.html { redirect_to @membre, :notice => 'Membre was successfully updated.' }
+	  format.json { head :no_content }
+	else
+	  format.html { render :action => "edit" }
+	  format.json { render :json => @membre.errors, :status => :unprocessable_entity }
+	end
       end
     end
   end
@@ -73,11 +82,17 @@ class MembresController < ApplicationController
   # DELETE /membres/1.json
   def destroy
     @membre = Membre.find(params[:id])
-    @membre.destroy
+    
+    if @membre != @current_membre
+      redirect_to root_url
+    else
+      @membre.destroy
+      session[:membre_id] = nil  #on deconnecte
 
-    respond_to do |format|
-      format.html { redirect_to membres_url }
-      format.json { head :no_content }
+      respond_to do |format|
+	format.html { redirect_to root_url }
+	format.json { head :no_content }
+      end
     end
   end
 end
