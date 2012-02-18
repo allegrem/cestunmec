@@ -1,16 +1,6 @@
 <div id="new_vanne_scroll">
-  <script>
-    function scroll_new_vanne() {
-      if (new_vanne_scroll_hidden.style.display == 'block') {
-	new_vanne_scroll_hidden.style.display = 'none';
-      }
-      else {
-	new_vanne_scroll_hidden.style.display = 'block';
-      }
-    }
-  </script>
   
-  <h2><%= link_to 'Envie de poster ta propre vanne ?', "", :onclick => "scroll_new_vanne(); return false;" %></h2>
+  <h2><%= link_to 'Envie de poster ta propre vanne ?', "#", :id => "new_vanne_scroll_trigger" %></h2>
   
   <div id="new_vanne_scroll_hidden">
     <%= render 'form' %>
@@ -30,3 +20,19 @@
   </footer>
 </article>
 <% end %>
+
+
+<script>
+  var trigger = document.getElementById('new_vanne_scroll_trigger');
+  var hidden = document.getElementById('new_vanne_scroll_hidden');
+
+  trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (hidden.style.display == 'block') {
+	hidden.style.display = 'none';
+      }
+      else {
+	hidden.style.display = 'block';
+      }
+  }, false);
+</script>
