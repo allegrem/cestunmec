@@ -28,16 +28,17 @@ Les dernières | Les buzzantes | Les meilleures | Rechercher
     Rechercher
   </p>
   
-  <h3>Communauté</h3>
+  <h3><%= link_to 'Communauté', membres_path %></h3>
   <p>
     <% if session[:membre_id] %>
     Connecté en tant que <%= link_to @membre.pseudo, @membre %> <br />
     <%= link_to 'Modifier mon profil', edit_membre_path(@membre) %> <br />
+    <%= link_to 'Déconnexion', logout_url, :method => :delete %> <br />
     <% else %>
     <%= link_to 'Connexion', login_url %> <br />
-    <%= link_to 'Inscription', new_membre_path %> <br /> 
+    <%= link_to 'Inscription', new_membre_path %> <br /> <br />
     <% end %>
-    <%= link_to 'Liste des membres', membres_path %> <br /> <br />
+    <br /> 
   </p>
   
   <h3>Le site</h3>
