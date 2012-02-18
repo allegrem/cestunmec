@@ -2,7 +2,7 @@ class VannesController < ApplicationController
   # GET /vannes
   # GET /vannes.json
   def index
-    @vannes = Vanne.all
+    @vannes = Vanne.order('created_at DESC')
     @vanne = Vanne.new
 
     respond_to do |format|

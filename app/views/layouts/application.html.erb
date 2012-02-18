@@ -14,7 +14,7 @@ il s'appelle On, et il a un phare, c'est le Pharaon !
 </header>
 
 <nav>
-Les dernières | Les buzzantes | Les meilleures | Rechercher
+<%= link_to 'Les dernières', root_url %> | Les buzzantes | Les meilleures | Rechercher
 </nav>
 
 <%= yield %>
@@ -22,7 +22,7 @@ Les dernières | Les buzzantes | Les meilleures | Rechercher
 <footer id="main_footer">
   <h3><%= link_to 'Les Vannes', root_url %></h3>
   <p>
-    Les dernières <br />
+    <%= link_to 'Les dernières', root_url %><br />
     Les buzzantes <br />
     Les meilleures <br />
     Rechercher
