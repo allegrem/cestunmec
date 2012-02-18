@@ -28,18 +28,24 @@ Les dernières | Les buzzantes | Les meilleures | Rechercher
     Rechercher
   </p>
   
-  <h3>Mon compte</h3>
+  <h3>Communauté</h3>
   <p>
+    <% if session[:membre_id] %>
+    Connecté en tant que <%= link_to @membre.pseudo, @membre %> <br />
+    <%= link_to 'Modifier mon profil', edit_membre_path(@membre) %> <br />
+    <% else %>
     <%= link_to 'Connexion', login_url %> <br />
     <%= link_to 'Inscription', new_membre_path %> <br /> 
-    <%= link_to 'Membres', membres_path %> <br /> <br />
+    <% end %>
+    <%= link_to 'Liste des membres', membres_path %> <br /> <br />
   </p>
   
   <h3>Le site</h3>
   <p>
     Facebook <br />
     Twitter <br />
-    Version mobile <br /> <br />
+    Google + <br />
+    Version mobile <br />
   </p>
   
   <h3>Contact</h3>
