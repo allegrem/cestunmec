@@ -8,12 +8,12 @@ class SessionsController < ApplicationController
       session[:membre_id] = membre.id
       redirect_to root_url
     else
-      redirect_to login_url, :alert => "Whoops ! Le pseudo et le mot de passe entrés ne correspondent pas !"
+      redirect_to login_url, :alert => "Whoops ! Le pseudo et le mot de passe entres ne correspondent pas !"
     end
   end
 
   def destroy
     session[:membre_id] = nil
-    redirect_to root_url, :notice => "Vous êtes bien déconnecté."
+    redirect_to root_url, :notice => "Vous etes bien deconnecte."
   end
 end
