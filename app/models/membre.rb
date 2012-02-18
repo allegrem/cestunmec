@@ -1,6 +1,8 @@
 require 'digest/sha2'
 
 class Membre < ActiveRecord::Base
+  has_many :vannes
+  
   validates :pseudo, :presence => true, :uniqueness => true
   
   validates :passwd, :confirmation => true

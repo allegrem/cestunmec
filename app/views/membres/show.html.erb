@@ -4,12 +4,24 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  FIXME
-</p>
+
+<h3>Ses vannes</h3>
+
+<% @vannes.each do |vanne| %>
+<article>
+  <%= vanne.contenu %>
+
+  <footer>
+  Posté <time><%= link_to vanne.created_at.strftime("le %d/%m/%Y à %H:%M"), vanne %></time>
+  <% if @current_membre && vanne.membre == @current_membre %>
+    <%= link_to 'Supprimer', vanne, :confirm => 'Attention ! Supprimer une vanne est une décision irréversible et beaucoup de vanneurs risquent de s\'en attrister. Es-tu sûr de vouloir supprimer cette vanne ?', :method => :delete %>
+  <% end %>
+  </footer>
+</article>
+<% end %>
 
 <% if @membre == @current_membre %>
-<%= link_to 'Modifier', edit_membre_path(@membre) %>
+<%= link_to 'Editer mon profil', edit_membre_path(@membre) %>
 <% end %>
 
 </div>

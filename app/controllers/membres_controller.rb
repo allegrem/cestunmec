@@ -14,6 +14,7 @@ class MembresController < ApplicationController
   # GET /membres/1.json
   def show
     @membre = Membre.find(params[:id])
+    @vannes = @membre.vannes.order('created_at DESC')
 
     respond_to do |format|
       format.html # show.html.erb
