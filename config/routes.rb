@@ -11,6 +11,13 @@ Cestunmec::Application.routes.draw do
       delete 'logout' => :destroy
     end
     
+    controller :about do
+      get 'about' => :index
+      get 'contact' => :contact
+      get 'presse' => :presse
+      get 'followus' => :followus
+    end
+    
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

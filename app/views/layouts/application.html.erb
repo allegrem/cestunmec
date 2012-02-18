@@ -20,7 +20,7 @@ Les dernières | Les buzzantes | Les meilleures | Rechercher
 <%= yield %>
 
 <footer id="main_footer">
-  <h3>Les Vannes</h3>
+  <h3><%= link_to 'Les Vannes', root_url %></h3>
   <p>
     Les dernières <br />
     Les buzzantes <br />
@@ -41,19 +41,20 @@ Les dernières | Les buzzantes | Les meilleures | Rechercher
     <br /> 
   </p>
   
-  <h3>Le site</h3>
+  <h3><%= link_to 'Suivez-nous', followus_url %></h3>
   <p>
     Facebook <br />
     Twitter <br />
     Google + <br />
-    Version mobile <br />
+    Flux RSS <br />
   </p>
   
-  <h3>Contact</h3>
+  <h3><%= link_to 'Le site', about_url %></h3>
   <p>
-    L'équipe du site <br />
-    Contact <br /> 
+    <%= link_to 'Ils parlent de nous', presse_url %><br />
+    <%= link_to 'Contact', contact_url %><br /> 
     <%= link_to 'Fork me on GitHub', "https://github.com/allegrem/cestunmec" %> <br />
+    Version mobile
   </p>
 </footer>
 
