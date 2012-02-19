@@ -11,6 +11,8 @@ class VannesController < ApplicationController
       case params[:order]
 	when 'best'
 	  @vannes = Vanne.order('lols_count DESC, created_at DESC').limit(10).offset(10*params[:page].to_i)
+	when 'buzz'
+	  @vannes = Vanne.order('lols_count/created_at DESC').limit(10).offset(10*params[:page].to_i)
 	else
 	  @vannes = Vanne.order('created_at DESC').limit(10).offset(10*params[:page].to_i)
       end
