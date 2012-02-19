@@ -37,7 +37,7 @@ class MembresController < ApplicationController
   def edit
     @membre = Membre.find(params[:id])
     
-    if @membre != @current_membre
+    if not(@membre == @current_membre || @current_membre.admin)
       redirect_to root_url
     end
   end
@@ -64,17 +64,27 @@ class MembresController < ApplicationController
   def update
     @membre = Membre.find(params[:id])
     
-    if @membre != @current_membre
-      redirect_to root_url
-    else
-      respond_to do |format|
-	if @membre.update_attributes(params[:membre])
-	  format.html { redirect_to @membre, :notice => 'Membre was successfully updated.' }
-	  format.json { head :no_content }
-	else
-	  format.html { render :action => "edit" }
-	  format.json { render :json => @membre.errors, :status => :unprocessable_entity }
+    if params[:admin]  &&  @current_membre.admin
+      if params[:admin] == "yes"
+	@membre.admin = true
+      elsif params[:admin] == "no"
+	@membre.admin = false
+      end
+      @membre.save
+      redirect_to @membre
+    else    
+      if @membre == @current_membre  ||  @current_membre.admin
+	respond_to do |format|
+	  if @membre.update_attributes(params[:membre])
+	    format.html { redirect_to @membre, :notice => 'Membre was successfully updated.' }
+	    format.json { head :no_content }
+	  else
+	    format.html { render :action => "edit" }
+	    format.json { render :json => @membre.errors, :status => :unprocessable_entity }
+	  end
 	end
+      else
+	redirect_to root_url
       end
     end
   end
@@ -84,16 +94,16 @@ class MembresController < ApplicationController
   def destroy
     @membre = Membre.find(params[:id])
     
-    if @membre != @current_membre
-      redirect_to root_url
-    else
+    if @membre == @current_membre  ||  @current_membre.admin
       @membre.destroy
       session[:membre_id] = nil  #on deconnecte
 
       respond_to do |format|
-	format.html { redirect_to root_url }
+	format.html { redirect_to membres_url }
 	format.json { head :no_content }
       end
+    else
+      redirect_to root_url
     end
   end
 end

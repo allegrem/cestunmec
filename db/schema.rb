@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219162039) do
+ActiveRecord::Schema.define(:version => 20120219225417) do
 
   create_table "lols", :force => true do |t|
     t.integer  "vanne_id"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20120219162039) do
     t.string   "hashed_passwd"
     t.string   "salt"
     t.string   "email"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "admin",         :default => false
   end
 
   create_table "vannes", :force => true do |t|

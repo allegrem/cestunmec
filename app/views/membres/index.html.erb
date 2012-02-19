@@ -7,6 +7,10 @@
     <th>Pseudo</th>
     <th>Vannes postées</th>
     <th>Lols récoltés</th>
+    <% if @current_membre && @current_membre.admin %>
+    <th></th>
+    <th></th>
+    <% end %>
   </tr>
 
 <% @membres.each do |membre| 
@@ -18,6 +22,10 @@ end %>
     <td><%= link_to membre.pseudo, membre %></td>
     <td><%= membre.vannes.count %></td>
     <td><%= @s %></td>
+    <% if @current_membre && @current_membre.admin %>
+    <td><%= 'Admin' if membre.admin %></td>
+    <td><%= link_to 'Supprimer', membre, :confirm => "Etes vous sur ?", :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
