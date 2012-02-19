@@ -8,16 +8,31 @@
 </head>
 <body>
 
-<header>
-<h1><%= link_to "C'est un mec,", "/" %></h1>
-il s'appelle On, et il a un phare, c'est le Pharaon !
-</header>
-
-<nav>
-<%= link_to 'Les dernières', root_url %> | Les buzzantes | Les meilleures | Rechercher
+<nav id="login_box">
+  <% if session[:membre_id] %>
+    Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! 
+    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
+    <%= link_to 'Déconnexion', logout_url, :method => :delete %>
+  <% else %>
+    <%= link_to 'Connexion', login_url %> | 
+    <%= link_to 'Inscription', new_membre_path %> 
+  <% end %>
 </nav>
 
+
+<header>
+  <h1><%= link_to "C'est un mec,", "/" %></h1>
+  il s'appelle On, et il a un phare, c'est le Pharaon !
+</header>
+
+
+<nav>
+  <%= link_to 'Les dernières', root_url %> | Les buzzantes | Les meilleures | Rechercher
+</nav>
+
+
 <%= yield %>
+
 
 <footer id="main_footer">
   <h3><%= link_to 'Les Vannes', root_url %></h3>
@@ -54,7 +69,6 @@ il s'appelle On, et il a un phare, c'est le Pharaon !
     <%= link_to 'Ils parlent de nous', presse_url %><br />
     <%= link_to 'Contact', contact_url %><br /> 
     <%= link_to 'Fork me on GitHub', "https://github.com/allegrem/cestunmec" %> <br />
-    Version mobile
   </p>
 </footer>
 

@@ -13,18 +13,20 @@
 */
 
 body {
-/*   background-color: rgb(50,30,0); */
   background: -webkit-gradient(linear,left top, left bottom, from(rgba(20,10,0,1)), to(rgba(60,40,10,1)));
   background: -webkit-linear-gradient(top,rgba(20,10,0,1),rgba(60,40,10,1) );
   background: -moz-linear-gradient(top,rgba(20,10,0,1),rgba(60,40,10,1));
   background: -o-linear-gradient(top,rgba(20,10,0,1),rgba(60,40,10,1) );
   background: linear-gradient(top,rgba(20,10,0,1),rgba(60,40,10,1) );
+  
+  padding: 0px;
+  margin: 0px;
 }
 
 
 h1 {
   margin-top: 0px;
-  padding-top: 0px;
+  padding-top: 20px;
   margin-bottom: 0px;
   padding-bottom: 10px;
 }
@@ -66,6 +68,18 @@ nav {
   text-align: center;
   font-size: 25px;
   font-family: "Comic Sans MS";
+}
+
+
+#login_box {
+  font-size: 13px;
+  width: 100%;
+  position: fixed;
+  border-radius: 0px;
+  margin: 0px;
+  padding: 3px;
+  border-bottom: solid 1px black;
+  box-shadow: 3px 3px 6px black;
 }
 
 
