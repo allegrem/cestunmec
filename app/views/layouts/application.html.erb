@@ -9,14 +9,19 @@
 <body>
 
 <nav id="login_box">
-  <% if session[:membre_id] %>
-    Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! 
-    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
-    <%= link_to 'Déconnexion', logout_url, :method => :delete %>
-  <% else %>
-    <%= link_to 'Connexion', login_url %> | 
-    <%= link_to 'Inscription', new_membre_path %> 
-  <% end %>
+  <span style="float:left">
+    Déjà <%= link_to Vanne.count.to_s + ' vannes postées', root_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
+  </span>
+  <span style="float:right; padding-right:25px">
+    <% if session[:membre_id] %>
+      Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! 
+      <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
+      <%= link_to 'Déconnexion', logout_url, :method => :delete %>
+    <% else %>
+      <%= link_to 'Connexion', login_url %> | 
+      <%= link_to 'Inscription', new_membre_path %> 
+    <% end %>
+  </span>
 </nav>
 
 
