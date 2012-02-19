@@ -33,7 +33,7 @@ class Membre < ActiveRecord::Base
   end
   
   def admin?
-    self.admin.to_b
+    self.admin = true
   end
   
   
