@@ -1,15 +1,19 @@
 <div id="main_frame">
 
-<h1>Liste des vanneurs</h1>
+<h1>Tous les vanneurs</h1>
 
-<table>
+<table style="width:100%;">
   <tr>
     <th>Pseudo</th>
+    <th>Vannes postées</th>
+    <th>Lols récoltés</th>
   </tr>
 
 <% @membres.each do |membre| %>
   <tr>
     <td><%= link_to membre.pseudo, membre %></td>
+    <td><%= membre.vannes.count %></td>
+    <td></td>
   </tr>
 <% end %>
 </table>
