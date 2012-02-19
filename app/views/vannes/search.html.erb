@@ -1,0 +1,37 @@
+<div id="main_frame">
+
+<h2>Rechercher</h2>
+
+<p>
+  A la recherche de la vanne parfaite ? Essayez notre moteur de recherche révolutionnaire, n°1 mondial pour les blagues commençant par <em>C'est un mec</em> !!
+</p>
+
+<%= form_tag search_vannes_path do %>
+  <%= label_tag :q, "Votre recherche :" %>
+  <%= text_field_tag :q, nil, :size => 70 %><br />
+  <%= submit_tag "Trouve des vannes !" %>
+<% end %>
+
+
+<% if @vannes %>
+  <h3>Résultats de la recherche</h3>
+
+  <p>
+  <% if @vannes.any? %>
+    <% @vannes.each do |vanne| %>
+      <article><%= vanne.contenu %></article>
+    <% end %>
+
+      <% if @vannes.count > (params[:page].to_i + 1) * 10 %>
+      <div id="plus_vannes_scroll">
+	<h2><%= link_to 'Suite', :q => params[:q], :order => params[:order], :page => params[:page].to_i + 1 %></h2>
+      </div>
+      <% end %>
+  <% else %>
+    Aucune vanne ne correspond à votre recherche :( <br />
+    Mais vous pouvez toujours <%= link_to 'écrire la votre', vannes_url %> !
+  <% end %>
+  </p>
+<% end %>
+
+</div>
