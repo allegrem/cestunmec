@@ -31,7 +31,7 @@ il s'appelle On, et il a un phare, c'est le Pharaon !
   <h3><%= link_to 'Communauté', membres_path %></h3>
   <p>
     <% if session[:membre_id] %>
-    Connecté en tant que <%= link_to @current_membre.pseudo, @current_membre %> <br />
+    Salut, <%= link_to @current_membre.pseudo, @current_membre %> !<br />
     <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> <br />
     <%= link_to 'Déconnexion', logout_url, :method => :delete %> <br />
     <% else %>

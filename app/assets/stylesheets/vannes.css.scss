@@ -30,7 +30,7 @@ article footer {
 }
 
 
-#new_vanne_scroll {
+#new_vanne_scroll, #plus_vannes_scroll {
   background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,255,1)));
   background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
   background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1));
@@ -41,7 +41,6 @@ article footer {
   border-radius: 10px;
   margin-left: 20%;
   margin-bottom: 20px;
-  padding-bottom: 5px;
   
   text-align: center;
   color: black;
@@ -54,5 +53,6 @@ article footer {
 
 
 #new_vanne_scroll_hidden {
+  margin-top: 10px;
   display: none;
 }

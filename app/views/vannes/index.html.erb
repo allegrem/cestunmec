@@ -7,6 +7,23 @@
   </div>
 </div>
 
+<script>
+  var trigger_new = document.getElementById('new_vanne_scroll_trigger');
+  var hidden_new = document.getElementById('new_vanne_scroll_hidden');
+
+  trigger_new.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (hidden_new.style.display == 'block') {
+	hidden_new.style.display = 'none';
+      }
+      else {
+	hidden_new.style.display = 'block';
+      }
+  }, false);
+</script>
+
+
+
 <% @vannes.each do |vanne| %>
 <article>
   <%= vanne.contenu %>
@@ -22,17 +39,8 @@
 <% end %>
 
 
-<script>
-  var trigger = document.getElementById('new_vanne_scroll_trigger');
-  var hidden = document.getElementById('new_vanne_scroll_hidden');
-
-  trigger.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (hidden.style.display == 'block') {
-	hidden.style.display = 'none';
-      }
-      else {
-	hidden.style.display = 'block';
-      }
-  }, false);
-</script>
+<% if @vannes_count > (params[:page].to_i + 1) * 10 %>
+<div id="plus_vannes_scroll">
+  <h2><%= link_to 'Encore plus de vannes ...', :page => params[:page].to_i + 1 %></h2>
+</div>
+<% end %>

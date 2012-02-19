@@ -2,12 +2,19 @@ class VannesController < ApplicationController
   # GET /vannes
   # GET /vannes.json
   def index
-    @vannes = Vanne.order('created_at DESC')
-    @vanne = Vanne.new
+    @vannes_count = Vanne.count
+    if @vannes_count < 10*params[:page].to_i
+      respond_to do |format|
+	format.html { redirect_to root_url }
+      end
+    else
+      @vannes = Vanne.order('created_at DESC').limit(10).offset(10*params[:page].to_i)
+      @vanne = Vanne.new
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @vannes }
+      respond_to do |format|
+	format.html # index.html.erb
+	format.json { render :json => @vannes }
+      end
     end
   end
 
