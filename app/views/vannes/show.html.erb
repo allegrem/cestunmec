@@ -1,9 +1,1 @@
-<article>
-  <%= @vanne.contenu %>
-
-  <footer>
-  Posté par <%= if @vanne.membre then link_to @vanne.membre.pseudo, @vanne.membre else "Anonyme" end %>
-  le <time><%= link_to @vanne.date, @vanne %></time>
-  <%= link_to 'Destroy', @vanne, :confirm => 'Are you sure?', :method => :delete %>
-  </footer>
-</article>
+<%= render :partial => 'vanne', :locals => {:vanne => @vanne} %>

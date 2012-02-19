@@ -1,0 +1,30 @@
+<article>
+  <%= vanne.contenu %>
+
+  <footer style="text-align:right">
+    <span style="float:left">
+      Posté par <%= if vanne.membre then link_to vanne.membre.pseudo, vanne.membre else "Anonyme" end %>
+      <time><%= link_to vanne.created_at.strftime("le %d/%m/%Y à %H:%M"), vanne %></time>
+      <% if @current_membre && vanne.membre == @current_membre %>
+	<%= link_to 'Supprimer', vanne, :confirm => 'Attention ! Supprimer une vanne est une décision irréversible et beaucoup de vanneurs risquent de s\'en attrister. Es-tu sûr de vouloir supprimer cette vanne ?', :method => :delete %>
+      <% end %>
+    </span>
+    
+    <% c = vanne.lols_count.to_i
+    if c > 10
+      @vanne_text = 'L' + c.to_s + 'O' + 'L'
+    elsif c > 0
+      @vanne_text = 'L' + 'O'*c + 'L'
+    else
+      @vanne_text = 'Sois le premier à dire LOL !'
+    end %>
+    
+    <% if @current_membre.nil? %>
+      <%= @vanne_text %>
+    <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any? %>
+      <strong><%= @vanne_text %></strong>
+    <% else %>
+      <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post %>
+    <% end %>
+  </footer>
+</article>

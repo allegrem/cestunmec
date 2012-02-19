@@ -19,7 +19,7 @@
   <p>
   <% if @vannes.any? %>
     <% @vannes.each do |vanne| %>
-      <article><%= vanne.contenu %></article>
+      <%= render :partial => 'vanne', :locals => {:vanne => vanne} %>
     <% end %>
 
       <% if @vannes.count > (params[:page].to_i + 1) * 10 %>
