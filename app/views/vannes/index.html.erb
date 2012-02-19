@@ -48,7 +48,7 @@
     
     <% if @current_membre.nil? %>
       <%= @vanne_text %>
-    <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).count > 0 %>
+    <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any? %>
       <strong><%= @vanne_text %></strong>
     <% else %>
       <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post %>

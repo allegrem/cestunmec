@@ -14,7 +14,7 @@ class LolsController < ApplicationController
   def create
     if @current_membre.nil?  ||  Vanne.find(params[:vanne_id]).lols.where("membre_id = ?",@current_membre.id).count.zero?
       @lol = Lol.new(params[:lol])
-      @lol.membre_id = @current_membre  if @current_membre
+      @lol.membre_id = @current_membre.id  if @current_membre
       @lol.vanne_id = params[:vanne_id]  if params[:vanne_id]
       
       @lol.vanne.lols_count += 1
