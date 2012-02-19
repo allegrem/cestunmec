@@ -60,6 +60,6 @@
 
 <% if @vannes_count > (params[:page].to_i + 1) * 10 %>
 <div id="plus_vannes_scroll">
-  <h2><%= link_to 'Encore plus de vannes ...', :page => params[:page].to_i + 1 %></h2>
+  <h2><%= link_to 'Encore plus de vannes ...', :order => params[:order], :page => params[:page].to_i + 1 %></h2>
 </div>
 <% end %>
