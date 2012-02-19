@@ -9,11 +9,15 @@
     <th>Lols récoltés</th>
   </tr>
 
-<% @membres.each do |membre| %>
+<% @membres.each do |membre| 
+@s = 0
+membre.vannes.each do |v|
+  @s += v.lols_count
+end %>
   <tr>
     <td><%= link_to membre.pseudo, membre %></td>
     <td><%= membre.vannes.count %></td>
-    <td></td>
+    <td><%= @s %></td>
   </tr>
 <% end %>
 </table>
