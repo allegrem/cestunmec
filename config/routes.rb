@@ -1,9 +1,11 @@
 Cestunmec::Application.routes.draw do
-  get "admin/index"
-
-  resources :vannes
-
-  resources :membres
+  resources :membres do
+    resources :lols
+  end
+  
+  resources :vannes do
+    resources :lols
+  end
   
    controller :sessions do
       get 'login' => :new

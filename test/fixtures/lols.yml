@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vanne_id: 1
+  membre_id: 1
+
+two:
+  vanne_id: 1
+  membre_id: 1

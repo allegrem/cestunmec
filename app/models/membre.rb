@@ -2,6 +2,7 @@ require 'digest/sha2'
 
 class Membre < ActiveRecord::Base
   has_many :vannes
+  has_many :lols
   
   validates :pseudo, :presence => true, :uniqueness => true
   

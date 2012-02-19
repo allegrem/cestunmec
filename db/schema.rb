@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218130120) do
+ActiveRecord::Schema.define(:version => 20120219162039) do
+
+  create_table "lols", :force => true do |t|
+    t.integer  "vanne_id"
+    t.integer  "membre_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "membres", :force => true do |t|
     t.string   "pseudo"
@@ -25,8 +32,9 @@ ActiveRecord::Schema.define(:version => 20120218130120) do
     t.text     "contenu"
     t.integer  "membre_id"
     t.date     "date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "lols_count", :default => 0
   end
 
 end

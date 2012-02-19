@@ -10,11 +10,11 @@
 
 <nav id="login_box">
   <span style="float:left">
-    Déjà <%= link_to Vanne.count.to_s + ' vannes postées', root_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
+    Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
   </span>
   <span style="float:right; padding-right:25px">
     <% if session[:membre_id] %>
-      Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! 
+      <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> !</strong> 
       <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
       <%= link_to 'Déconnexion', logout_url, :method => :delete %>
     <% else %>
@@ -32,7 +32,10 @@
 
 
 <nav>
-  <%= link_to 'Les dernières', root_url %> | Les buzzantes | Les meilleures | Rechercher
+  <%= link_to 'Les dernières', vannes_url %> | 
+  Les buzzantes | 
+  <%= link_to 'Les meilleures', vannes_url(:order => 'best') %> | 
+  Rechercher
 </nav>
 
 
@@ -40,11 +43,11 @@
 
 
 <footer id="main_footer">
-  <h3><%= link_to 'Les Vannes', root_url %></h3>
+  <h3><%= link_to 'Les Vannes', vannes_url %></h3>
   <p>
-    <%= link_to 'Les dernières', root_url %><br />
+    <%= link_to 'Les dernières', vannes_url %><br />
     Les buzzantes <br />
-    Les meilleures <br />
+    <%= link_to 'Les meilleures', vannes_url(:order => 'best') %> <br />
     Rechercher
   </p>
   
