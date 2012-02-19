@@ -33,7 +33,7 @@ class Membre < ActiveRecord::Base
   end
   
   def admin?
-    self.admin = true
+    !(self.admin == false  ||  self.admin == nil  ||  self.admin == 'f')
   end
   
   
