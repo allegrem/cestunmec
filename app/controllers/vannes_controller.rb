@@ -14,7 +14,7 @@ class VannesController < ApplicationController
 	when 'buzz'
 	  @vannes = Vanne.where('valide = ?',true).where('created_at > ?', Time.now - 1.week).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
 	when 'validation'
-	  if @current_membre.admin
+	  if @current_membre.admin?
 	    @vannes = Vanne.where('valide = ?',false).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
 	  else
 	    redirect_to vannes_path
@@ -81,7 +81,7 @@ class VannesController < ApplicationController
   def update
     @vanne = Vanne.find(params[:id])
     
-    if @current_membre  &&  @current_membre.admin  &&  params[:valide] == "yes"
+    if @current_membre  &&  @current_membre.admin?  &&  params[:valide] == "yes"
       @vanne.valide = true
       @vanne.save
       redirect_to vannes_path(:order => 'validation')

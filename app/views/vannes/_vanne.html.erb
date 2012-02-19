@@ -1,7 +1,7 @@
 <article>
   <% if !vanne.valide %>
     <strong style="font-size:12px; color:red">En attente de validation</strong>
-    <% if @current_membre && @current_membre.admin %>
+    <% if @current_membre && @current_membre.admin? %>
       <span style="font-size:12px">
 	<%= link_to 'Valider', vanne_path(vanne, :valide => "yes"), :method => :put %> | 
 	<%= link_to 'Supprimer', vanne, :confirm => 'Etes vous sur ?', :method => :delete %>
@@ -16,7 +16,7 @@
     <span style="float:left">
       Posté par <%= if vanne.membre then link_to vanne.membre.pseudo, vanne.membre else "Anonyme" end %>
       <time><%= link_to vanne.created_at.strftime("le %d/%m/%Y à %H:%M"), vanne %></time>
-      <% if @current_membre && (vanne.membre == @current_membre || @current_membre.admin) %>
+      <% if @current_membre && (vanne.membre == @current_membre || @current_membre.admin?) %>
 	<%= link_to '(Supprimer)', vanne, :confirm => 'Attention ! Supprimer une vanne est une décision irréversible et beaucoup de vanneurs risquent de s\'en attrister. Es-tu sûr de vouloir supprimer cette vanne ?', :method => :delete %>
       <% end %>
     </span>

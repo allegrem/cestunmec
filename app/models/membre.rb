@@ -32,6 +32,10 @@ class Membre < ActiveRecord::Base
     end
   end
   
+  def admin?
+    self.admin.to_b
+  end
+  
   
   private
   def passwd_must_be_present

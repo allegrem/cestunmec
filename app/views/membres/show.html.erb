@@ -11,11 +11,11 @@
   <%= render :partial => 'vannes/vanne', :locals => {:vanne => vanne} %>
 <% end %>
 
-<% if @membre == @current_membre  ||  @current_membre.admin %>
+<% if @membre == @current_membre  ||  @current_membre.admin? %>
   <p><%= link_to 'Editer mon profil', edit_membre_path(@membre) %></p>
 <% end %>
 
-<% if @current_membre.admin 
+<% if @current_membre.admin? 
   if @membre.admin %>
   <p><%= link_to 'Retirer admin', membre_path(@membre, :admin => "no"), :method => :put %></p>
 <% else %>

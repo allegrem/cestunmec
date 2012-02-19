@@ -20,7 +20,7 @@
   <span style="float:right; padding-right:25px">
     <% if session[:membre_id] %>
       <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
-      <% if @current_membre.admin %>
+      <% if @current_membre.admin? %>
 	<%= link_to 'Validation', vannes_path(:order => :validation) %> | 
       <% end %>
       <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 

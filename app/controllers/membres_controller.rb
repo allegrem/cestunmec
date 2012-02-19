@@ -41,7 +41,7 @@ class MembresController < ApplicationController
   def edit
     @membre = Membre.find(params[:id])
     
-    if not(@membre == @current_membre || @current_membre.admin)
+    if not(@membre == @current_membre || @current_membre.admin?)
       redirect_to root_url
     end
   end
@@ -68,7 +68,7 @@ class MembresController < ApplicationController
   def update
     @membre = Membre.find(params[:id])
     
-    if params[:admin]  &&  @current_membre.admin
+    if params[:admin]  &&  @current_membre.admin?
       if params[:admin] == "yes"
 	@membre.admin = true
       elsif params[:admin] == "no"
@@ -77,7 +77,7 @@ class MembresController < ApplicationController
       @membre.save
       redirect_to @membre
     else    
-      if @membre == @current_membre  ||  @current_membre.admin
+      if @membre == @current_membre  ||  @current_membre.admin?
 	respond_to do |format|
 	  if @membre.update_attributes(params[:membre])
 	    format.html { redirect_to @membre, :notice => 'Membre was successfully updated.' }
@@ -98,7 +98,7 @@ class MembresController < ApplicationController
   def destroy
     @membre = Membre.find(params[:id])
     
-    if @membre == @current_membre  ||  @current_membre.admin
+    if @membre == @current_membre  ||  @current_membre.admin?
       @membre.destroy
       session[:membre_id] = nil  #on deconnecte
 
