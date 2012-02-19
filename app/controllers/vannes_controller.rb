@@ -10,11 +10,17 @@ class VannesController < ApplicationController
     else
       case params[:order]
 	when 'best'
-	  @vannes = Vanne.order('lols_count DESC, created_at DESC').limit(10).offset(10*params[:page].to_i)
+	  @vannes = Vanne.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(10).offset(10*params[:page].to_i)
 	when 'buzz'
-	  @vannes = Vanne.where('created_at > ?', Time.now - 1.week).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
+	  @vannes = Vanne.where('valide = ?',true).where('created_at > ?', Time.now - 1.week).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
+	when 'validation'
+	  if @current_membre.admin
+	    @vannes = Vanne.where('valide = ?',false).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
+	  else
+	    redirect_to vannes_path
+	  end
 	else
-	  @vannes = Vanne.order('created_at DESC').limit(10).offset(10*params[:page].to_i)
+	  @vannes = Vanne.where('valide = ?',true).order('created_at DESC').limit(10).offset(10*params[:page].to_i)
       end
       @vanne = Vanne.new
 
@@ -74,14 +80,20 @@ class VannesController < ApplicationController
   # PUT /vannes/1.json
   def update
     @vanne = Vanne.find(params[:id])
-
-    respond_to do |format|
-      if @vanne.update_attributes(params[:vanne])
-        format.html { redirect_to @vanne, :notice => 'Vanne was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @vanne.errors, :status => :unprocessable_entity }
+    
+    if @current_membre  &&  @current_membre.admin  &&  params[:valide] == "yes"
+      @vanne.valide = true
+      @vanne.save
+      redirect_to vannes_path(:order => 'validation')
+    else
+      respond_to do |format|
+	if @vanne.update_attributes(params[:vanne])
+	  format.html { redirect_to @vanne, :notice => 'Vanne was successfully updated.' }
+	  format.json { head :no_content }
+	else
+	  format.html { render :action => "edit" }
+	  format.json { render :json => @vanne.errors, :status => :unprocessable_entity }
+	end
       end
     end
   end
@@ -102,7 +114,7 @@ class VannesController < ApplicationController
   # GET /vannes/search
   def search
     if params[:q] && params[:q] != ""
-      @vannes = Vanne.where('contenu LIKE ?','%'+params[:q]+'%').order('created_at DESC').limit(10).offset(10*params[:page].to_i)
+      @vannes = Vanne.where('valide = ?',true).where('contenu LIKE ?','%'+params[:q]+'%').order('created_at DESC').limit(10).offset(10*params[:page].to_i)
       if @vannes.count < 10*params[:page].to_i
 	respond_to do |format|
 	  format.html { redirect_to vannes_url }

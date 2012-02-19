@@ -14,7 +14,11 @@ class MembresController < ApplicationController
   # GET /membres/1.json
   def show
     @membre = Membre.find(params[:id])
-    @vannes = @membre.vannes.order('created_at DESC')
+    if @current_membre == @membre
+      @vannes = @membre.vannes.order('created_at DESC')
+    else
+      @vannes = @membre.vannes.where('valide = ?',true).order('created_at DESC')
+    end
 
     respond_to do |format|
       format.html # show.html.erb

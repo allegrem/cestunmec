@@ -1,4 +1,15 @@
 <article>
+  <% if !vanne.valide %>
+    <strong style="font-size:12px; color:red">En attente de validation</strong>
+    <% if @current_membre && @current_membre.admin %>
+      <span style="font-size:12px">
+	<%= link_to 'Valider', vanne_path(vanne, :valide => "yes"), :method => :put %> | 
+	<%= link_to 'Supprimer', vanne, :confirm => 'Etes vous sur ?', :method => :delete %>
+      </span>
+    <% end %>
+    <br />
+  <% end %>
+
   <%= vanne.contenu %>
 
   <footer style="text-align:right">

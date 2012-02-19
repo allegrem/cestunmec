@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120219225417) do
+ActiveRecord::Schema.define(:version => 20120219231423) do
 
   create_table "lols", :force => true do |t|
     t.integer  "vanne_id"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(:version => 20120219225417) do
     t.text     "contenu"
     t.integer  "membre_id"
     t.date     "date"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "lols_count", :default => 0
+    t.boolean  "valide",     :default => false
   end
 
 end
