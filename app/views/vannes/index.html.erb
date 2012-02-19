@@ -37,7 +37,7 @@
       <% end %>
     </span>
     
-    <% c = vanne.lols_count
+    <% c = vanne.lols_count.to_i
     if c > 10
       @vanne_text = 'L' + c.to_s + 'O' + 'L'
     elsif c > 0
