@@ -67,10 +67,10 @@ class VannesController < ApplicationController
     
     respond_to do |format|
       if @vanne.save
-        format.html { redirect_to vannes_path }
+        format.html { redirect_to vannes_path, :notice => 'Yeah !! Une nouvelle vanne ! Elle sera publiée une fois validée par nos soins.' }
         format.json { render :json => @vanne, :status => :created, :location => @vanne }
       else
-        format.html { render :action => "new" }
+	format.html { render :action => "new", :alert => 'Whoops ! Il y a eu une petite erreur !' }
         format.json { render :json => @vanne.errors, :status => :unprocessable_entity }
       end
     end
@@ -84,14 +84,14 @@ class VannesController < ApplicationController
     if @current_membre  &&  @current_membre.admin?  &&  params[:valide] == "yes"
       @vanne.valide = true
       @vanne.save
-      redirect_to vannes_path(:order => 'validation')
+      redirect_to vannes_path(:order => 'validation'), :notice => "Vanne validée !"
     else
       respond_to do |format|
 	if @vanne.update_attributes(params[:vanne])
-	  format.html { redirect_to @vanne, :notice => 'Vanne was successfully updated.' }
+	  format.html { redirect_to @vanne, :notice => 'Vanne mise à jour !!' }
 	  format.json { head :no_content }
 	else
-	  format.html { render :action => "edit" }
+	  format.html { render :action => "edit", :alert => 'Whoops ! Il y a eu une petite erreur !' }
 	  format.json { render :json => @vanne.errors, :status => :unprocessable_entity }
 	end
       end
@@ -105,7 +105,7 @@ class VannesController < ApplicationController
     @vanne.destroy
 
     respond_to do |format|
-      format.html { redirect_to vannes_url }
+      format.html { redirect_to vannes_url, :notice => 'Snif ... Une vanne de moins :(' }
       format.json { head :no_content }
     end
   end
