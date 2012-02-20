@@ -39,7 +39,7 @@
     <%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %><br />
     <%= link_to 'Les meilleures', vannes_url(:order => 'best') %><br />
     <%= form_tag search_vannes_path do %>
-      <%= text_field_tag :q, nil, :placeholder => 'Rechercher parmi les vannes' %><br />
+      <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes' %><br />
     <% end %>
   </nav>
 </header>
