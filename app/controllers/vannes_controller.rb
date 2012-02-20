@@ -62,7 +62,6 @@ class VannesController < ApplicationController
   # POST /vannes.json
   def create
     @vanne = Vanne.new(params[:vanne])
-    @vanne.date = Date.today
     @vanne.membre_id = @current_membre.id  if @current_membre
     
     respond_to do |format|
