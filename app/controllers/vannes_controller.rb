@@ -66,7 +66,7 @@ class VannesController < ApplicationController
     
     respond_to do |format|
       if @vanne.save
-        format.html { redirect_to vannes_path, :notice => 'Yeah !! Une nouvelle vanne ! Elle sera publiée une fois validée par nos soins.' }
+        format.html { redirect_to vannes_path, :notice => 'Yeah !! Une nouvelle vanne ! Elle sera publiee une fois validee par nos soins.' }
         format.json { render :json => @vanne, :status => :created, :location => @vanne }
       else
 	format.html { render :action => "new", :alert => 'Whoops ! Il y a eu une petite erreur !' }
@@ -83,7 +83,7 @@ class VannesController < ApplicationController
     if @current_membre  &&  @current_membre.admin?  &&  params[:valide] == "yes"
       @vanne.valide = true
       @vanne.save
-      redirect_to vannes_path(:order => 'validation'), :notice => "Vanne validée !"
+      redirect_to vannes_path(:order => 'validation'), :notice => "Vanne validee !"
     else
       respond_to do |format|
 	if @vanne.update_attributes(params[:vanne])
