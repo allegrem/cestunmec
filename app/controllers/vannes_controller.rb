@@ -83,6 +83,11 @@ class VannesController < ApplicationController
     if @current_membre  &&  @current_membre.admin?  &&  params[:valide] == "yes"
       @vanne.valide = true
       @vanne.save
+      
+      if params[:twitter] == "yes"
+	#TODO
+      end
+      
       redirect_to vannes_path(:order => 'validation'), :notice => "Vanne validee !"
     else
       respond_to do |format|
