@@ -4,11 +4,17 @@
     <% if @current_membre && @current_membre.admin? %>
       <span style="font-size:12px">
 	<%= link_to 'Valider', vanne_path(vanne, :valide => "yes"), :method => :put %> | 
+	<%= link_to 'Valider + Twitter', vanne_path(vanne, :valide => "yes", :twitter => "yes"), :confirm => "Etes vous sûr de vouloir poster cette vanne sur Twitter ?", :method => :put %> | 
 	<%= link_to 'Supprimer', vanne, :confirm => 'Etes vous sur ?', :method => :delete %>
       </span>
     <% end %>
     <br />
   <% end %>
+  
+  <aside>
+    <a href="https://twitter.com/share?" data-count="vertical" data-via="cestunmec" data-text="<%= vanne.contenu %>" class="twitter-share-button" data-lang="fr">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </aside>
 
   <%= vanne.contenu %>
 
