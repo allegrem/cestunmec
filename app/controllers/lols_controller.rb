@@ -21,7 +21,7 @@ class LolsController < ApplicationController
 
       respond_to do |format|
 	if @lol.save  &&  @lol.vanne.save
-	  format.html { redirect_to vanne_path(@lol.vanne) }
+	  format.html { redirect_to vanne_path(@lol.vanne), :notice => "Lol bien enregistré" }
 	  format.json { render :json => @lol, :status => :created, :location => @lol }
 	else
 	  format.html { redirect_to @lol.vanne }

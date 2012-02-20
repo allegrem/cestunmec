@@ -109,6 +109,14 @@ header nav a:hover {
   z-index: 100;
 }
 
+#flash {
+  text-align: center;
+}
+#flash a {
+  color: green;
+  font-weight: bold;
+}
+
 
 /* ===== main footer ===== */
 

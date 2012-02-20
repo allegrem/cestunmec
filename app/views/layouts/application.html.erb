@@ -10,22 +10,39 @@
 
 
 <nav id="login_box">
-  <span style="float:left">
-    Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
-  </span>
-  <span style="float:right; padding-right:25px">
-    <% if session[:membre_id] %>
-      <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
-      <% if @current_membre.admin? %>
-	<%= link_to 'Validation', vannes_path(:order => :validation) %> | 
+  <div id="not_flash" style="<%= 'display:none' if flash[:notice] %>">
+    <span style="float:left">
+      Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
+    </span>
+    <span style="float:right; padding-right:25px">
+      <% if session[:membre_id] %>
+	<strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
+	<% if @current_membre.admin? %>
+	  <%= link_to 'Validation', vannes_path(:order => :validation) %> | 
+	<% end %>
+	<%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
+	<%= link_to 'Déconnexion', logout_url, :method => :delete %>
+      <% else %>
+	<%= link_to 'Connexion', login_url %> | 
+	<%= link_to 'Inscription', new_membre_path %> 
       <% end %>
-      <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
-      <%= link_to 'Déconnexion', logout_url, :method => :delete %>
-    <% else %>
-      <%= link_to 'Connexion', login_url %> | 
-      <%= link_to 'Inscription', new_membre_path %> 
-    <% end %>
-  </span>
+    </span>
+  </div>
+  
+  <% if flash[:notice] %>
+    <div id="flash"><%= link_to flash[:notice], "#" %></div>
+    
+    <script>
+      var not_flash = document.getElementById('not_flash');
+      var flash = document.getElementById('flash');
+      
+      flash.addEventListener('mouseout', function(e) {
+        e.preventDefault();
+        flash.style.display = 'none';
+        not_flash.style.display = 'block';
+    }, false);
+    </script>
+  <% end %>
 </nav>
 
 

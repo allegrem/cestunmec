@@ -105,7 +105,7 @@ class VannesController < ApplicationController
     @vanne.destroy
 
     respond_to do |format|
-      format.html { redirect_to vannes_url }
+      format.html { redirect_to vannes_url, :notice => 'Snif ... Une vanne de moins :(' }
       format.json { head :no_content }
     end
   end
