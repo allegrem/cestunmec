@@ -24,13 +24,13 @@ class LolsController < ApplicationController
 	  format.html { redirect_to vanne_path(@lol.vanne), :notice => "Lol bien enregistré" }
 	  format.json { render :json => @lol, :status => :created, :location => @lol }
 	else
-	  format.html { redirect_to @lol.vanne }
+	  format.html { redirect_to @lol.vanne, :alert => "Whoops ! Il y a eu un petit problème !" }
 	  format.json { render :json => @lol.errors, :status => :unprocessable_entity }
 	end
       end
     else
       respond_to do |format|
-	format.html { redirect_to @lol.vanne }
+	format.html { redirect_to @lol.vanne, :alert => "Whoops ! Il y a eu un petit problème !" }
 	format.json { render :json => @lol.errors, :status => :unprocessable_entity }
       end
     end
@@ -48,7 +48,7 @@ class LolsController < ApplicationController
     @lol.destroy
 
     respond_to do |format|
-      format.html { redirect_to @lol.vanne }
+      format.html { redirect_to @lol.vanne, :notice => "Snif ... Un lol de moins :(" }
       format.json { head :no_content }
     end
   end
