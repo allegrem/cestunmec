@@ -9,10 +9,6 @@
 <body>
 
 
-<a href="http://github.com/allegrem/cestunmec"><img style="position: absolute; top: 20px; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/c641758e06304bc53ae7f633269018169e7e5851/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f77686974655f6666666666662e706e67" alt="Fork me on GitHub"></a>
-
-
-
 <nav id="login_box">
   <span style="float:left">
     Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
@@ -35,19 +31,16 @@
 
 
 <header>
-  <h1><%= link_to "C'est un mec,", "/" %></h1>
-  il s'appelle On, et il a un phare, c'est le Pharaon !
+  <h1><%= link_to "C'est un mec,", "/" %><br />
+  <span id="subtitle">il s'appelle On, et il a un phare, c'est le Pharaon !</span></h1>
+  
+  <nav>
+    <%= link_to 'Les dernières', vannes_url %><br />
+    <%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %><br />
+    <%= link_to 'Les meilleures', vannes_url(:order => 'best') %><br />
+    <%= link_to 'Rechercher', search_vannes_path %>
+  </nav>
 </header>
-
-
-
-<nav>
-  <%= link_to 'Les dernières', vannes_url %> | 
-  <%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %> | 
-  <%= link_to 'Les meilleures', vannes_url(:order => 'best') %> | 
-  <%= link_to 'Rechercher', search_vannes_path %>
-</nav>
-
 
 
 <%= yield %>

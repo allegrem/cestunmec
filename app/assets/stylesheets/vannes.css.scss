@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 article {
-  background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,255,1)));
-  background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
-  background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1));
-  background: -o-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
-  background: linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+  background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,245,1)));
+  background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,245,1) );
+  background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,245,1));
+  background: -o-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,245,1) );
+  background: linear-gradient(top,rgba(255,255,200,1),rgba(255,255,245,1) );
   
   width: 70%;
   border-radius: 10px;
@@ -25,17 +25,16 @@ article {
 article footer {
   margin-top: 10px;
   font-size: 15px;
-  border-top: none;
-  color: rgb(100,90,80);
+  font-family: Verdana;
 }
 
 
-#new_vanne_scroll, #plus_vannes_scroll {
-  background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,255,1)));
-  background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
-  background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1));
-  background: -o-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
-  background: linear-gradient(top,rgba(255,255,200,1),rgba(255,255,255,1) );
+#new_vanne_scroll {
+  background: -webkit-gradient(linear,left top, left bottom, from(rgba(255,255,200,1)), to(rgba(255,255,235,1)));
+  background: -webkit-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,235,1) );
+  background: -moz-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,235,1));
+  background: -o-linear-gradient(top,rgba(255,255,200,1),rgba(255,255,235,1) );
+  background: linear-gradient(top,rgba(255,255,200,1),rgba(255,255,235,1) );
   
   width: 60%;
   border-radius: 10px;
@@ -46,7 +45,7 @@ article footer {
   color: black;
 }
 
-#new_vanne_scroll h2 {
+#new_vanne_scroll h2 a {
   color: black;
   margin-bottom: 0px;
 }
@@ -55,4 +54,15 @@ article footer {
 #new_vanne_scroll_hidden {
   margin-top: 10px;
   display: none;
+}
+
+
+#plus_vannes_scroll {
+  text-align: center;
+}
+#plus_vannes_scroll a {
+  color: rgb(220,220,170);
+}
+#plus_vannes_scroll a:hover {
+  text-shadow: 1px 1px 3px rgb(100,100,50);
 }
