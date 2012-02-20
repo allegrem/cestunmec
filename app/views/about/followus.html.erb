@@ -2,7 +2,65 @@
   <h2>Suivez-nous</h2>
   
   <p>
-    <strong>Non disponible pour le moment :(</strong><br />
-    (mais on y travaille !!)
+    Envie de nous suivre en direct depuis les meilleurs réseaux sociaux du moment ? C'est possible !
   </p>
+  
+  
+
+  <div style="float:left; margin-right: 10px;">
+    <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+      new TWTR.Widget({
+	version: 2,
+	type: 'profile',
+	rpp: 5,
+	interval: 30000,
+	width: 250,
+	height: 300,
+	theme: {
+	  shell: {
+	    background: '#3c280a',
+	    color: '#fafac8'
+	  },
+	  tweets: {
+	    background: '#000000',
+	    color: '#fafac8',
+	    links: '#bd9037'
+	  }
+	},
+	features: {
+	  scrollbar: false,
+	  loop: false,
+	  live: false,
+	  behavior: 'all'
+	}
+      }).render().setUser('cestunmec').start();
+    </script>
+  </div>
+
+
+  <h3>Twitter</h3>
+  
+  <p>
+    Retrouvez les meilleures vannes ainsi que des informations exclusives sur le développement de <em>C'est un mec</em>.
+  </p>
+  
+  <p>
+    <a href="https://twitter.com/cestunmec" class="twitter-follow-button" data-show-count="true" data-lang="fr" data-size="large" data-align="center">Follow @cestunmec</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </p>
+  
+  
+  
+  <div style="clear:both; padding-bottom:10px;"></div>
+  
+  <h3>Facebook</h3>
+  
+  <p>
+    Coming soon ...
+  </p>
+  
+  
+ 
+
 </div>
