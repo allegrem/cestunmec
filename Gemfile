@@ -39,5 +39,3 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 gem 'pg'
-
-gem 'twitter'

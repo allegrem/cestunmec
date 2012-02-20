@@ -4,6 +4,7 @@
     <% if @current_membre && @current_membre.admin? %>
       <span style="font-size:12px">
 	<%= link_to 'Valider', vanne_path(vanne, :valide => "yes"), :method => :put %> | 
+	<%= link_to 'Valider + Twitter', vanne_path(vanne, :valide => "yes", :twitter => "yes"), :confirm => "Etes vous sûr de vouloir poster cette vanne sur Twitter ?", :method => :put %> | 
 	<%= link_to 'Supprimer', vanne, :confirm => 'Etes vous sur ?', :method => :delete %>
       </span>
     <% end %>
