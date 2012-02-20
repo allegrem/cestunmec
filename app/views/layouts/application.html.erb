@@ -17,7 +17,7 @@
     <% if session[:membre_id] %>
       <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
       <% if @current_membre.admin? %>
-	<%= link_to 'Validation', vannes_path(:order => :validation) %> | 
+	<%= link_to 'Validation ('+Vanne.where("valide = ?",false).count.to_s+')', vannes_path(:order => :validation) %> | 
       <% end %>
       <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
       <%= link_to 'Déconnexion', logout_url, :method => :delete %>
@@ -59,7 +59,7 @@
   <h3><%= link_to 'Communauté', membres_path %></h3>
   <p>
     <% if session[:membre_id] %>
-    Salut, <%= link_to @current_membre.pseudo, @current_membre %> !<br />
+    <%= link_to 'Salut, '+@current_membre.pseudo+' !', @current_membre %><br />
     <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> <br />
     <%= link_to 'Déconnexion', logout_url, :method => :delete %> <br />
     <% else %>
