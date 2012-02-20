@@ -4,12 +4,16 @@ class Membre < ActiveRecord::Base
   has_many :vannes, :dependent => :destroy
   has_many :lols, :dependent => :destroy
   
-  validates :pseudo, :presence => true, :uniqueness => true
   
-  validates :passwd, :confirmation => true
+  validates :pseudo, :presence => true, :uniqueness => true, :length => { :in => 2..30 }
+  
+  validates :email, :presence => true, :uniqueness => true, :format => /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/
+  
+  validates :passwd, :confirmation => true, :length => { :minimum => 4 }
   attr_accessor :passwd_confirmation
   attr_reader :passwd
   validate :passwd_must_be_present
+  
   
   def Membre.authenticate(pseudo, passwd)
     if membre = find_by_pseudo(pseudo)
