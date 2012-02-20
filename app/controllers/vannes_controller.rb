@@ -87,7 +87,7 @@ class VannesController < ApplicationController
     else
       respond_to do |format|
 	if @vanne.update_attributes(params[:vanne])
-	  format.html { redirect_to @vanne, :notice => 'Vanne mise à jour !!' }
+	  format.html { redirect_to @vanne, :notice => 'Vanne mise a jour !!' }
 	  format.json { head :no_content }
 	else
 	  format.html { render :action => "edit", :alert => 'Whoops ! Il y a eu une petite erreur !' }
