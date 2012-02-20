@@ -12,7 +12,7 @@
 <% end %>
 
 <% if @current_membre && (@membre == @current_membre  ||  @current_membre.admin?) %>
-  <p><%= link_to 'Editer mon profil', edit_membre_path(@membre) %></p>
+  <p><%= link_to 'Editer mon profil', edit_membre_path(@membre) %> | <%= link_to 'Supprimer mon compte', @membre, :confirm => "Attention ! La suppression d'un compte est une opération irréversible ! Elle entraine aussi la suppression de toutes les vannes et de tous les lols associés à ce compte. Bref, il vaut mieux cliquer sur Annuler ...", :method => :delete %></p>
 <% end %>
 
 <% if @current_membre && @current_membre.admin? 

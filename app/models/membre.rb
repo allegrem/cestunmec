@@ -1,8 +1,8 @@
 require 'digest/sha2'
 
 class Membre < ActiveRecord::Base
-  has_many :vannes
-  has_many :lols
+  has_many :vannes, :dependent => :destroy
+  has_many :lols, :dependent => :destroy
   
   validates :pseudo, :presence => true, :uniqueness => true
   

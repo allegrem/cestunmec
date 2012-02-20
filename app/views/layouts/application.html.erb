@@ -59,9 +59,9 @@
   <h3><%= link_to 'Communauté', membres_path %></h3>
   <p>
     <% if session[:membre_id] %>
-    Salut, <%= link_to @current_membre.pseudo, @current_membre %> !<br />
-    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> <br />
-    <%= link_to 'Déconnexion', logout_url, :method => :delete %> <br />
+    <%= link_to 'Salut, '+@current_membre.pseudo+' !', @current_membre %><br />
+    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %><br />
+    <%= link_to 'Déconnexion', logout_url, :method => :delete %><br />
     <% else %>
     <%= link_to 'Connexion', login_url %> <br />
     <%= link_to 'Inscription', new_membre_path %> <br /> <br />
@@ -73,8 +73,7 @@
   <p>
     Facebook <br />
     Twitter <br />
-    Google + <br />
-    Flux RSS <br />
+    Flux RSS <br /><br />
   </p>
   
   <h3><%= link_to 'Le site', about_url %></h3>
@@ -82,6 +81,7 @@
     <%= link_to 'Ils parlent de nous', presse_url %><br />
     <%= link_to 'Contact', contact_url %><br /> 
     <%= link_to image_tag("github.png"), "http://github.com/allegrem/cestunmec" %> <%= link_to 'Fork me on GitHub', "http://github.com/allegrem/cestunmec" %> <br />
+    Version light
   </p>
 </footer>
 
