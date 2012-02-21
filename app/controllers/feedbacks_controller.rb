@@ -1,4 +1,7 @@
 class FeedbacksController < ApplicationController
+  before_filter :authorize, :except => [:new, :create]
+  
+  
   # GET /feedbacks
   # GET /feedbacks.json
   def index
@@ -32,15 +35,13 @@ class FeedbacksController < ApplicationController
     end
   end
 
-  # GET /feedbacks/1/edit
-  def edit
-    @feedback = Feedback.find(params[:id])
-  end
-
   # POST /feedbacks
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(params[:feedback])
+    if @current_membre
+      @feedback.membre_id = @current_membre.id
+    end
 
     respond_to do |format|
       if @feedback.save
@@ -78,6 +79,15 @@ class FeedbacksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to feedbacks_url }
       format.json { head :no_content }
+    end
+  end
+  
+  
+  private
+  
+  def authorize
+    unless @current_membre  &&  @current_membre.admin
+      redirect_to root_path, :alert => "Qu'est-ce que tu as essayé de faire là ??"
     end
   end
 end
