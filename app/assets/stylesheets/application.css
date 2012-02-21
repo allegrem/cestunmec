@@ -98,8 +98,8 @@ header nav input {
   padding-right: 7px;
   border: 1px solid #717171;  
   width: 85%;
-  box-shadow: 0 0 2px 2px rgb(235,235,200);
-  outline: none;  
+  outline: none;
+  color: rgb(150,150,150);
 }
 
 
