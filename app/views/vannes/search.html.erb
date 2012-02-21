@@ -12,12 +12,10 @@
   <%= submit_tag "Trouve des vannes !" %>
 <% end %>
 
-</div>
-
 
 <% if @vannes %>
-  <p>
   <% if @vannes.any? %>
+    </div>
     <% @vannes.each do |vanne| %>
       <%= render :partial => 'vanne', :locals => {:vanne => vanne} %>
     <% end %>
@@ -28,9 +26,11 @@
       </div>
       <% end %>
   <% else %>
-    Aucune vanne ne correspond à votre recherche :( <br />
-    Mais vous pouvez toujours <%= link_to 'écrire la votre', vannes_url %> !
+    <p>
+      Aucune vanne ne correspond à votre recherche :( <br />
+      Mais vous pouvez toujours <%= link_to 'écrire la votre', vannes_url %> !
+    </p>
+    </div>
   <% end %>
-  </p>
 <% end %>
 
