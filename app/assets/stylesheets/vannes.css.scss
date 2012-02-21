@@ -25,6 +25,13 @@ article {
 article aside {
   float: right;
   margin-top: 5px;
+  display: none;
+}
+
+
+article .contenu {
+  width: 80%;
+  margin-left: 10%;
 }
 
 
