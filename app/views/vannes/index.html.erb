@@ -1,3 +1,21 @@
+<% if params[:order] %>
+<div id="main_frame">
+  <% case params[:order]
+    when 'best' %>
+      <h2>Les meilleures</h2>
+      <p>Découvre les meilleures vannes jamais postées depuis la création du site. Et si tu penses pouvoir faire mieux, <%= link_to 'postes-en une', new_vanne_path %> et peut-être qu'un jour toi aussi tu feras parti les grands ...</p>
+    <% when 'buzz' %>
+      <h2>Les buzzantes</h2>
+      <p>Marre de toujours voir les mêmes meilleures vannes ? Ici découvre en exclusivité les vannes qui ont marqué la semaine. Et n'oublie pas qu'il n'est jamais trop tard pour <%= link_to 'poster la tienne', new_vanne_path %> !!</p>
+    <% when 'validation' %>
+      <h2>Validation</h2>
+    <% end %>
+</div>
+
+
+<% else %>
+
+
 <div id="new_vanne_scroll">
   
   <h2><%= link_to 'Envie de poster ta propre vanne ?', "#", :id => "new_vanne_scroll_trigger" %></h2>
@@ -22,6 +40,7 @@
   }, false);
 </script>
 
+<% end %>
 
 
 <% @vannes.each do |vanne| %>
