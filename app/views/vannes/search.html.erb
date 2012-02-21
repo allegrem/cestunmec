@@ -12,10 +12,10 @@
   <%= submit_tag "Trouve des vannes !" %>
 <% end %>
 
+</div>
+
 
 <% if @vannes %>
-  <h3>Résultats de la recherche</h3>
-
   <p>
   <% if @vannes.any? %>
     <% @vannes.each do |vanne| %>
@@ -34,4 +34,3 @@
   </p>
 <% end %>
 
-</div>
