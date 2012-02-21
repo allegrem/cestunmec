@@ -19,6 +19,7 @@
 	<strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
 	<% if @current_membre.admin? %>
 	  <%= link_to 'Validation ('+Vanne.where("valide = ?",false).count.to_s+')', vannes_path(:order => :validation) %> | 
+	  <%= link_to 'Feedbacks ('+Feedback.where("lu = ?",false).count.to_s+')', feedbacks_path %> | 
 	<% end %>
 	<%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
 	<%= link_to 'Déconnexion', logout_url, :method => :delete %>
