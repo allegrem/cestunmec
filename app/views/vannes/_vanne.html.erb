@@ -30,24 +30,22 @@
       <% end %>
     </span>
     
-    <span class="lol-bouton">
-      <% c = vanne.lols_count.to_i
-      if c > 10
-	@vanne_text = 'L' + c.to_s + 'O' + 'L'
-      elsif c > 0
-	@vanne_text = 'L' + 'O'*c + 'L'
-      else
-	@vanne_text = 'Sois le premier à dire LOL !'
-      end %>
-      
-      <% if @current_membre.nil? %>
-	<%= @vanne_text %>
-      <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any? %>
-	<strong><%= @vanne_text %></strong>
-      <% else %>
-	<%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post %>
-      <% end %>
-    </span>
+    <% c = vanne.lols_count.to_i
+    if c > 10
+      @vanne_text = 'L' + c.to_s + 'O' + 'L'
+    elsif c > 0
+      @vanne_text = 'L' + 'O'*c + 'L'
+    else
+      @vanne_text = 'Sois le premier à dire LOL !'
+    end %>
+    
+    <% if @current_membre.nil? %>
+      <span class="lol-bouton-disabled"><%= @vanne_text %></span>
+    <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any? %>
+      <strong class="lol-bouton-checked"><%= @vanne_text %></strong>
+    <% else %>
+      <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post, :class => "lol-bouton" %>
+    <% end %>
   </footer>
 </article>
 
