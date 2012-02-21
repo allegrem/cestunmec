@@ -9,7 +9,7 @@
 <%= form_tag do %>
   <div>
     <label for="pseudo" >Pseudo :</label>
-    <%= text_field_tag :pseudo, params[:pseudo] %>
+    <%= text_field_tag :pseudo, params[:pseudo], :autofocus => "autofocus" %>
   </div>
   
   <div>
@@ -18,8 +18,13 @@
   </div>
   
   <div>
-    <%= submit_tag "Connexion" %>
+    <%= submit_tag "Go go go !!" %>
   </div>
 <% end %>
+
+
+<p>
+  <strong>Pas encore inscrit ?</strong> Rejoins vite la première communauté de vanneurs en France grâce à <%= link_to "notre formulaire d'inscription", new_membre_path %> super simple !
+</p>
 
 </div>
