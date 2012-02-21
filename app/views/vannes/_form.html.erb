@@ -10,6 +10,12 @@
       </ul>
     </div>
   <% end %>
+  
+  <% if not (@current_membre && @current_membre.vannes.count > 5) %>
+    <p>
+      Avant de poster pour la première fois, prend le temps de <%= link_to 'lire quelques conseils', about_path %> pour écrire la meilleure vanne possible !
+    </p>
+  <% end %>
 
   <div class="field">
     <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!" %>
