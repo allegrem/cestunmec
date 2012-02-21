@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220213523) do
+ActiveRecord::Schema.define(:version => 20120221233211) do
+
+  create_table "feedbacks", :force => true do |t|
+    t.string   "email"
+    t.text     "message"
+    t.integer  "membre_id"
+    t.boolean  "lu"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "lols", :force => true do |t|
     t.integer  "vanne_id"

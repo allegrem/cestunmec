@@ -1,4 +1,6 @@
 Cestunmec::Application.routes.draw do
+  resources :feedbacks
+
   resources :membres do
     resources :lols
   end
