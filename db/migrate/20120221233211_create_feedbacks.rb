@@ -4,7 +4,7 @@ class CreateFeedbacks < ActiveRecord::Migration
       t.string :email
       t.text :message
       t.integer :membre_id
-      t.boolean :lu
+      t.boolean :lu, :default => false
 
       t.timestamps
     end
