@@ -1,1 +1,10 @@
 <%= render :partial => 'vanne', :locals => {:vanne => @vanne} %>
+
+<% if @vanne.lols_count > 0 %>
+<div id="main_frame">
+  <strong>Ils ont LOLé :</strong>
+  <% @vanne.lols.each do |l| %>
+    <%= link_to l.membre.pseudo, l.membre %> 
+  <% end %>
+</div>
+<% end %>
