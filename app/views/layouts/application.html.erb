@@ -10,7 +10,7 @@
 
 
 <nav id="login_box">
-  <div id="not_flash" style="<%= 'display:none' if flash[:notice] || flash[:alert] %>">
+  <div id="not_flash">
     <span style="float:left">
       Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
     </span>
@@ -28,26 +28,15 @@
       <% end %>
     </span>
   </div>
-
-  <% if flash[:notice]  ||  flash[:alert] %>
-    <% if flash[:notice] %>
-      <div id="flash"><%= link_to flash[:notice], "#", :style => 'color:green' %></div>
-    <% else %>
-      <div id="flash"><%= link_to flash[:alert], "#", :style => 'color:red' %></div>
-    <% end %>
-    
-    <script>
-      var not_flash = document.getElementById('not_flash');
-      var flash = document.getElementById('flash');
-      
-      flash.addEventListener('mouseout', function(e) {
-	e.preventDefault();
-	flash.style.display = 'none';
-	not_flash.style.display = 'block';
-    }, false);
-    </script>
-  <% end %>
+  
+  <div id="flash" style="display:none"><a href="#"></a></div>
 </nav>
+
+<% if flash[:notice] %>
+  <script>display_flash('<%= flash[:notice] %>');</script>
+<% elsif flash[:error] %>
+  <script>display_flash('<%= flash[:alert] %>',false);</script>
+<% end %>
 
 
 

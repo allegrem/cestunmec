@@ -19,7 +19,8 @@ class LolsController < ApplicationController
       
       respond_to do |format|
 	if @lol.save
-	  format.html { redirect_to vanne_path(@lol.vanne), :notice => "Lol bien enregistre" }
+	  flash.now[:notice] = "Lol bien enregistre"
+	  format.html { redirect_to vanne_path(@lol.vanne) }
 	  format.js 
 	  format.json { render :json => @lol, :status => :created, :location => @lol }
 	else
