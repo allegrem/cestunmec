@@ -5,11 +5,16 @@ class Membre < ActiveRecord::Base
   has_many :lols, :dependent => :destroy
   
   
-  validates :pseudo, :presence => true, :uniqueness => true, :length => { :in => 2..30 }
+  validates_presence_of :pseudo, :message => "Alors comme ça tu n'as pas de nom ?"
+  validates_uniqueness_of :pseudo, :message => "C'est dur à admettre, mais tu n'es pas le seul sur Terre à posséder ce pseudo ..."
+  validates_length_of :pseudo, :in => 2..30, :message => "Ton pseudo est soit trop court, soit trop long. A toi de voir ..."
   
-  validates :email, :presence => true, :uniqueness => true, :format => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+  validates_presence_of :email, :message => "Mais comment fais-tu pour vivre sans email ??"
+  validates_uniqueness_of :email, :message => "Je crois qu'on a piqué ton email pour créer un autre compte ..."
+  validates_format_of :email, :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => "Le truc que tu m'as posté ne ressemble pas à un email. Enfin je crois pas ..."
   
-  validates :passwd, :confirmation => true, :length => { :minimum => 4 }
+  validates_confirmation_of :passwd, :message => "Soit je lis très mal, soit les deux mots de passe que tu as entré sont différents ... Essaie encore !"
+  validates_length_of :passwd, :minimum => 4, :message => "Tu crois vraiment avoir un mot de passe sûr avec moins de 4 caractères ??"
   attr_accessor :passwd_confirmation
   attr_reader :passwd
   validate :passwd_must_be_present
@@ -46,7 +51,7 @@ class Membre < ActiveRecord::Base
   
   private
   def passwd_must_be_present
-    errors.add(:passwd, "Missing passwd") unless hashed_passwd.present?
+    errors.add(:passwd, "Un mot de passe vide n'est pas un bon mot de passe !") unless hashed_passwd.present?
   end
   
   def generate_salt
