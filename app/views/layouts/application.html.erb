@@ -28,7 +28,7 @@
       <% end %>
     </span>
   </div>
-  
+
   <% if flash[:notice]  ||  flash[:alert] %>
     <% if flash[:notice] %>
       <div id="flash"><%= link_to flash[:notice], "#", :style => 'color:green' %></div>
@@ -41,9 +41,9 @@
       var flash = document.getElementById('flash');
       
       flash.addEventListener('mouseout', function(e) {
-        e.preventDefault();
-        flash.style.display = 'none';
-        not_flash.style.display = 'block';
+	e.preventDefault();
+	flash.style.display = 'none';
+	not_flash.style.display = 'block';
     }, false);
     </script>
   <% end %>

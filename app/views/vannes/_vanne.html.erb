@@ -44,7 +44,7 @@
     <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any? %>
       <strong class="lol-bouton-checked"><%= @vanne_text %></strong>
     <% else %>
-      <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post, :class => "lol-bouton" %>
+      <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "lol-bouton" %>
     <% end %>
   </footer>
 </article>
