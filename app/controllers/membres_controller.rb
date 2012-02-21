@@ -42,7 +42,7 @@ class MembresController < ApplicationController
     @membre = Membre.find(params[:id])
     
     if not(@membre == @current_membre || @current_membre.admin?)
-      redirect_to root_url
+      redirect_to root_url, :alert => "Qu'est ce que t'as essaye de faire la ??"
     end
   end
 
@@ -75,20 +75,20 @@ class MembresController < ApplicationController
 	@membre.admin = false
       end
       @membre.save
-      redirect_to @membre
+      redirect_to @membre, :notice => "Changement du statut administrateur effectue"
     else    
       if @membre == @current_membre  ||  @current_membre.admin?
 	respond_to do |format|
 	  if @membre.update_attributes(params[:membre])
-	    format.html { redirect_to @membre, :notice => 'Membre was successfully updated.' }
+	    format.html { redirect_to @membre, :notice => 'Okay changements bien notes !' }
 	    format.json { head :no_content }
 	  else
-	    format.html { render :action => "edit" }
+	    format.html { render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme" }
 	    format.json { render :json => @membre.errors, :status => :unprocessable_entity }
 	  end
 	end
       else
-	redirect_to root_url
+	redirect_to root_url, :alert => "Qu'est ce que t'as essaye de faire la ?"
       end
     end
   end
@@ -103,11 +103,11 @@ class MembresController < ApplicationController
       session[:membre_id] = nil  #on deconnecte
 
       respond_to do |format|
-	format.html { redirect_to membres_url }
+	format.html { redirect_to membres_url, :notice => "Noooooon !! Un membre de moins :(" }
 	format.json { head :no_content }
       end
     else
-      redirect_to root_url
+      redirect_to root_url, :alert => "Qu'est ce que t'as essaye de faire la ?"
     end
   end
 end

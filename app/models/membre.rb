@@ -1,15 +1,22 @@
 require 'digest/sha2'
 
 class Membre < ActiveRecord::Base
-  has_many :vannes
-  has_many :lols
+  has_many :vannes, :dependent => :destroy
+  has_many :lols, :dependent => :destroy
   
-  validates :pseudo, :presence => true, :uniqueness => true
   
-  validates :passwd, :confirmation => true
+  validates :pseudo, :presence => true, :uniqueness => true, :length => { :in => 2..30 }
+  
+  validates :email, :presence => true, :uniqueness => true, :format => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+  
+  validates :passwd, :confirmation => true, :length => { :minimum => 4 }
   attr_accessor :passwd_confirmation
   attr_reader :passwd
   validate :passwd_must_be_present
+  
+  
+  before_destroy :decrease_lols_count
+  
   
   def Membre.authenticate(pseudo, passwd)
     if membre = find_by_pseudo(pseudo)
@@ -44,5 +51,11 @@ class Membre < ActiveRecord::Base
   
   def generate_salt
     self.salt = self.object_id.to_s + rand.to_s
+  end
+  
+  def decrease_lols_count
+    self.lols.each do |l|
+      Vanne.decrement_counter(:lols_count, v.id)
+    end
   end
 end

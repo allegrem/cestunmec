@@ -10,23 +10,33 @@
 
 
 <nav id="login_box">
-  <span style="float:left">
-    Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
-  </span>
-  <span style="float:right; padding-right:25px">
-    <% if session[:membre_id] %>
-      <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
-      <% if @current_membre.admin? %>
-	<%= link_to 'Validation', vannes_path(:order => :validation) %> | 
+  <div id="not_flash">
+    <span style="float:left">
+      Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
+    </span>
+    <span style="float:right; padding-right:25px">
+      <% if session[:membre_id] %>
+	<strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
+	<% if @current_membre.admin? %>
+	  <%= link_to 'Validation ('+Vanne.where("valide = ?",false).count.to_s+')', vannes_path(:order => :validation) %> | 
+	<% end %>
+	<%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
+	<%= link_to 'Déconnexion', logout_url, :method => :delete %>
+      <% else %>
+	<%= link_to 'Connexion', login_url %> | 
+	<%= link_to 'Inscription', new_membre_path %> 
       <% end %>
-      <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
-      <%= link_to 'Déconnexion', logout_url, :method => :delete %>
-    <% else %>
-      <%= link_to 'Connexion', login_url %> | 
-      <%= link_to 'Inscription', new_membre_path %> 
-    <% end %>
-  </span>
+    </span>
+  </div>
+  
+  <div id="flash" style="display:none"><a href="#"></a></div>
 </nav>
+
+<% if flash[:notice] %>
+  <script>display_flash('<%= flash[:notice] %>');</script>
+<% elsif flash[:error] %>
+  <script>display_flash('<%= flash[:alert] %>',false);</script>
+<% end %>
 
 
 
@@ -61,9 +71,9 @@
   <h3><%= link_to 'Communauté', membres_path %></h3>
   <p>
     <% if session[:membre_id] %>
-    Salut, <%= link_to @current_membre.pseudo, @current_membre %> !<br />
-    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> <br />
-    <%= link_to 'Déconnexion', logout_url, :method => :delete %> <br />
+    <%= link_to 'Salut, '+@current_membre.pseudo+' !', @current_membre %><br />
+    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %><br />
+    <%= link_to 'Déconnexion', logout_url, :method => :delete %><br />
     <% else %>
     <%= link_to 'Connexion', login_url %> <br />
     <%= link_to 'Inscription', new_membre_path %> <br /> <br />
@@ -74,9 +84,8 @@
   <h3><%= link_to 'Suivez-nous', followus_url %></h3>
   <p>
     Facebook <br />
-    Twitter <br />
-    Google + <br />
-    Flux RSS <br />
+    <%= link_to image_tag("twitter.png"), 'http://twitter.com/cestunmec' %> <%= link_to 'Twitter', 'http://twitter.com/cestunmec' %><br />
+    Flux RSS <br /><br />
   </p>
   
   <h3><%= link_to 'Le site', about_url %></h3>
@@ -84,6 +93,7 @@
     <%= link_to 'Ils parlent de nous', presse_url %><br />
     <%= link_to 'Contact', contact_url %><br /> 
     <%= link_to image_tag("github.png"), "http://github.com/allegrem/cestunmec" %> <%= link_to 'Fork me on GitHub', "http://github.com/allegrem/cestunmec" %> <br />
+    Version light
   </p>
 </footer>
 

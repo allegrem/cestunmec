@@ -1,17 +1,26 @@
-<article>
+<article id="vanne-<%= vanne.id %>">
   <% if !vanne.valide %>
     <strong style="font-size:12px; color:red">En attente de validation</strong>
     <% if @current_membre && @current_membre.admin? %>
       <span style="font-size:12px">
 	<%= link_to 'Valider', vanne_path(vanne, :valide => "yes"), :method => :put %> | 
+	<!--<%= link_to 'Valider + Twitter', vanne_path(vanne, :valide => "yes", :twitter => "yes"), :confirm => "Etes vous sûr de vouloir poster cette vanne sur Twitter ?", :method => :put %> | -->
+	Valider + Twitter | 
 	<%= link_to 'Supprimer', vanne, :confirm => 'Etes vous sur ?', :method => :delete %>
       </span>
     <% end %>
     <br />
   <% end %>
+  
+  <aside id="vanne-aside-<%= vanne.id %>">
+    <a href="https://twitter.com/share?" data-url="<%= vanne_url(vanne) %>" data-count="none" data-via="cestunmec" data-text="<%= vanne.contenu %>" class="twitter-share-button" data-lang="fr">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </aside>
 
-  <%= vanne.contenu %>
-
+  <div class="contenu">
+    <%= vanne.contenu %>
+  </div>
+  
   <footer style="text-align:right">
     <span style="float:left">
       Posté par <%= if vanne.membre then link_to vanne.membre.pseudo, vanne.membre else "Anonyme" end %>
@@ -31,11 +40,17 @@
     end %>
     
     <% if @current_membre.nil? %>
-      <%= @vanne_text %>
+      <span class="lol-bouton-disabled"><%= @vanne_text %></span>
     <% elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any? %>
-      <strong><%= @vanne_text %></strong>
+      <strong class="lol-bouton-checked"><%= @vanne_text %></strong>
     <% else %>
-      <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post %>
+      <%= link_to @vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "lol-bouton" %>
     <% end %>
   </footer>
 </article>
+
+<script>
+  var e = document.getElementById('vanne-<%= vanne.id %>');
+  e.addEventListener('mouseover', function() { document.getElementById('vanne-aside-<%= vanne.id %>').style.display = 'block'; }, false);
+  e.addEventListener('mouseout', function() { document.getElementById('vanne-aside-<%= vanne.id %>').style.display = 'none'; }, false);
+</script>
