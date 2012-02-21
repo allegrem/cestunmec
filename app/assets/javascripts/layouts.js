@@ -1,3 +1,8 @@
+function hide_flash() {
+  $('flash').hide();
+  $('not_flash').show();
+}
+
 function display_flash(message, notice) {
   if (typeof notice === 'undefined') { notice = true; }  //par défaut notice = true
    
@@ -6,9 +11,12 @@ function display_flash(message, notice) {
   $('flash').firstChild.update(message);
   $('flash').show();
   
-  $('flash').addEventListener('mouseout', function(e) {
+  $('flash').addEventListener('mouseover', function(e) {
     e.preventDefault();
-    $('flash').hide();
-    $('not_flash').show();
+    hide_flash();
   }, false);
+  
+  setTimeout(function() {
+    hide_flash();
+  }, 5000);  // on efface le flash automatiquement au bout de 5 secondes
 };
