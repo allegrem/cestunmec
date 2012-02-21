@@ -54,10 +54,10 @@ class MembresController < ApplicationController
     respond_to do |format|
       if @membre.save
 	session[:membre_id] = @membre.id  #on connecte automatiquement
-        format.html { redirect_to @membre }
+        format.html { redirect_to @membre, :notice => "Yeah !! Bienvenue dans la grande communauté de C'est un mec !" }
         format.json { render :json => @membre, :status => :created, :location => @membre }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :alert => "Whoops !! Il y a eu un petit problème apparemment ..." }
         format.json { render :json => @membre.errors, :status => :unprocessable_entity }
       end
     end
