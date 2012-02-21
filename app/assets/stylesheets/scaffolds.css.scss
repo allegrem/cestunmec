@@ -1,14 +1,15 @@
 #notice {
-  color: green; }
+  color: green; 
+}
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table; }
+.field_with_errors input, .field_with_errors textarea {
+  background-color: rgb(255,150,150);
+}
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  width: 70%;
+  margin-left: 15%;
+  border: 2px solid #c00;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
@@ -24,4 +25,8 @@
     color: #fff; }
   ul li {
     font-size: 12px;
-    list-style: square; } }
+    list-style: square;
+    text-align: justify;
+    padding-right: 20px;
+  } 
+}

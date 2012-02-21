@@ -1,10 +1,10 @@
 <%= form_for(@vanne) do |f| %>
   <% if @vanne.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@vanne.errors.count, "error") %> prohibited this vanne from being saved:</h2>
+      <h2>Whoops !! Il y a quelques problèmes ...</h2>
 
       <ul>
-      <% @vanne.errors.full_messages.each do |msg| %>
+      <% @vanne.errors.each do |field, msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
