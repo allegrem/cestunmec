@@ -20,9 +20,9 @@
       <%= render :partial => 'vanne', :locals => {:vanne => vanne} %>
     <% end %>
 
-      <% if @vannes.count > (params[:page].to_i + 1) * 10 %>
+      <% if @vannes.count == 10 %>
       <div id="plus_vannes_scroll">
-	<h2><%= link_to 'Suite', :q => params[:q], :order => params[:order], :page => params[:page].to_i + 1 %></h2>
+	<span style="color:rgb(250,250,200)">Seuls les 10 premiers résultats sont affichés.</span>
       </div>
       <% end %>
   <% else %>

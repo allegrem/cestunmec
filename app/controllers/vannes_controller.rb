@@ -120,16 +120,11 @@ class VannesController < ApplicationController
   # GET /vannes/search
   def search
     if params[:q] && params[:q] != ""
-      @vannes = Vanne.where('valide = ?',true).where('contenu LIKE ?','%'+params[:q]+'%').order('created_at DESC').limit(10).offset(10*params[:page].to_i)
-      if @vannes.count < 10*params[:page].to_i
-	respond_to do |format|
-	  format.html { redirect_to vannes_url }
-	end
-      else
-	respond_to do |format|
-	  format.html 
-	  format.json { render :json => @vannes }
-	end
+      @vannes = Vanne.where('valide = ?',true).where('contenu LIKE ?','%'+params[:q]+'%').order('created_at DESC').limit(10)
+      
+      respond_to do |format|
+	format.html 
+	format.json { render :json => @vannes }
       end
     end
   end
