@@ -5,7 +5,7 @@ class Membre < ActiveRecord::Base
   has_many :lols, :dependent => :destroy
   
   
-  validates_presence_of :pseudo, :message => "Alors comme ça tu n'as pas de nom ?"
+  validates_presence_of :pseudo, :message => "Alors comme ca tu n'as pas de nom ?"
   validates_uniqueness_of :pseudo, :message => "C'est dur a admettre, mais tu n'es pas le seul sur Terre a posseder ce pseudo ..."
   validates_length_of :pseudo, :in => 2..30, :message => "Ton pseudo est soit trop court, soit trop long. A toi de voir ..."
   
