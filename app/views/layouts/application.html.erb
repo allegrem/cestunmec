@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <%= auto_discovery_link_tag(:rss, vannes_url) %>
+  <%= auto_discovery_link_tag :rss, vannes_url(:format => :rss) %>
 </head>
 <body>
 
@@ -91,7 +91,7 @@
   <p>
     Facebook <br />
     <%= link_to image_tag("twitter.png"), 'http://twitter.com/cestunmec' %> <%= link_to 'Twitter', 'http://twitter.com/cestunmec' %><br />
-    Flux RSS <br /><br />
+    <%= link_to image_tag("rss.png"), vannes_path(:format => :rss) %> <%= link_to 'Flux RSS', vannes_path(:format => :rss) %><br /><br />
   </p>
   
   <h3><%= link_to 'Le site', about_url %></h3>
