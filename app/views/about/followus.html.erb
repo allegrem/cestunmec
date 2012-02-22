@@ -52,7 +52,7 @@
   
   
   
-  <div style="clear:both; padding-bottom:10px;"></div>
+  <div style="clear:both"></div>
   
   <h3>Facebook</h3>
   
@@ -61,6 +61,13 @@
   </p>
   
   
+  <h3>Flux RSS</h3>
+  
+  <p>
+    Tu suis déjà tous tes sites préférés sur Google Reader ou un autre agrégateur RSS ? Alors il est grand temps d'ajouter le flux RSS de <em>C'est un mec</em> pour recevoir toutes les vannes postées en direct !!<br />
+    <%= link_to image_tag("rss-color.png", :style => "margin-right:5px"), vannes_path(:format => :rss) %>
+    <strong><%= vannes_url(:format => :rss) %></strong>
+  </p>
  
 
 </div>
