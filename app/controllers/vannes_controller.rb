@@ -28,6 +28,7 @@ class VannesController < ApplicationController
 	format.html # index.html.erb
 	format.rss { render :layout => false }
 	format.json { render :json => @vannes }
+	format.js
       end
     end
   end

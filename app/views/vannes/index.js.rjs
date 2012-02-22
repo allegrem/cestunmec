@@ -1,0 +1,10 @@
+@vannes.each do |v|
+  page.insert_html :before, 'plus_vannes_scroll', :partial => 'vanne', :locals => {:vanne => v}
+  page.call "twttr.widgets.load" #recharge le bouton twitter
+end
+
+if @vannes_count > (params[:page].to_i + 1) * 10 
+  page['plus_vannes_scroll'].firstDescendant.firstDescendant.setAttribute('href', vannes_path(:order => params[:order], :page => params[:page].to_i + 1))
+else
+  page.hide 'plus_vannes_scroll'
+end

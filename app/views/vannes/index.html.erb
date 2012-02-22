@@ -50,6 +50,6 @@
 
 <% if @vannes_count > (params[:page].to_i + 1) * 10 %>
 <div id="plus_vannes_scroll">
-  <strong><%= link_to 'Encore plus de vannes ...', :order => params[:order], :page => params[:page].to_i + 1 %></strong>
+  <strong><%= link_to 'Encore plus de vannes ...', vannes_path(:order => params[:order], :page => params[:page].to_i + 1), :remote => true %></strong>
 </div>
 <% end %>
