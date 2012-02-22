@@ -120,7 +120,7 @@ class VannesController < ApplicationController
   # GET /vannes/search
   def search
     if params[:q] && params[:q] != ""
-      @vannes = Vanne.where('valide = ?',true).where('contenu LIKE ?','%'+params[:q]+'%').order('created_at DESC').limit(10)
+      @vannes = Vanne.where('valide = ?',true).where('LOWER(contenu) LIKE ?','%'+params[:q].downcase+'%').order('created_at DESC').limit(10)
       
       respond_to do |format|
 	format.html 
