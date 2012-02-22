@@ -1,18 +1,20 @@
 <div id="main_frame">
 
-<p>
-  <b>Email:</b>
-  <%= @feedback.email %>
-</p>
+<h2>
+  <%= @feedback.email %> 
+  <% if @feedback.membre_id %>
+    (<%= link_to @feedback.membre.pseudo, @feedback.membre %>)
+  <% end %>
+</h2>
 
 <p>
-  <b>Message:</b>
   <%= @feedback.message %>
 </p>
 
 <p>
-  <b>Membre:</b>
-  <%= @feedback.membre_id %>
+  <%= link_to 'Marquer comme non lu', @feedback, :method => :put %> | 
+  <%= link_to 'Supprimer', @feedback, :confirm => 'Are you sure?', :method => :delete %> | 
+  <%= link_to 'Retour', feedbacks_path %>
 </p>
 
 </div>

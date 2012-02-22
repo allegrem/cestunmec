@@ -17,6 +17,11 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/1.json
   def show
     @feedback = Feedback.find(params[:id])
+    
+    unless @feedback.lu
+      @feedback.lu = true
+      @feedback.save
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -60,8 +65,8 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.find(params[:id])
 
     respond_to do |format|
-      if @feedback.update_attributes(params[:feedback])
-        format.html { redirect_to @feedback, :notice => 'Feedback was successfully updated.' }
+      if @feedback.update_attribute(:lu, false)
+        format.html { redirect_to feedbacks_path, :notice => 'Ce feedback a ete marque comme non lu.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
