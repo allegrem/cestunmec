@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= auto_discovery_link_tag(:rss, vannes_url) %>
 </head>
 <body>
 
@@ -47,7 +48,7 @@
   </div>
 
   <h1><%= link_to "C'est un mec,", "/" %><br />
-  <span id="subtitle">il s'appelle On, et il a un phare, c'est le Pharaon !</span></h1>
+  <span id="subtitle">il s'appelle On, et il a un phare, c'est le Pharaon !!</span></h1>
   
   <nav>
     <%= link_to 'Les dernières', vannes_url %><br />
