@@ -6,15 +6,15 @@ class Membre < ActiveRecord::Base
   
   
   validates_presence_of :pseudo, :message => "Alors comme ça tu n'as pas de nom ?"
-  validates_uniqueness_of :pseudo, :message => "C'est dur à admettre, mais tu n'es pas le seul sur Terre à posséder ce pseudo ..."
+  validates_uniqueness_of :pseudo, :message => "C'est dur a admettre, mais tu n'es pas le seul sur Terre a posseder ce pseudo ..."
   validates_length_of :pseudo, :in => 2..30, :message => "Ton pseudo est soit trop court, soit trop long. A toi de voir ..."
   
   validates_presence_of :email, :message => "Mais comment fais-tu pour vivre sans email ??"
-  validates_uniqueness_of :email, :message => "Je crois qu'on a piqué ton email pour créer un autre compte ..."
-  validates_format_of :email, :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => "Le truc que tu m'as posté ne ressemble pas à un email. Enfin je crois pas ..."
+  validates_uniqueness_of :email, :message => "Je crois qu'on a pique ton email pour creer un autre compte ..."
+  validates_format_of :email, :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => "Le truc que tu m'as poste ne ressemble pas a un email. Enfin je crois pas ..."
   
-  validates_confirmation_of :passwd, :message => "Soit je lis très mal, soit les deux mots de passe que tu as entré sont différents ... Essaie encore !"
-  validates_length_of :passwd, :minimum => 4, :message => "Tu crois vraiment avoir un mot de passe sûr avec moins de 4 caractères ??"
+  validates_confirmation_of :passwd, :message => "Soit je lis tres mal, soit les deux mots de passe que tu as entre sont differents ... Essaie encore !"
+  validates_length_of :passwd, :minimum => 4, :message => "Tu crois vraiment avoir un mot de passe sûr avec moins de 4 caracteres ??"
   attr_accessor :passwd_confirmation
   attr_reader :passwd
   validate :passwd_must_be_present

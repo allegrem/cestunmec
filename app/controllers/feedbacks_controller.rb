@@ -92,7 +92,7 @@ class FeedbacksController < ApplicationController
   
   def authorize
     unless @current_membre  &&  @current_membre.admin
-      redirect_to root_path, :alert => "Qu'est-ce que tu as essayé de faire là ??"
+      redirect_to root_path, :alert => "Qu'est-ce que tu as essaye de faire la ??"
     end
   end
 end
