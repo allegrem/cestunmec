@@ -64,7 +64,7 @@ class VannesController < ApplicationController
   # POST /vannes.json
   def create
     @vanne = Vanne.new(params[:vanne])
-    @vanne.membre_id = @current_membre.id  if @current_membre
+    @vanne.membre_id = @current_membre.id
     
     respond_to do |format|
       if @vanne.save

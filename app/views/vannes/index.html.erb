@@ -18,7 +18,9 @@
 
 <div id="new_vanne_scroll">
   
+  <% if @current_membre %>
   <h2><%= link_to 'Envie de poster ta propre vanne ?', "#", :id => "new_vanne_scroll_trigger" %></h2>
+  <% end %>
   
   <div id="new_vanne_scroll_hidden">
     <%= render 'form' %>
