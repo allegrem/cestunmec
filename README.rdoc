@@ -2,9 +2,9 @@
 
 == La genèse du site
 
-<em>C'est un mec</em> est un site créé début 2012 par Matthieu Allegre, jeune étudiant à l'humour incompris. Après avoir vu le merveilleux film <em>Astérix : Mission Cléopatre</em>, il compris rapidement que son destin était de répandre le plus largement possible l'humour décapant de Jamel Debouze, dont la meilleure blague est incontestablement : <em>« C'est un mec, il s'appelle On et il a un phare, c'est le pharaon !! »</em>. 
+<em>C'est un mec</em> est un site créé début 2012 par un jeune étudiant à l'humour incompris. Après avoir vu le merveilleux film <em>Astérix : Mission Cléopatre</em>, il compris rapidement que son destin était de répandre le plus largement possible l'humour décapant de Jamel Debouze, dont la meilleure blague est incontestablement : <em>« C'est un mec, il s'appelle On et il a un phare, c'est le pharaon !! »</em>. 
 
-La simplicité et l'efficacité de cette blague deviennent clairement aux yeux de Matthieu une arme de vannification massive. Très vite, il invente ses premières blagues inspirées du chef d'œuvre Debouzien, tout en essayant de rallier ses connaissances à sa cause humouristique. 
+La simplicité et l'efficacité de cette blague deviennent clairement à ses yeux une arme de vannification massive. Très vite, il invente ses premières blagues inspirées du chef d'œuvre Debouzien, tout en essayant de rallier ses connaissances à sa cause humouristique. 
 
 
 ==La théorie de la vanne parfaite
@@ -22,9 +22,9 @@ En résumé, voilà l'anatomie d'une vanne réussie :
   C'est un mec, il s'appelle [prénom] et il a un [objet], c'est le [objet + à + prénom] !!
 
 
-==L'échelle de Matthieu
+==L'échelle de la vannitude
 
-Une question a longtemps turlupiné notre cher Matthieu : <em>Comment évaluer la vannitude d'une vanne ?</em> C'est après de longs mois de recherche qu'il réussit à mettre au point une échelle permettant de restituer assez fidèlement l'effet que peut théoriquement produire une vanne donnée chez un individu <em>Lambda</em>. On l'appelle <em>l'échelle de Matthieu</em> : 
+Une question a longtemps turlupiné les scientifiques : <em>Comment évaluer la vannitude d'une vanne ?</em> C'est après de longs mois de recherche qu'il réussit à mettre au point une échelle permettant de restituer assez fidèlement l'effet que peut théoriquement produire une vanne donnée chez un individu <em>Lambda</em>. On l'appelle <em>l'échelle de la vannitude</em> : 
 
 [L'Ultimate Vanne]  C'est la meilleure, on ne peut pas faire mieux, mais c'est aussi la plus exigente ! En effet il faut réunir les conditions suivantes : le prénom doit exister, l'objet doit exister, le genre (masculin/féminin) de la conclusion doit être le même que celui de l'objet. <em>Effet produit : Lambda sourit, puis se rend compte que la vanne est ultimement drôle, alors il applaudit.</em>
 
