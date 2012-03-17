@@ -2,7 +2,7 @@ class MembresController < ApplicationController
   # GET /membres
   # GET /membres.json
   def index
-    @membres = Membre.all
+    @membres = Membre.order("created_at")
 
     respond_to do |format|
       format.html # index.html.erb

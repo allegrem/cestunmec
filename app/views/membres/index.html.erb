@@ -7,6 +7,7 @@
     <th>Pseudo</th>
     <th>Vannes postées</th>
     <th>Lols récoltés</th>
+    <th>Ratio lols/vannes</th>
     <% if @current_membre && @current_membre.admin? %>
     <th></th>
     <% end %>
@@ -21,6 +22,7 @@ end %>
     <td><%= link_to membre.pseudo, membre %></td>
     <td><%= membre.vannes.count %></td>
     <td><%= @s %></td>
+    <td><%= membre.vannes.count == 0  ?  0 :  @s / membre.vannes.count %></td>
     <% if @current_membre && @current_membre.admin? %>
     <td><%= 'Admin' if membre.admin %></td>
     <% end %>
