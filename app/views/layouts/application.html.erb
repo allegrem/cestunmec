@@ -13,7 +13,7 @@
 <nav id="login_box">
   <div id="not_flash">
     <span style="float:left">
-      Déjà <%= link_to Vanne.count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
+      Déjà <%= link_to Vanne.where('valide = ?',true).count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
     </span>
     <span style="float:right; padding-right:25px">
       <% if session[:membre_id] %>
