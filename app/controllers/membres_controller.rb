@@ -69,13 +69,11 @@ class MembresController < ApplicationController
     @membre = Membre.find(params[:id])
     
     if params[:admin]  &&  @current_membre.admin?
-      if params[:admin] == "yes"
-	@membre.admin = true
-      elsif params[:admin] == "no"
-	@membre.admin = false
+      if @membre.update_attribute :admin, params[:admin] == "yes" ? true : false
+	redirect_to @membre, :notice => "Changement du statut administrateur effectue"
+      else
+	redirect_to @membre, :notice => "Erreur lors du changement de statut administrateur"
       end
-      @membre.save
-      redirect_to @membre, :notice => "Changement du statut administrateur effectue"
     else    
       if @membre == @current_membre  ||  @current_membre.admin?
 	respond_to do |format|

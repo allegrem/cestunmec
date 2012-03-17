@@ -15,9 +15,13 @@ class Membre < ActiveRecord::Base
   
   validates_confirmation_of :passwd, :message => "Soit je lis tres mal, soit les deux mots de passe que tu as entre sont differents ... Essaie encore !"
   validates_length_of :passwd, :minimum => 4, :message => "Tu crois vraiment avoir un mot de passe sur avec moins de 4 caracteres ??"
+  validate :passwd_must_be_present
+  
+  
   attr_accessor :passwd_confirmation
   attr_reader :passwd
-  validate :passwd_must_be_present
+  attr_accessible :pseudo, :email, :passwd, :passwd_confirmation
+  attr_accessible :pseudo, :email, :passwd, :passwd_confirmation, :admin, :as => :admin
   
   
   before_destroy :decrease_lols_count
