@@ -25,9 +25,9 @@
       
       <div class="nav-collapse">
 	<ul class="nav">
-	  <li><%= link_to "Accueil", root_url %></li>
-	  <li><%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %></li>
-	  <li><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
+	  <li class="<%= 'active' if params[:controller] == "vannes" && !params[:order] %>"><%= link_to "Accueil", root_url %></li>
+	  <li class="<%= 'active' if params[:order] == "buzz" %>"><%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %></li>
+	  <li class="<%= 'active' if params[:order] == "best" %>"><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
 	</ul>
 	  
 	<%= form_tag search_vannes_path, :class => "navbar-search pull-left" do %>
@@ -55,10 +55,16 @@
 	  <li class="dropdown">
 	    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_membre.pseudo %><b class="caret"></b></a>
 	    <ul class="dropdown-menu">
-	      <li><%= link_to "Mon profil", membre_path(@current_membre) %></li>
-	      <li><%= link_to "Modifier mon profil", edit_membre_path(@current_membre) %></li>
+	      <li><%= link_to membre_path(@current_membre) do %>
+		<i class="icon-user"></i> Mon profil
+	      <% end %></li>
+	      <li><%= link_to edit_membre_path(@current_membre) do %>
+		<i class="icon-pencil"></i> Modifier mon profil
+	      <% end %></li>
 	      <li class="divider"></li>
-	      <li><%= link_to 'Déconnexion', logout_url, :method => :delete %></li>
+	      <li><%= link_to logout_url, :method => :delete do %>
+		<i class="icon-off"></i> Déconnexion
+	      <% end %></li>
 	    </ul>
 	  </li>
 	</ul>
