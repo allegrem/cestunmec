@@ -19,7 +19,7 @@ class VannesController < ApplicationController
 	  else
 	    redirect_to vannes_path
 	  end
-	else
+	else  #englobe aussi params[:order] = 'last'
 	  @vannes = Vanne.where('valide = ?',true).order('created_at DESC').limit(10).offset(10*params[:page].to_i)
       end
       @vanne = Vanne.new
