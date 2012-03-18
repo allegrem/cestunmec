@@ -1,1 +1,26 @@
-Accueil
+<div class="hero-unit">
+<div class="row-fluid">
+
+  <div class="span8">
+    <h1>C'est un mec</h1>
+    <p>il s'appelle On et il a un phare, c'est le Pharaon !!</p>
+    
+    <small>bla bla bla</small>
+    
+    <p>
+      <%= button_to 'En savoir plus', about_path, :class => "btn btn-primary btn-large", :method => :get %>
+    </p>
+  </div>
+  
+  <div class="span4">
+    <h3>Deviens un vanneur !</h3>
+    <small>L'inscription ne dure que quelques instants, et n'est en général pas douloureuse !</small>
+    <br /><br />
+    <%= render :partial => "membres/form", :locals => { :condensed => true } %>
+  </div>
+
+</div>
+</div>
+
+
+

@@ -1,35 +1,51 @@
-<%= form_for(@membre) do |f| %>
+<%= form_for @membre, :class => "form-horizontal" do |f| %>
 
-  <% if @membre.errors.any? %>
-    <div id="error_explanation">
-      <h2>Whoops !! Il y a quelques problèmes ...</h2>
+  <fieldset>
+    <% if @membre.errors.any? %>
+      <div id="error_explanation">
+	<h2>Whoops !! Il y a quelques problèmes ...</h2>
 
-      <ul>
-      <% @membre.errors.each do |field, msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+	<ul>
+	<% @membre.errors.each do |field, msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+	</ul>
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :pseudo, :class => "control-label"  unless defined? condensed %>
+      <div class="controls">
+	<%= f.text_field :pseudo, :placeholder => "Pseudo" %>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= f.label :pseudo %>:
-    <%= f.text_field :pseudo %>
-  </div>
-  <div>
-    <%= f.label :email %>:
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :passwd, 'Mot de passe' %>:
-    <%= f.password_field :passwd %>
-  </div>
-  <div>
-    <%= f.label :passwd_confirmation, 'Confirmation' %>:
-    <%= f.password_field :passwd_confirmation %>
-  </div>
-  <div>
-    <%= f.submit 'Deviens un vanneur !' %>
-  </div>
+    
+    <div class="control-group">
+      <%= f.label :email, :class => "control-label"  unless defined? condensed %>
+      <div class="controls">
+	<%= f.text_field :email, :placeholder => "Email" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :passwd, 'Mot de passe', :class => "control-label"  unless defined? condensed %>
+      <div class="controls">
+	<%= f.password_field :passwd, :placeholder => "Mot de passe" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :passwd_confirmation, 'Confirmation', :class => "control-label"  unless defined? condensed %>
+      <div class="controls">
+	<%= f.password_field :passwd_confirmation, :placeholder => "Confirmation" %>
+      </div>
+    </div>
+    
+    <div class="<%= defined? condensed ? 'control-group' : 'form-actions' %>">
+      <%= f.submit 'Deviens un vanneur !', :class => "btn btn-primary" %>
+      <%= button_to 'Annuler', root_path, :class => "btn"  unless defined? condensed %>
+    </div>
+    
+  </fieldset>
   
 <% end %>
