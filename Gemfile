@@ -23,8 +23,8 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
-# gem 'jquery-rails'
-gem 'prototype-rails'
+gem 'jquery-rails'
+# gem 'prototype-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

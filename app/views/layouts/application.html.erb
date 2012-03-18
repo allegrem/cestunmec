@@ -1,38 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
   <title>C'est un mec</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag :rss, vannes_url(:format => :rss) %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-
-<nav id="login_box">
-  <div id="not_flash">
-    <span style="float:left">
-      Déjà <%= link_to Vanne.where('valide = ?',true).count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
-    </span>
-    <span style="float:right; padding-right:25px">
-      <% if session[:membre_id] %>
-	<strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
-	<% if @current_membre.admin? %>
-	  <%= link_to 'Validation ('+Vanne.where("valide = ?",false).count.to_s+')', vannes_path(:order => :validation) %> | 
-	  <%= link_to 'Feedbacks ('+Feedback.where("lu = ?",false).count.to_s+')', feedbacks_path %> | 
-	<% end %>
-	<%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
-	<%= link_to 'Déconnexion', logout_url, :method => :delete %>
-      <% else %>
-	<%= link_to 'Connexion', login_url %> | 
-	<%= link_to 'Inscription', new_membre_path %> 
-      <% end %>
-    </span>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "C'est un mec", root_url, :class => "brand" %>
+      
+      <ul class="nav">
+	<li><%= link_to "Accueil", root_url %></li>
+	<li><%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %></li>
+	<li><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
+	<ul class="nav">
+  <li class="dropdown">
+    <a href="#"
+          class="dropdown-toggle"
+          data-toggle="dropdown">
+          Account
+          <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      ...
+    </ul>
+  </li>
+</ul>
+<!--    <%= form_tag search_vannes_path do %>
+      <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...' %><br />
+    <% end %>-->
+      </ul>
+	  
+<!--      <div id="not_flash">
+	<span style="float:left">
+	  Déjà <%= link_to Vanne.where('valide = ?',true).count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
+	</span>
+	<span style="float:right; padding-right:25px">
+	  <% if session[:membre_id] %>
+	    <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
+	    <% if @current_membre.admin? %>
+	      <%= link_to 'Validation ('+Vanne.where("valide = ?",false).count.to_s+')', vannes_path(:order => :validation) %> | 
+	      <%= link_to 'Feedbacks ('+Feedback.where("lu = ?",false).count.to_s+')', feedbacks_path %> | 
+	    <% end %>
+	    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
+	    <%= link_to 'Déconnexion', logout_url, :method => :delete %>
+	  <% else %>
+	    <%= link_to 'Connexion', login_url %> | 
+	    <%= link_to 'Inscription', new_membre_path %> 
+	  <% end %>
+	</span>
+      </div>
+      
+      <div id="flash" style="display:none"><a href="#"></a></div>-->
+    </div>
   </div>
-  
-  <div id="flash" style="display:none"><a href="#"></a></div>
-</nav>
+</div>
+
 
 <% if flash[:notice] %>
   <script>display_flash('<%= flash[:notice] %>');</script>
@@ -42,7 +71,7 @@
 
 
 
-<header>
+<!--<header>
   <div style="position:absolute; left: 20%; top:50px; -moz-transform:rotate(330deg); -webkit-transform:rotate(330deg); -o-transform:rotate(330deg); color:red; font-size:30px; font-weight:bold;">
     BETA
   </div>
@@ -58,12 +87,12 @@
       <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...' %><br />
     <% end %>
   </nav>
-</header>
+</header>-->
 
 
-<%= yield %>
-
-
+<div class="container-fluid">
+  <%= yield %>
+</div>
 
 <footer id="main_footer">
   <h3><%= link_to 'Les Vannes', vannes_url %></h3>
