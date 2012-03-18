@@ -22,7 +22,7 @@ end %>
     <td><%= link_to membre.pseudo, membre %></td>
     <td><%= membre.vannes.count %></td>
     <td><%= @s %></td>
-    <td><%= membre.vannes.count == 0  ?  0 :  @s / membre.vannes.count %></td>
+    <td><%= membre.vannes.count == 0  ?  0 :  (@s.to_f / membre.vannes.count.to_f).round(2) %></td>
     <% if @current_membre && @current_membre.admin? %>
     <td><%= 'Admin' if membre.admin %></td>
     <% end %>
