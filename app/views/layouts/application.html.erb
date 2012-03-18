@@ -10,127 +10,144 @@
 </head>
 <body>
 
+
+
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+    
       <%= link_to "C'est un mec", root_url, :class => "brand" %>
       
-      <ul class="nav">
-	<li><%= link_to "Accueil", root_url %></li>
-	<li><%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %></li>
-	<li><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
+      <div class="nav-collapse">
 	<ul class="nav">
-  <li class="dropdown">
-    <a href="#"
-          class="dropdown-toggle"
-          data-toggle="dropdown">
-          Account
-          <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-      ...
-    </ul>
-  </li>
-</ul>
-<!--    <%= form_tag search_vannes_path do %>
-      <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...' %><br />
-    <% end %>-->
-      </ul>
+	  <li><%= link_to "Accueil", root_url %></li>
+	  <li><%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %></li>
+	  <li><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
+	</ul>
 	  
-<!--      <div id="not_flash">
-	<span style="float:left">
-	  Déjà <%= link_to Vanne.where('valide = ?',true).count.to_s + ' vannes postées', vannes_url %> et <%= link_to Membre.count.to_s + ' vanneurs', membres_path %> !! 
-	</span>
-	<span style="float:right; padding-right:25px">
-	  <% if session[:membre_id] %>
-	    <strong>Salut, <%= link_to @current_membre.pseudo, @current_membre %> ! </strong> 
-	    <% if @current_membre.admin? %>
-	      <%= link_to 'Validation ('+Vanne.where("valide = ?",false).count.to_s+')', vannes_path(:order => :validation) %> | 
-	      <%= link_to 'Feedbacks ('+Feedback.where("lu = ?",false).count.to_s+')', feedbacks_path %> | 
-	    <% end %>
-	    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %> | 
-	    <%= link_to 'Déconnexion', logout_url, :method => :delete %>
-	  <% else %>
-	    <%= link_to 'Connexion', login_url %> | 
-	    <%= link_to 'Inscription', new_membre_path %> 
+	<%= form_tag search_vannes_path, :class => "navbar-search pull-left" do %>
+	  <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query" %><br />
+	<% end %>
+	
+	<% if @current_membre %>
+	<ul class="nav pull-right">
+	  <% if @current_membre.admin %>
+	    <li class="dropdown">
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
+	    <ul class="dropdown-menu">
+	      <li><%= link_to vannes_path(:order => :validation) do %>
+		Validation <span class="badge pull-right"><%= Vanne.where("valide = ?",false).count.to_s %></span>
+		<% end %>
+	      </li>
+	      <li><%= link_to feedbacks_path do%>
+		Feedback <span class="badge pull-right"><%= Feedback.where("lu = ?",false).count.to_s %></span>
+		<% end %>
+	      </li>
+	    </ul>
+	  </li>
 	  <% end %>
-	</span>
-      </div>
-      
-      <div id="flash" style="display:none"><a href="#"></a></div>-->
+	
+	  <li class="dropdown">
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_membre.pseudo %><b class="caret"></b></a>
+	    <ul class="dropdown-menu">
+	      <li><%= link_to "Mon profil", membre_path(@current_membre) %></li>
+	      <li><%= link_to "Modifier mon profil", edit_membre_path(@current_membre) %></li>
+	      <li class="divider"></li>
+	      <li><%= link_to 'Déconnexion', logout_url, :method => :delete %></li>
+	    </ul>
+	  </li>
+	</ul>
+	<% else %>
+	<ul class="nav pull-right">
+	  <li><%= link_to 'Connexion', login_url %></li>
+	</ul>
+	<% end %>
+       </div>
     </div>
   </div>
 </div>
 
 
-<% if flash[:notice] %>
-  <script>display_flash('<%= flash[:notice] %>');</script>
-<% elsif flash[:error] %>
-  <script>display_flash('<%= flash[:alert] %>',false);</script>
-<% end %>
-
-
-
-<!--<header>
-  <div style="position:absolute; left: 20%; top:50px; -moz-transform:rotate(330deg); -webkit-transform:rotate(330deg); -o-transform:rotate(330deg); color:red; font-size:30px; font-weight:bold;">
-    BETA
-  </div>
-
-  <h1><%= link_to "C'est un mec,", "/" %><br />
-  <span id="subtitle">il s'appelle On, et il a un phare, c'est le Pharaon !!</span></h1>
-  
-  <nav>
-    <%= link_to 'Les dernières', vannes_url %><br />
-    <%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %><br />
-    <%= link_to 'Les meilleures', vannes_url(:order => 'best') %><br />
-    <%= form_tag search_vannes_path do %>
-      <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...' %><br />
-    <% end %>
-  </nav>
-</header>-->
 
 
 <div class="container-fluid">
-  <%= yield %>
-</div>
 
-<footer id="main_footer">
-  <h3><%= link_to 'Les Vannes', vannes_url %></h3>
-  <p>
-    <%= link_to 'Les dernières', vannes_url %><br />
-    <%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %><br />
-    <%= link_to 'Les meilleures', vannes_url(:order => 'best') %><br />
-    <%= link_to 'Rechercher', search_vannes_path %>
-  </p>
-  
-  <h3><%= link_to 'Communauté', membres_path %></h3>
-  <p>
-    <% if session[:membre_id] %>
-    <%= link_to 'Salut, '+@current_membre.pseudo+' !', @current_membre %><br />
-    <%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %><br />
-    <%= link_to 'Déconnexion', logout_url, :method => :delete %><br />
-    <% else %>
-    <%= link_to 'Connexion', login_url %> <br />
-    <%= link_to 'Inscription', new_membre_path %> <br /> <br />
-    <% end %>
-    <br /> 
-  </p>
-  
-  <h3><%= link_to 'Suivez-nous', followus_url %></h3>
-  <p>
-    Facebook <br />
-    <%= link_to image_tag("twitter.png"), 'http://twitter.com/cestunmec' %> <%= link_to 'Twitter', 'http://twitter.com/cestunmec' %><br />
-    <%= link_to image_tag("rss.png"), vannes_path(:format => :rss) %> <%= link_to 'Flux RSS', vannes_path(:format => :rss) %><br /><br />
-  </p>
-  
-  <h3><%= link_to 'Le site', about_url %></h3>
-  <p>
-    <%= link_to 'Ils parlent de nous', presse_url %><br />
-    <%= link_to 'Contact', new_feedback_path %><br /> 
-    <%= link_to image_tag("github.png"), "http://github.com/allegrem/cestunmec" %> <%= link_to 'Fork me on GitHub', "http://github.com/allegrem/cestunmec" %> <br />
-    Version light
-  </p>
-</footer>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:error] %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+
+
+  <%= yield %>
+
+
+
+
+  <hr>
+
+  <footer>
+  <div class="row-fluid">
+    <div class="span3">
+      <h3><%= link_to 'Les Vannes', vannes_url %></h3>
+      <p>
+	<%= link_to 'Les dernières', vannes_url %><br />
+	<%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %><br />
+	<%= link_to 'Les meilleures', vannes_url(:order => 'best') %><br />
+	<%= link_to 'Rechercher', search_vannes_path %>
+      </p>
+    </div>
+    
+    <div class="span3">
+      <h3><%= link_to 'Communauté', membres_path %></h3>
+      <p>
+	<% if session[:membre_id] %>
+	<%= link_to 'Salut, '+@current_membre.pseudo+' !', @current_membre %><br />
+	<%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %><br />
+	<%= link_to 'Déconnexion', logout_url, :method => :delete %><br />
+	<% else %>
+	<%= link_to 'Connexion', login_url %> <br />
+	<%= link_to 'Inscription', new_membre_path %> <br /> <br />
+	<% end %>
+	<br /> 
+      </p>
+    </div>
+    
+    <div class="span3">
+      <h3><%= link_to 'Suivez-nous', followus_url %></h3>
+      <p>
+	Facebook <br />
+	<%= link_to image_tag("twitter.png"), 'http://twitter.com/cestunmec' %> <%= link_to 'Twitter', 'http://twitter.com/cestunmec' %><br />
+	<%= link_to image_tag("rss.png"), vannes_path(:format => :rss) %> <%= link_to 'Flux RSS', vannes_path(:format => :rss) %><br /><br />
+      </p>
+    </div>
+    
+    <div class="span3">
+      <h3><%= link_to 'Le site', about_url %></h3>
+      <p>
+	<%= link_to 'Ils parlent de nous', presse_url %><br />
+	<%= link_to 'Contact', new_feedback_path %><br /> 
+	<%= link_to image_tag("github.png"), "http://github.com/allegrem/cestunmec" %> <%= link_to 'Fork me on GitHub', "http://github.com/allegrem/cestunmec" %> <br />
+	Version light
+      </p>
+    </div>
+  </div>
+  </footer>
+
+</div>
 
 </body>
 </html>
