@@ -6,21 +6,8 @@
   <p id="notice" ><%= flash[:alert] %></p>
 <% end %>
 
-<%= form_tag do %>
-  <div>
-    <label for="pseudo" >Pseudo :</label>
-    <%= text_field_tag :pseudo, params[:pseudo], :autofocus => "autofocus" %>
-  </div>
-  
-  <div>
-    <label for="passwd" >Mot de passe :</label>
-    <%= password_field_tag :passwd, params[:passwd] %>
-  </div>
-  
-  <div>
-    <%= submit_tag "Go go go !!" %>
-  </div>
-<% end %>
+
+<%= render "form" %>
 
 
 <p>

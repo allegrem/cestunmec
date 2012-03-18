@@ -1,0 +1,16 @@
+<%= form_tag login_path do %>
+  <div>
+    <% unless defined? condensed %><label for="pseudo" >Pseudo :</label><% end %>
+    <%= text_field_tag :pseudo, params[:pseudo], :autofocus => "autofocus", :placeholder => "Pseudo" %>
+  </div>
+  
+  <div>
+    <% unless defined? condensed %><label for="passwd" >Mot de passe :</label><% end %>
+    <%= password_field_tag :passwd, params[:passwd], :placeholder => "Mot de passe" %>
+  </div>
+  
+  <div>
+    <%= submit_tag "Connexion", :class => "btn btn-primary" %>
+    <%= link_to "Pas encore inscrit ?", new_membre_path, :class => "btn" %>
+  </div>
+<% end %>

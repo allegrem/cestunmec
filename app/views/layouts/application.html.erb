@@ -34,8 +34,10 @@
 	  <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query" %><br />
 	<% end %>
 	
-	<% if @current_membre %>
+	
 	<ul class="nav pull-right">
+	<% if @current_membre %>
+	
 	  <% if @current_membre.admin %>
 	    <li class="dropdown">
 	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
@@ -67,12 +69,20 @@
 	      <% end %></li>
 	    </ul>
 	  </li>
-	</ul>
+	
 	<% else %>
-	<ul class="nav pull-right">
-	  <li><%= link_to 'Connexion', login_url %></li>
-	</ul>
+	
+	<li class="dropdown">
+	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connexion<b class="caret"></b></a>
+	  <ul class="dropdown-menu">
+	    <%= render :partial => "sessions/form", :locals => {:condensed => true} %>
+	    
+	    <script>$('.dropdown-menu').find('form').click(function (e) {  e.stopPropagation(); });</script>
+	  </ul>
+	</li>
+	    
 	<% end %>
+	</ul>
        </div>
     </div>
   </div>
