@@ -41,7 +41,7 @@
 	
 	  <% if @current_membre.admin %>
 	    <li class="dropdown">
-	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
 	    <ul class="dropdown-menu">
 	      <li><%= link_to vannes_path(:order => :validation) do %>
 		Validation <span class="badge pull-right"><%= Vanne.where("valide = ?",false).count.to_s %></span>
@@ -117,51 +117,11 @@
   <hr>
 
   <footer>
-  <div class="row-fluid">
-    <div class="span3">
-      <h3><%= link_to 'Les Vannes', vannes_url %></h3>
-      <p>
-	<%= link_to 'Les dernières', vannes_url %><br />
-	<%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %><br />
-	<%= link_to 'Les meilleures', vannes_url(:order => 'best') %><br />
-	<%= link_to 'Rechercher', search_vannes_path %>
-      </p>
-    </div>
-    
-    <div class="span3">
-      <h3><%= link_to 'Communauté', membres_path %></h3>
-      <p>
-	<% if session[:membre_id] %>
-	<%= link_to 'Salut, '+@current_membre.pseudo+' !', @current_membre %><br />
-	<%= link_to 'Modifier mon profil', edit_membre_path(@current_membre) %><br />
-	<%= link_to 'Déconnexion', logout_url, :method => :delete %><br />
-	<% else %>
-	<%= link_to 'Connexion', login_url %> <br />
-	<%= link_to 'Inscription', new_membre_path %> <br /> <br />
-	<% end %>
-	<br /> 
-      </p>
-    </div>
-    
-    <div class="span3">
-      <h3><%= link_to 'Suivez-nous', followus_url %></h3>
-      <p>
-	Facebook <br />
-	<%= link_to image_tag("twitter.png"), 'http://twitter.com/cestunmec' %> <%= link_to 'Twitter', 'http://twitter.com/cestunmec' %><br />
-	<%= link_to image_tag("rss.png"), vannes_path(:format => :rss) %> <%= link_to 'Flux RSS', vannes_path(:format => :rss) %><br /><br />
-      </p>
-    </div>
-    
-    <div class="span3">
-      <h3><%= link_to 'Le site', about_url %></h3>
-      <p>
-	<%= link_to 'Ils parlent de nous', presse_url %><br />
-	<%= link_to 'Contact', new_feedback_path %><br /> 
-	<%= link_to image_tag("github.png"), "http://github.com/allegrem/cestunmec" %> <%= link_to 'Fork me on GitHub', "http://github.com/allegrem/cestunmec" %> <br />
-	Version light
-      </p>
-    </div>
-  </div>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+      Site réalisé par <a href="http://twitter.com/allegrem">@allegrem</a>. Tous droits réservés. <br />
+      Icones de <a href="http://glyphicons.com">Glyphicons Free</a>, sous licence <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+    </p>
   </footer>
 
 </div>
