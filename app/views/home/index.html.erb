@@ -69,9 +69,11 @@
       <h1>VIP <small>Vanneur Incroyablement Puissant</small></h1>
     </div>
     
-    <p>
-      bla bla bla
-    </p>
+    <% @vip_vanneurs.each do |v| %>
+      <%= render :partial => "membres/membre", :locals => {:membre => v} %>
+    <% end %>
+    
+    <p><%= link_to 'Plus de vanneurs', membres_path, :class => "btn" %></p>
   </div>
   
 </div>
