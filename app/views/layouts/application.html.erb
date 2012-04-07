@@ -27,7 +27,7 @@
 	<ul class="nav">
 	  <li class="<%= 'active' if params[:controller] == "home" %>"><%= link_to "Accueil", root_url %></li>
 	  <li class="<%= 'active' if params[:order] == "last" %>"><%= link_to 'Les dernières', vannes_url(:order => 'last') %></li>
-	  <li class="<%= 'active' if params[:order] == "buzz" %>"><%= link_to 'Les buzzantes', vannes_url(:order => 'buzz') %></li>
+	  <li class="<%= 'active' if params[:order] == "buzz" %>"><%= link_to 'Les aléatoires', vannes_url(:order => 'rand') %></li>
 	  <li class="<%= 'active' if params[:order] == "best" %>"><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
 	</ul>
 	  

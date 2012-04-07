@@ -15,9 +15,11 @@ class Lol < ActiveRecord::Base
   
   def increase_lols_count
     Vanne.increment_counter(:lols_count, self.vanne_id)
+    Membre.increment_counter(:lols_count, self.vanne.membre_id)
   end
   
   def decrease_lols_count
     Vanne.decrement_counter(:lols_count, self.vanne_id)
+    Membre.decrement_counter(:lols_count, self.vanne.membre_id)
   end
 end
