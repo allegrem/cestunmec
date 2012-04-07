@@ -5,11 +5,16 @@
     <h1>C'est un mec</h1>
     <p>il s'appelle On et il a un phare, c'est le Pharaon !!</p>
     
-    <small>bla bla bla</small>
+    Bienvenue sur la plus grande communauté de vanneurs de France ! Ici, tu vas pouvoir découvrir toutes les meilleures vannes postées par les plus grands vanneurs de l'histoire. Mais c'est surtout l'opportunité de devenir toi aussi une légende, et pourquoi pas faire ton entrée dans le prestigieux Lol of Fame ! Pour cela, une seule règle : invente la meilleure vanne commençant par "C'est un mec" ...
     
     <p>
       <%= button_to 'En savoir plus', about_path, :class => "btn btn-primary btn-large", :method => :get %>
     </p>
+    
+    <div class="row-fluid">
+      <div class="span6"><h2><%= link_to @nbre_vannes_postees.to_s+' vannes postées', vannes_path %></h2></div>
+      <div class="span6"><h2><%= link_to @nbre_vanneurs.to_s+' vanneurs', membres_path %></h2></div>
+    </div>
   </div>
   
   <div class="span4">
