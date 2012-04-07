@@ -1,10 +1,20 @@
-<article id="vanne-<%= vanne.id %>">
+<blockquote>
+  <p><%= vanne.contenu %></p>
+  <small>
+    <%= link_to vanne.membre.pseudo, vanne.membre %> - 
+    <time><%= link_to vanne.created_at.strftime("le %d/%m/%Y à %H:%M"), vanne %></time>
+  </small>
+</blockquote>
+
+
+
+<!--<article id="vanne-<%= vanne.id %>">
   <% if !vanne.valide %>
     <strong style="font-size:12px; color:red">En attente de validation</strong>
     <% if @current_membre && @current_membre.admin? %>
       <span style="font-size:12px">
 	<%= link_to 'Valider', vanne_path(vanne, :valide => "yes"), :method => :put %> | 
-	<!--<%= link_to 'Valider + Twitter', vanne_path(vanne, :valide => "yes", :twitter => "yes"), :confirm => "Etes vous sûr de vouloir poster cette vanne sur Twitter ?", :method => :put %> | -->
+	<!--<%= link_to 'Valider + Twitter', vanne_path(vanne, :valide => "yes", :twitter => "yes"), :confirm => "Etes vous sûr de vouloir poster cette vanne sur Twitter ?", :method => :put %> | --><!--
 	Valider + Twitter | 
 	<%= link_to 'Supprimer', vanne, :confirm => 'Etes vous sur ?', :method => :delete %>
       </span>
@@ -53,4 +63,4 @@
   var e = document.getElementById('vanne-<%= vanne.id %>');
   e.addEventListener('mouseover', function() { document.getElementById('vanne-aside-<%= vanne.id %>').style.display = 'block'; }, false);
   e.addEventListener('mouseout', function() { document.getElementById('vanne-aside-<%= vanne.id %>').style.display = 'none'; }, false);
-</script>
+</script>-->
