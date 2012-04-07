@@ -10,32 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220213523) do
+ActiveRecord::Schema.define(:version => 20120317155344) do
+
+  create_table "feedbacks", :force => true do |t|
+    t.string    "email"
+    t.text      "message"
+    t.integer   "membre_id"
+    t.boolean   "lu",         :default => false
+    t.timestamp "created_at",                    :null => false
+    t.timestamp "updated_at",                    :null => false
+  end
 
   create_table "lols", :force => true do |t|
-    t.integer  "vanne_id"
-    t.integer  "membre_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer   "vanne_id"
+    t.integer   "membre_id"
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
   end
 
   create_table "membres", :force => true do |t|
-    t.string   "pseudo"
-    t.string   "hashed_passwd"
-    t.string   "salt"
-    t.string   "email"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "admin",         :default => false
+    t.string    "pseudo"
+    t.string    "hashed_passwd"
+    t.string    "salt"
+    t.string    "email"
+    t.timestamp "created_at",                       :null => false
+    t.timestamp "updated_at",                       :null => false
+    t.boolean   "admin",         :default => false
   end
 
   create_table "vannes", :force => true do |t|
-    t.text     "contenu"
-    t.integer  "membre_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "lols_count", :default => 0
-    t.boolean  "valide",     :default => false
+    t.text      "contenu"
+    t.integer   "membre_id"
+    t.timestamp "created_at",                    :null => false
+    t.timestamp "updated_at",                    :null => false
+    t.integer   "lols_count", :default => 0
+    t.boolean   "valide",     :default => false
   end
 
 end
