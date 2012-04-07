@@ -1,12 +1,6 @@
-<div class="row-fluid">
-  <div class="span2">
-    <%= link_to image_tag("avatar.png", :alt => membre.pseudo, :width => 70), membre %>
-  </div>
+<%= link_to image_tag("avatar.png", :alt => membre.pseudo, :width => 70), membre, :style => "float:left" %>
 
-  <div class="span10">
-    <p>
-    <%= link_to membre.pseudo, membre %> <br />
-    <%= membre.vannes_count %> vannes - <%= membre.lols_count %> lols
-    </p>
-  </div>
-</div>
+<p style="height:70px">
+<%= link_to membre.pseudo, membre %> <br />
+<%= membre.vannes_count %> vannes - <%= membre.lols_count %> lols
+</p>

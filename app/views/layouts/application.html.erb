@@ -27,7 +27,7 @@
 	<ul class="nav">
 	  <li class="<%= 'active' if params[:controller] == "home" %>"><%= link_to "Accueil", root_url %></li>
 	  <li class="<%= 'active' if params[:order] == "last" %>"><%= link_to 'Les dernières', vannes_url(:order => 'last') %></li>
-	  <li class="<%= 'active' if params[:order] == "buzz" %>"><%= link_to 'Les aléatoires', vannes_url(:order => 'rand') %></li>
+	  <li class="<%= 'active' if params[:order] == "rand" %>"><%= link_to 'Les aléatoires', vannes_url(:order => 'rand') %></li>
 	  <li class="<%= 'active' if params[:order] == "best" %>"><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
 	</ul>
 	  
@@ -117,9 +117,10 @@
   <hr>
 
   <footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p class="pull-right"><a href="#">Retour en haut</a></p>
     <p>
       Site réalisé par <a href="http://twitter.com/allegrem">@allegrem</a>. Tous droits réservés. <br />
+      Propulsé par <a href="http://rubyonrails.org/">Ruby on Rails</a> et <a href="http://twitter.github.com/bootstrap/">Bootstrap Twitter</a>. <br />
       Icones de <a href="http://glyphicons.com">Glyphicons Free</a>, sous licence <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
     </p>
   </footer>
