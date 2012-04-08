@@ -1,49 +1,23 @@
-<% if params[:order] %>
-<div id="main_frame">
-  <% case params[:order]
-    when 'best' %>
-      <h2>Lol of Fame</h2>
-      <p>Découvre les meilleures vannes jamais postées depuis la création du site. Et si tu penses pouvoir faire mieux, <%= link_to 'postes-en une', new_vanne_path %> et peut-être qu'un jour toi aussi tu feras parti des grands ...</p>
-    <% when 'buzz' %>
-      <h2>Les buzzantes</h2>
-      <p>Marre de toujours voir les mêmes meilleures vannes ? Ici découvre en exclusivité les vannes qui ont marqué la semaine. Et n'oublie pas qu'il n'est jamais trop tard pour <%= link_to 'poster la tienne', new_vanne_path %> !!</p>
-    <% when 'validation' %>
-      <h2>Validation</h2>
-    <% end %>
-</div>
-
-
-<% else %>
-
-
-<div id="new_vanne_scroll">
-  
-  <% if @current_membre %>
-  <h2><%= link_to 'Envie de poster ta propre vanne ?', "#", :id => "new_vanne_scroll_trigger" %></h2>
-  <% end %>
-  
-  <div id="new_vanne_scroll_hidden">
-    <%= render 'form' %>
-  </div>
-</div>
-
-<script>
-  var trigger_new = document.getElementById('new_vanne_scroll_trigger');
-  var hidden_new = document.getElementById('new_vanne_scroll_hidden');
-
-  trigger_new.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (hidden_new.style.display == 'block') {
-	hidden_new.style.display = 'none';
-      }
-      else {
-	hidden_new.style.display = 'block';
-      }
-  }, false);
-</script>
-
-<% end %>
-
+<% if params[:order]
+    case params[:order]
+      when 'best' %>
+	<div class="page-header">
+	  <h1>Lol of Fame <small>Les meilleures de tous les temps</small></h1>
+	</div>
+      <% when 'rand' %>
+	<div class="page-header">
+	  <h1>Random Vanne <small>Des vannes, au hasard</small></h1>
+	</div>
+      <% when 'last' %>
+	<div class="page-header">
+	  <h1>Direct-vannes <small>Les dernières vannes postées</small></h1>
+	</div>
+      <% when 'validation' %>
+	<div class="page-header">
+	  <h1>Validation</h1>
+	</div>
+      <% end 
+    end %>
 
 <% @vannes.each do |vanne| %>
   <%= render :partial => 'vanne', :locals => {:vanne => vanne} %>
@@ -51,7 +25,7 @@
 
 
 <% if @vannes_count > (params[:page].to_i + 1) * 10 %>
-<div id="plus_vannes_scroll">
-  <strong><%= link_to 'Encore plus de vannes ...', vannes_path(:order => params[:order], :page => params[:page].to_i + 1), :remote => true %></strong>
+<div id="plus_vannes" style="text-align:center">
+  <%= link_to 'Encore plus de vannes ...', vannes_path(:order => params[:order], :page => params[:page].to_i + 1), :remote => true, :class => "btn btn-large" %>
 </div>
 <% end %>

@@ -1,0 +1,11 @@
+<% @vannes.each do |v| %>
+  $('#plus_vannes').before("<%= escape_javascript(render(:partial => "vannes/vanne", :locals => {:vanne => v})) %>");
+<% end %>
+
+<% if @vannes_count > (params[:page].to_i + 1) * 10 %>
+  $('#plus_vannes > a').attr('href', "<%= vannes_path(:order => params[:order], :page => params[:page].to_i + 1) %>");
+<% else %>
+  $('#plus_vannes').hide();
+<% end %>
+
+init_toggle_lol(); 
