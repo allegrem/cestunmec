@@ -1,1 +1,2 @@
 $("#vanne-<%= @lol.vanne.id %>").replaceWith("<%= escape_javascript(render(:partial => "vannes/vanne", :locals => {:vanne => @lol.vanne})) %>");
+init_toggle_lol(); 

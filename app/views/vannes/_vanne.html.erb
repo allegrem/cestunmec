@@ -21,10 +21,10 @@
     end
     %>
     
-  <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
-  
   <% if lol.any? %>
-  <%= link_to "UNLOL", vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "btn btn-mini pull-right btn-danger" %>
+    <%= link_to vanne_text, vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "bouton-unlol btn btn-mini pull-right "+class_btn, :confirm => "Es-tu sûr de ne plus aimer cette vanne ?", :data => { :content => vanne_text } %>
+  <% else %>
+    <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
   <% end %>
   
   <small>
