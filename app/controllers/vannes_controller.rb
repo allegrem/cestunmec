@@ -11,8 +11,6 @@ class VannesController < ApplicationController
       case params[:order]
 	when 'best'
 	  @vannes = Vanne.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(10).offset(10*params[:page].to_i)
-	when 'buzz'
-	  @vannes = Vanne.where('valide = ?',true).where('created_at > ?', Time.now - 1.week).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
 	when 'validation'
 	  if @current_membre.admin?
 	    @vannes = Vanne.where('valide = ?',false).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
