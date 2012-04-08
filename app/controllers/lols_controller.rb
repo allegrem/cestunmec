@@ -46,6 +46,7 @@ class LolsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @lol.vanne, :notice => "Snif ... Un lol de moins :(" }
+      format.js
       format.json { head :no_content }
     end
   end

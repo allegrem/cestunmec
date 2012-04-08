@@ -9,16 +9,23 @@
     else
       vanne_text = 'Sois le premier à dire LOL !'
     end
+    
+    lol = vanne.lols.where("membre_id = ?",@current_membre.id)
+    
     class_btn = ""
     if @current_membre.nil?
       class_btn = "disabled"
       message = "Il faut être connecté pour pouvoir loler une vanne !"
-    elsif @current_membre && vanne.lols.where("membre_id = ?",@current_membre.id).any?
+    elsif @current_membre && lol.any?
       class_btn = "disabled btn-success"
     end
     %>
     
   <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
+  
+  <% if lol.any? %>
+  <%= link_to "UNLOL", vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "btn btn-mini pull-right btn-danger" %>
+  <% end %>
   
   <small>
     <%= link_to vanne.membre.pseudo, vanne.membre, :rel => "popover", :title => vanne.membre.pseudo, :data => { :content => vanne.membre.vannes_count.to_s+" vannes - "+vanne.membre.lols_count.to_s+" lols" } %> - 
