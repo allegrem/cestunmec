@@ -1,5 +1,0 @@
-javascript_include_tag :application  #necessaire pour appeler display_flash
-page.replace('vanne-'+@lol.vanne_id.to_s, render(@lol.vanne))
-page.call "twttr.widgets.load" #recharge le bouton twitter
-page.call "display_flash", flash[:notice]
-
