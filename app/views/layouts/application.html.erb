@@ -72,7 +72,7 @@
 	  </li>
 	  
 	  <li><div>
-	    <%= link_to new_vanne_path, :id => "new_vanne_bouton", :class => "btn btn-primary", :rel => "tooltip", :title => "Ecrire une nouvelle vanne", :data => { :placement => 'bottom', :toggle => 'modal', :target => '#new_vanne_form' }  do %><i class="icon-pencil icon-white"></i> <span class="visible-phone">Poster une vanne</span><% end %>
+	    <%= link_to new_vanne_path, :class => "btn btn-primary", :rel => "tooltip", :title => "Ecrire une nouvelle vanne", :data => { :placement => 'bottom', :toggle => 'modal', :target => '#new_vanne_form' }  do %><i class="icon-pencil icon-white"></i> <span class="visible-phone">Poster une vanne</span><% end %>
 	  </div></li>
 	
 	<% else %>
@@ -93,8 +93,6 @@
   </div>
 </div>
 
-
-
 <div class="container-fluid">
 
 <% if @current_membre %>
@@ -107,6 +105,18 @@
   <%= render :partial => "vannes/form", :locals => { :modal => true } %>
 </div>
 <% end %>
+
+
+<%= link_to new_feedback_path, :class => "feedback-button btn btn-warning btn-large hidden-phone", :data => { :toggle => 'modal', :target => '#new_feedback_form' } do %><i class="icon-exclamation-sign icon-white"></i> Feedback <% end %>
+
+<div class="modal hide fade" id="new_feedback_form">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3>Question, remarque, émotion ?</h3>
+  </div>
+  
+  <%= render :partial => "feedbacks/form", :locals => { :modal => true } %>
+</div>
 
 
 

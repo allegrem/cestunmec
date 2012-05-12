@@ -1,29 +1,35 @@
+<% modal = modal || false 
+@feedback = @feedback || Feedback.new %>
+
 <%= form_for(@feedback) do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-      <h2>Whoops !! Il y a eu quelques problèmes !</h2>
+  <% if modal %><div class="modal-body"><% end %>
+    <% if @feedback.errors.any? %>
+      <div id="error_explanation">
+	<h2>Whoops !! Il y a eu quelques problèmes !</h2>
 
-      <ul>
-      <% @feedback.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <% if @current_membre %> 
-    <%= f.text_field :email, :value => @current_membre.email %>
-    <% else %>
-    <%= f.text_field :email %>
+	<ul>
+	<% @feedback.errors.full_messages.each do |msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+	</ul>
+      </div>
     <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :message %><br />
-    <%= f.text_area :message %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Envoyer" %>
+
+    <div class="field">
+      <%= f.label :email %>
+      <% if @current_membre %> 
+	<%= f.text_field :email, :value => @current_membre.email %>
+      <% else %>
+	<%= f.text_field :email %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :message %>
+      <%= f.text_area :message, :rows => 10 %>
+    </div>
+  <% if modal %></div><% end %>
+  
+  <div class="action <%= 'modal-footer' if modal %>">
+    <%= f.submit 'Envoyer', :class => "btn btn-primary" %>
   </div>
 <% end %>
