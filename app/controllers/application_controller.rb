@@ -11,14 +11,14 @@ class ApplicationController < ActionController::Base
   
   def require_login
     if @current_membre.nil?
-      flash[:error] = "Vous devez être connecté pour afficher cette page"
+      flash[:error] = "Vous devez etre connecte pour afficher cette page"
       redirect_to login_path
     end
   end
   
   def require_admin
     unless @current_membre.admin
-      flash[:error] = "Vous devez être admin pour afficher cette page"
+      flash[:error] = "Vous devez etre admin pour afficher cette page"
       redirect_to root_path
     end
   end
