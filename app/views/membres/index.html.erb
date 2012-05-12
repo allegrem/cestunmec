@@ -1,37 +1,18 @@
-<div id="main_frame">
+<div class="page-header">
+  <h1>Tous les vanneurs <small>Même ceux que vous ne connaissez pas encore</small></h1>
+</div>
 
-<h1>Tous les vanneurs</h1>
 
-<table style="width:100%;">
-  <tr>
-    <th>Pseudo</th>
-    <th>Vannes postées</th>
-    <th>Lols récoltés</th>
-    <th>Ratio lols/vannes</th>
-    <% if @current_membre && @current_membre.admin? %>
-    <th></th>
-    <% end %>
-  </tr>
-
-<% @membres.each do |membre| 
-@s = 0
-membre.vannes.each do |v|
-  @s += v.lols_count
-end %>
-  <tr>
-    <td><%= link_to membre.pseudo, membre %></td>
-    <td><%= membre.vannes.count %></td>
-    <td><%= @s %></td>
-    <td><%= membre.vannes.count == 0  ?  0 :  (@s.to_f / membre.vannes.count.to_f).round(2) %></td>
-    <% if @current_membre && @current_membre.admin? %>
-    <td><%= 'Admin' if membre.admin %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-Si toi aussi, tu rêves de devenir un vanneur célèbre, <%= link_to 'inscris-toi', new_membre_path %> !
-
+<div class="row-fluid">
+  <div class="span6">
+  <% @membres.values_at(* @membres.each_index.select {|i| i.even?}).each do |v| %>
+    <%= render :partial => "membres/membre", :locals => {:membre => v} %>
+  <% end %>
+  </div>
+  
+  <div class="span6">
+  <% @membres.values_at(* @membres.each_index.select {|i| i.odd?}).each do |v| %>
+    <%= render :partial => "membres/membre", :locals => {:membre => v} %>
+  <% end %>
+  </div>
 </div>

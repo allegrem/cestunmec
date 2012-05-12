@@ -1,6 +1,8 @@
 <%= link_to image_tag("avatar.png", :alt => membre.pseudo, :width => 70), membre, :style => "float:left" %>
 
 <p style="height:70px">
-<%= link_to membre.pseudo, membre %> <br />
+<%= link_to membre.pseudo, membre %> 
+<% if membre.admin %><small>Admin</small><% end %>
+<br />
 <%= membre.vannes_count %> vannes - <%= membre.lols_count %> lols
 </p>

@@ -5,7 +5,7 @@ class MembresController < ApplicationController
   
   # GET /membres
   def index
-    @membres = Membre.order("created_at")
+    @membres = Membre.order("lols_count * vannes_count DESC")
   end
 
   
