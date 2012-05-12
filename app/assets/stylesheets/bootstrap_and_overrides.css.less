@@ -19,9 +19,20 @@ body { padding-top: 60px; }
 // @linkColor: #ff0000;
 
 
-.dropdown-menu form {
-  padding: 5px;
+// quelques corrections pour le dropdown du login
+.dropdown-menu {
+  form {
+    padding: 5px;
+    margin-bottom: 0px;
+  }
+  
+  a {
+    padding: 5px;
+    color: @linkColor;
+    &:hover { color: @linkColorHover }
+  }
 }
+// *dropdown login
 
 .hero-unit {
   margin-top: -50px;
