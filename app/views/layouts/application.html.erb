@@ -70,6 +70,10 @@
 	      <% end %></li>
 	    </ul>
 	  </li>
+	  
+	  <li><div>
+	    <%= link_to new_vanne_path, :id => "new_vanne_bouton", :class => "btn btn-primary", :rel => "tooltip", :title => "Ecrire une nouvelle vanne", :data => { :placement => 'bottom', :toggle => 'modal', :target => '#new_vanne_form' }  do %><i class="icon-pencil icon-white"></i><% end %>
+	  </div></li>
 	
 	<% else %>
 	
@@ -91,8 +95,17 @@
 
 
 
-
 <div class="container-fluid">
+
+<div class="modal hide fade" id="new_vanne_form">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3>Nouvelle vanne</h3>
+  </div>
+  
+  <%= render :partial => "vannes/form", :locals => { :modal => true } %>
+</div>
+
 
 
   <% if flash[:notice] %>

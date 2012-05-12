@@ -1,26 +1,40 @@
-<%= form_for(@vanne) do |f| %>
-  <% if @vanne.errors.any? %>
-    <div id="error_explanation">
-      <h2>Whoops !! Il y a quelques problèmes ...</h2>
+<% modal = modal || false %>
 
-      <ul>
-      <% @vanne.errors.each do |field, msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for(@vanne) do |f| %>
+  <% if modal %><div class="modal-body"><% end %>
+  
+    <% if @vanne.errors.any? %>
+      <div id="error_explanation">
+	<h2>Whoops !! Il y a quelques problèmes ...</h2>
+
+	<ul>
+	<% @vanne.errors.each do |field, msg| %>
+	  <li><%= msg %></li>
+	<% end %>
+	</ul>
+      </div>
+    <% end %>
+    
+    <% if not (@current_membre && @current_membre.vannes.count > 5) %>
+      <p>
+	Avant de poster pour la première fois, prend le temps de <%= link_to 'lire quelques conseils', about_path %> pour écrire la meilleure vanne possible !
+      </p>
+    <% end %>
+
+    <div class="field">
+      <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!" %>
+    </div>
+  
+  
+  <% if modal %>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal" >Fermer</a>
+      <%= f.submit 'Poste ta vanne', :class => "btn btn-primary" %>
+    </div>
+  <% else %>
+    <div class="action">
+      <%= f.submit 'Poste ta vanne' %>
     </div>
   <% end %>
-  
-  <% if not (@current_membre && @current_membre.vannes.count > 5) %>
-    <p>
-      Avant de poster pour la première fois, prend le temps de <%= link_to 'lire quelques conseils', about_path %> pour écrire la meilleure vanne possible !
-    </p>
-  <% end %>
-
-  <div class="field">
-    <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!" %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Poste ta vanne' %>
-  </div>
 <% end %>
