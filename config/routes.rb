@@ -19,8 +19,6 @@ Cestunmec::Application.routes.draw do
     
     controller :about do
       get 'about' => :index
-      get 'presse' => :presse
-      get 'followus' => :followus
     end
     
 

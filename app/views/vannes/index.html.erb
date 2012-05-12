@@ -17,7 +17,11 @@
 	  <h1>Validation</h1>
 	</div>
       <% end 
-    end %>
+    elsif params[:q] %>
+      <div class="page-header">
+	<h1>Rechercher <small>Moteur de recherche n°1 pour les vannes françaises</small></h1>
+      </div>
+    <% end %>
 
 <% @vannes.each do |vanne| %>
   <%= render :partial => 'vanne', :locals => {:vanne => vanne} %>
