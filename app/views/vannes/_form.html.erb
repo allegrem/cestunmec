@@ -1,4 +1,5 @@
-<% modal = modal || false %>
+<% modal = modal || false 
+@vanne = @vanne || Vanne.new %>
 
 <%= form_for(@vanne) do |f| %>
   <% if modal %><div class="modal-body"><% end %>
@@ -24,17 +25,9 @@
     <div class="field">
       <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!" %>
     </div>
+  <% if modal %></div><% end %>
   
-  
-  <% if modal %>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal" >Fermer</a>
-      <%= f.submit 'Poste ta vanne', :class => "btn btn-primary" %>
-    </div>
-  <% else %>
-    <div class="action">
-      <%= f.submit 'Poste ta vanne' %>
-    </div>
-  <% end %>
+  <div class="action <%= 'modal-footer' if modal %>">
+    <%= f.submit 'Poste ta vanne', :class => "btn btn-primary" %>
+  </div>
 <% end %>
