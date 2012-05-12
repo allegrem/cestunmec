@@ -12,7 +12,10 @@ class MembresController < ApplicationController
   # GET /membres/1
   def show
     @membre = Membre.find(params[:id])
-    @vannes = @membre.vannes.where('valide = ?',true).order('created_at DESC')
+    
+    @vannes_best = @membre.vannes.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(10)
+    @vannes_last = @membre.vannes.where('valide = ?',true).order('created_at DESC').limit(10)
+    @lols = @membre.lols
   end
 
   

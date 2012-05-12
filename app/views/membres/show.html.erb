@@ -1,23 +1,34 @@
-<div id="main_frame">
+<div class="page-header">
+  <h1><%= @membre.pseudo %> <small><%= @membre.vannes_count %> vannes - <%= @membre.lols_count %> lols</small></h1>
+</div>
 
-<h2>Profil de <%= @membre.pseudo %></h2>
-
-<h3>Ses vannes</h3>
-
-<% @vannes.each do |vanne| %>
-  <%= render :partial => 'vannes/vanne', :locals => {:vanne => vanne} %>
-<% end %>
-
-<% if @current_membre && (@membre == @current_membre  ||  @current_membre.admin?) %>
-  <p><%= link_to 'Editer mon profil', edit_membre_path(@membre) %> | <%= link_to 'Supprimer mon compte', @membre, :confirm => "Attention ! La suppression d'un compte est une opération irréversible ! Elle entraine aussi la suppression de toutes les vannes et de tous les lols associés à ce compte. Bref, il vaut mieux cliquer sur Annuler ...", :method => :delete %></p>
-<% end %>
-
-<% if @current_membre && @current_membre.admin? 
-  if @membre.admin %>
-  <p><%= link_to 'Retirer admin', membre_path(@membre, :admin => "no"), :method => :put %></p>
-<% else %>
-  <p><%= link_to 'Rendre admin', membre_path(@membre, :admin => "yes"), :method => :put %></p>
-<% end
-end %>
-
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Ses dernières</a></li>
+    <li><a href="#tab2" data-toggle="tab">Ses meilleures</a></li>
+    <li><a href="#tab3" data-toggle="tab">Ses préférées</a></li>
+  </ul>
+  
+  
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <% @vannes_last.each do |v| %>
+	<%= render :partial => "vannes/vanne", :locals => {:vanne => v} %>
+      <% end %>
+    </div>
+    
+    
+    <div class="tab-pane" id="tab2">
+      <% @vannes_best.each do |v| %>
+	<%= render :partial => "vannes/vanne", :locals => {:vanne => v} %>
+      <% end %>
+    </div>
+    
+    
+    <div class="tab-pane" id="tab3">
+      <% @lols.each do |l| %>
+	<%= render :partial => "vannes/vanne", :locals => {:vanne => l.vanne} %>
+      <% end %>
+    </div>
+  </div>
 </div>
