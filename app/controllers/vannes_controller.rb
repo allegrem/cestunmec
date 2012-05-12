@@ -20,6 +20,9 @@ class VannesController < ApplicationController
 	  else
 	    redirect_to vannes_path
 	  end
+	when 'rand'
+	  vannes_ids = Vanne.where('valide = ?',true).select('id').map( &:id )
+	  @vannes = Vanne.find( (1..10).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
 	else  #englobe aussi params[:order] = 'last'
 	  @vannes = Vanne.where('valide = ?',true).order('created_at DESC').limit(10).offset(10*params[:page].to_i)
       end

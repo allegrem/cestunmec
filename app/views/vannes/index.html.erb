@@ -27,7 +27,6 @@
   <%= render :partial => 'vanne', :locals => {:vanne => vanne} %>
 <% end %>
 
-
 <% if @vannes_count > (params[:page].to_i + 1) * 10 %>
 <div id="plus_vannes" style="text-align:center">
   <%= link_to 'Encore plus de vannes ...', vannes_path(:order => params[:order], :page => params[:page].to_i + 1), :remote => true, :class => "btn btn-large" %>
