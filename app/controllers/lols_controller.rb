@@ -9,7 +9,7 @@ class LolsController < ApplicationController
     if @vanne  &&  @vanne.lols.where("membre_id = ?",@current_membre.id).count.zero?
       respond_to do |format|
 	if @vanne.lols.create(:membre => @current_membre)
-	  @vanne = Vanne.find(params[:vanne_id]) #on recharge l'objet car le nombre de lols a changé
+	  @vanne.lols_count += 1 #on recharge l'objet car le nombre de lols a changé
 	  flash.now[:notice] = "Lol bien enregistre"
 	  format.html { redirect_to vanne_path(@vanne) }
 	  format.js 
