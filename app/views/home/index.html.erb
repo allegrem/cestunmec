@@ -16,10 +16,16 @@
   </div>
   
   <div class="span4">
-    <h3>Deviens un vanneur !</h3>
-    <small>L'inscription ne dure que quelques instants, et n'est en général pas douloureuse !</small>
-    <br /><br />
-    <%= render :partial => "membres/form", :locals => { :condensed => true } %>
+    <% if @current_membre %>
+      <h3>Poste une nouvelle vanne</h3>
+      <small>Je suis sûr que tu as une nouvelle vanne à partager. Si oui, poste-la vite avant qu'un autre vanneur ne te devance !</small><br /><br />
+      <%= render :partial => "vannes/form" %>
+    <% else %>
+      <h3>Deviens un vanneur !</h3>
+      <small>L'inscription ne dure que quelques instants, et n'est en général pas douloureuse !</small>
+      <br /><br />
+      <%= render :partial => "membres/form", :locals => { :condensed => true } %>
+    <% end %>
   </div>
 
 </div>

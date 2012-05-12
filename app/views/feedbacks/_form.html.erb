@@ -18,7 +18,7 @@
     <div class="field">
       <%= f.label :email %>
       <% if @current_membre %> 
-	<%= f.text_field :email, :value => @current_membre.email %>
+	<%= f.text_field :email, :value => @current_membre.email, :autofocus => "autofocus" %>
       <% else %>
 	<%= f.text_field :email %>
       <% end %>
