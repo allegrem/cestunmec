@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
+  skip_before_filter :require_login, :require_admin
+  
+  
   def new
-    
   end
 
   def create

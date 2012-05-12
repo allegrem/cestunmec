@@ -1,4 +1,8 @@
 class VannesController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
+  skip_before_filter :require_admin, :only => [:index, :show, :create, :new, :destroy]
+  
+  
   # GET /vannes
   # GET /vannes.json
   def index
@@ -87,10 +91,6 @@ class VannesController < ApplicationController
     if @current_membre  &&  @current_membre.admin?  &&  params[:valide] == "yes"
       @vanne.valide = true
       @vanne.save
-      
-      if params[:twitter] == "yes"
-	#TODO
-      end
       
       redirect_to vannes_path(:order => 'validation'), :notice => "Vanne validee !"
     else

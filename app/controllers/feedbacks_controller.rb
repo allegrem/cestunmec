@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  before_filter :authorize, :except => [:new, :create]
+  skip_before_filter :require_login, :require_admin, :only => [:new, :create]
   
   
   # GET /feedbacks
@@ -87,12 +87,4 @@ class FeedbacksController < ApplicationController
     end
   end
   
-  
-  private
-  
-  def authorize
-    unless @current_membre  &&  @current_membre.admin
-      redirect_to root_path, :alert => "Qu'est-ce que tu as essaye de faire la ??"
-    end
-  end
 end

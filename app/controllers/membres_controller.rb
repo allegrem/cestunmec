@@ -1,4 +1,7 @@
 class MembresController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show, :new, :create]
+  skip_before_filter :require_admin
+  
   # GET /membres
   # GET /membres.json
   def index

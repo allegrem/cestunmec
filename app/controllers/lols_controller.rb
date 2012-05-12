@@ -1,4 +1,6 @@
 class LolsController < ApplicationController
+  skip_before_filter :require_admin
+  
   def index
     @lols = Lol.all
     
