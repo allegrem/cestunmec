@@ -9,10 +9,6 @@ Cestunmec::Application.routes.draw do
   
   resources :vannes do
     resources :lols
-    collection do
-      get 'search' => :search
-      post 'search' => :search
-    end
   end
   
    controller :sessions do

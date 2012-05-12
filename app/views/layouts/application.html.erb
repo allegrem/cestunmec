@@ -31,7 +31,7 @@
 	  <li class="<%= 'active' if params[:order] == "best" %>"><%= link_to 'Les meilleures', vannes_url(:order => 'best') %></li>
 	</ul>
 	  
-	<%= form_tag search_vannes_path, :class => "navbar-search pull-left" do %>
+	<%= form_tag vannes_path, :method => :get, :class => "navbar-search pull-left" do %>
 	  <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query" %><br />
 	<% end %>
 	

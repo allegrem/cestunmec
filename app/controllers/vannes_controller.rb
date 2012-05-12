@@ -20,7 +20,11 @@ class VannesController < ApplicationController
 	else  #englobe aussi params[:order] = 'last'
 	  @vannes = Vanne.where('valide = ?',true).order('created_at DESC').limit(10).offset(10*params[:page].to_i)
       end
-      @vanne = Vanne.new
+      
+      if params[:q] && params[:q] != ""
+	@vannes = Vanne.where('valide = ?',true).where('LOWER(contenu) LIKE ?','%'+params[:q].downcase+'%').order('created_at DESC').limit(10)
+      end
+#       @vanne = Vanne.new
 
       respond_to do |format|
 	format.html # index.html.erb
@@ -111,19 +115,6 @@ class VannesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to vannes_url, :notice => 'Snif ... Une vanne de moins :(' }
       format.json { head :no_content }
-    end
-  end
-  
-  
-  # GET /vannes/search
-  def search
-    if params[:q] && params[:q] != ""
-      @vannes = Vanne.where('valide = ?',true).where('LOWER(contenu) LIKE ?','%'+params[:q].downcase+'%').order('created_at DESC').limit(10)
-      
-      respond_to do |format|
-	format.html 
-	format.json { render :json => @vannes }
-      end
     end
   end
   
