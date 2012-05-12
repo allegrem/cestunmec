@@ -1,27 +1,30 @@
-<div id="main_frame">
+<div class="page-header">
+  <h1>Feedbacks</h1>
+</div>
 
-<h1>Feedbacks</h1>
 
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Membre</th>
-    <th>Message</th>
-    <th></th>
-  </tr>
+<div class="accordion" id="accordion2">
 
-<% @feedbacks.each do |feedback| %>
-  <% if feedback.lu %>
-  <tr>
-  <% else %>
-  <tr style="background-color:rgb(200,200,200)">
-  <% end %>
-    <td><%= feedback.email %></td>
-    <td><% if feedback.membre_id %><%= link_to feedback.membre.pseudo, membre_path(feedback.membre) %><% end %></td>
-    <td><%= link_to truncate(feedback.message, :length => 60, :omission => "..."), feedback %></td>
-    <td><%= link_to 'Supprimer', feedback, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% @feedbacks.each do |f| %>
+  <div class="accordion-group" <%=h 'style=background-color:rgb(230,230,230);' unless f.lu %>>
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=f.id%>">
+	<%= f.email %> 
+	<% if f.membre %>(<%= f.membre.pseudo %>)<% end %>
+      </a>
+      
+      <div class="pull-right" style="position:relative; top:-30px; right:10px;">
+	<%= link_to "mailto:"+f.email, :class => "btn btn-primary btn-mini" do %><i class="icon-white icon-envelope"></i> Répondre<% end %>
+	<%= link_to feedback_path(f), :method => :put, :class => "btn btn-mini" do %><i class="icon-ok"></i> Marquer comme<%= " non" if f.lu %> lu<% end %>
+	<%= link_to feedback_path(f), :method => :delete, :confirm => "Etes-vous sûr de vouloir supprimer ce feedback ?", :class => "btn btn-danger btn-mini" do %><i class="icon-trash icon-white"></i> Supprimer<% end %>
+      </div>
+    </div>
+    <div id="collapse<%=f.id%>" class="accordion-body collapse">
+      <div class="accordion-inner">
+	<%= f.message %>
+      </div>
+    </div>
+  </div>
 <% end %>
-</table>
-
+  
 </div>
