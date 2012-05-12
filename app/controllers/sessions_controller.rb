@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   def new
   end
 
+  
   def create
     if membre = Membre.authenticate(params[:pseudo], params[:passwd])
       session[:membre_id] = membre.id
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  
   def destroy
     session[:membre_id] = nil
     redirect_to root_url, :notice => "Au revoir ;)"
