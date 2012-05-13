@@ -54,7 +54,14 @@ blockquote {
 .feedback-button {
   position: fixed;
   top: 75%;
-  left: -39px;
+//  left: -39px;
   .rotate(270deg);
   margin: 0px;
+  left: -65px;
+  .transition(all .1s linear);
+  
+  &:hover {
+    left: -39px;
+    .transition(all .1s linear);
+  }
 }
