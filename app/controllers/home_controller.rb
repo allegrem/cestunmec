@@ -14,7 +14,5 @@ class HomeController < ApplicationController
     @random_vannes = Vanne.find( (1..7).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
     
     @vip_vanneurs = Membre.order("lols_count * vannes_count DESC").limit(10)
-    
-    flash.now[:notice] = "petit test"
   end
 end
