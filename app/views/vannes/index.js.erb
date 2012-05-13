@@ -1,5 +1,9 @@
-<% @vannes.each do |v| %>
-  $('#plus_vannes').before("<%= escape_javascript(render(:partial => "vannes/vanne", :locals => {:vanne => v})) %>");
+<% @vannes.values_at(* @vannes.each_index.select {|i| i.even?}).each do |v| %>
+  $('#left-col').append("<%= escape_javascript(render(:partial => "vannes/vanne", :locals => {:vanne => v})) %>");
+<% end %>
+
+<% @vannes.values_at(* @vannes.each_index.select {|i| i.odd?}).each do |v| %>
+  $('#right-col').append("<%= escape_javascript(render(:partial => "vannes/vanne", :locals => {:vanne => v})) %>");
 <% end %>
 
 <% if @vannes_count > (params[:page].to_i + 1) * 10 %>

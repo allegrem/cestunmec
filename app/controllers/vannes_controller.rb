@@ -6,25 +6,25 @@ class VannesController < ApplicationController
   # GET /vannes
   def index
     @vannes_count = Vanne.count
-    if @vannes_count < 10*params[:page].to_i
+    if @vannes_count < 20*params[:page].to_i
       respond_to do |format|
 	format.html { redirect_to root_url }
       end
     else
       case params[:order]
 	when 'best'
-	  @vannes = Vanne.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(10).offset(10*params[:page].to_i)
+	  @vannes = Vanne.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(20).offset(20*params[:page].to_i)
 	when 'validation'
 	  if @current_membre.admin?
-	    @vannes = Vanne.where('valide = ?',false).order('lols_count DESC').limit(10).offset(10*params[:page].to_i)
+	    @vannes = Vanne.where('valide = ?',false).order('lols_count DESC').limit(20).offset(20*params[:page].to_i)
 	  else
 	    redirect_to vannes_path
 	  end
 	when 'rand'
 	  vannes_ids = Vanne.where('valide = ?',true).select('id').map( &:id )
-	  @vannes = Vanne.find( (1..10).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
+	  @vannes = Vanne.find( (1..20).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
 	else  #englobe aussi params[:order] = 'last'
-	  @vannes = Vanne.where('valide = ?',true).order('created_at DESC').limit(10).offset(10*params[:page].to_i)
+	  @vannes = Vanne.where('valide = ?',true).order('created_at DESC').limit(20).offset(20*params[:page].to_i)
       end
       
       if params[:q] && params[:q] != ""
