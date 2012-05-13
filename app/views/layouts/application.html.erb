@@ -119,18 +119,19 @@
 </div>
 
 
-
+  <div class="alert-container">
   <% if flash[:notice] %>
-    <div class="alert alert-success">
+    <div class="alert alert-success fade in">
       <a class="close" data-dismiss="alert">×</a>
       <%= flash[:notice] %>
     </div>
   <% elsif flash[:error] %>
-    <div class="alert alert-error">
+    <div class="alert alert-error fade in">
       <a class="close" data-dismiss="alert">×</a>
       <%= flash[:alert] %>
     </div>
   <% end %>
+  </div>
 
 
 
