@@ -94,16 +94,27 @@ class VannesController < ApplicationController
     @vanne = Vanne.find(params[:id])
     if @vanne.membre == @current_membre  ||  @current_membre.admin
       @vanne.destroy
-      redirect_to vannes_url, :notice => 'Snif ... Une vanne de moins :(' 
+      redirect_to vannes_path, :notice => "Snif ... Une vanne de moins :(" 
     else
-      redirect_to root_url, :alert => "Qu'est ce que tu as essaye de faire ??"
+      redirect_to root_path, :alert => "Qu'est ce que tu as essaye de faire ??"
     end
   end
   
   
   # GET /vannes/validation
+  # POST /vannes/:id/validation
   def validation
-    @vannes = Vanne.where(:valide => false)
+    if params[:vanne_id]
+      @vanne = Vanne.find(params[:vanne_id])
+      if @vanne.update_attribute(:valide, true)
+	redirect_to validation_vannes_path, :notice => "Vanne validee !"
+      else
+	redirect_to validation_vannes_path, :alert => "Erreur lors de la validation de la vanne"
+      end
+      
+    else
+      @vannes = Vanne.where(:valide => false)
+    end
   end
   
 end
