@@ -4,15 +4,19 @@ class VannesController < ApplicationController
   
   
   # GET /vannes
+  # GET /vannes.rss
+  # GET /vannes.js
   def index
     @vannes = Vanne.where('valide = ?',true)
     
     case params[:order]
       when 'best'
 	@vannes = @vannes.order('lols_count DESC, created_at DESC').limit(20).offset(20*params[:page].to_i)
+	
       when 'rand'
 	vannes_ids = @vannes.select('id').map( &:id )
 	@vannes = Vanne.find( (1..20).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
+      
       else
 	@vannes = @vannes.order('created_at DESC').limit(20).offset(20*params[:page].to_i)
     end
@@ -85,9 +89,26 @@ class VannesController < ApplicationController
     @vanne = Vanne.find(params[:id])
     if @vanne.membre == @current_membre  ||  @current_membre.admin
       @vanne.destroy
-      redirect_to vannes_url, :notice => 'Snif ... Une vanne de moins :(' 
+      redirect_to vannes_path, :notice => "Snif ... Une vanne de moins :(" 
     else
-      redirect_to root_url, :alert => "Qu'est ce que tu as essaye de faire ??"
+      redirect_to root_path, :alert => "Qu'est ce que tu as essaye de faire ??"
+    end
+  end
+  
+  
+  # GET /vannes/validation
+  # POST /vannes/:id/validation
+  def validation
+    if params[:vanne_id]
+      @vanne = Vanne.find(params[:vanne_id])
+      if @vanne.update_attributes(:valide => true, :ultimate => params[:ultimate] || false)
+	redirect_to validation_vannes_path, :notice => "Vanne validee !"
+      else
+	redirect_to validation_vannes_path, :alert => "Erreur lors de la validation de la vanne"
+      end
+      
+    else
+      @vannes = Vanne.where(:valide => false)
     end
   end
   
