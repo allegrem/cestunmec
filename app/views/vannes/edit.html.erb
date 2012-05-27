@@ -1,7 +1,23 @@
-<div id="main_frame">
-
 <h1>Modifier une vanne</h1>
 
-<%= render 'form' %>
+<%= form_for(@vanne) do |f| %>
+  <% if @vanne.errors.any? %>
+    <div id="error_explanation">
+      <h2>Whoops !! Il y a quelques problèmes ...</h2>
 
-</div>
+      <ul>
+      <% @vanne.errors.each do |field, msg| %>
+	<li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :contenu, :rows => 5, :autofocus => "autofocus" %>
+  </div>
+  
+  <div class="action">
+    <%= f.submit 'Mettre à jour', :class => "btn btn-primary" %>
+  </div>
+<% end %>
