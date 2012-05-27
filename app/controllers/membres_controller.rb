@@ -15,7 +15,7 @@ class MembresController < ApplicationController
     
     @vannes_best = @membre.vannes.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(10)
     @vannes_last = @membre.vannes.where('valide = ?',true).order('created_at DESC').limit(10)
-    @lols = @membre.lols
+    @lols = @membre.lols.limit(10)
   end
 
   
