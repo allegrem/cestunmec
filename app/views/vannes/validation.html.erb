@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Validation</h1>
+</div>
+
+<% if @vannes.count == 0  %>
+  <div class="alert alert-error">Aucune vanne à valider :)</div>
+  
+  
+<% else %>
+  <% @vannes.each do |vanne| %>
+    <blockquote id="vanne-<%= vanne.id %>">
+      <p><%= vanne.contenu %></p>
+      
+      <small>
+	<%= link_to vanne.membre.pseudo, vanne.membre, :rel => "popover", :title => vanne.membre.pseudo, :data => { :content => vanne.membre.vannes_count.to_s+" vannes - "+vanne.membre.lols_count.to_s+" lols" } %> - 
+	<time><%= link_to vanne.created_at.strftime("le %d/%m/%Y à %H:%M"), vanne %></time>
+      </small>
+    </blockquote>
+  <% end %>
+<% end %>

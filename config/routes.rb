@@ -9,6 +9,10 @@ Cestunmec::Application.routes.draw do
   
   resources :vannes do
     resources :lols
+    post 'validation' => :validation #valider une vanne
+    collection do
+      get 'validation' #liste des vannes a valider
+    end
   end
   
    controller :sessions do
