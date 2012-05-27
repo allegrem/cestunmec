@@ -19,29 +19,36 @@ body { padding-top: 60px; }
 // @linkColor: #ff0000;
 
 
-.dropdown-menu {   // quelques corrections pour le dropdown du login
-  form {
-    padding: 5px;
-    margin-bottom: 0px;
+.navbar {
+  a:not(.btn) {
+    .transition(all .2s linear);
+  }
+
+  //navbar search
+  .navbar-search .search-query:focus {
+    background-color: @grayLighter;
   }
   
-  a {
-    padding: 5px;
-    color: @linkColor;
-    &:hover { color: @linkColorHover }
+  // quelques corrections pour le dropdown du login
+  .dropdown-menu {   
+    form {
+      padding: 5px;
+      margin-bottom: 0px;
+    }
+    
+    a {
+      padding: 5px;
+      color: @linkColor;
+      &:hover { color: @linkColorHover }
+    }
   }
-}
 
-.modal form { 
-  margin: 0px;
-  textarea {
-    width: 95%;
+  .modal form { 
+    margin: 0px;
+    textarea {
+      width: 95%;
+    }
   }
-}
-
-
-.navbar-search .search-query:focus {
-  background-color: @grayLighter;
 }
 
 
@@ -80,4 +87,3 @@ blockquote {
     .opacity(90);
   }
 }
-
