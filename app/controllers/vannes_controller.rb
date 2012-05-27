@@ -106,7 +106,7 @@ class VannesController < ApplicationController
   def validation
     if params[:vanne_id]
       @vanne = Vanne.find(params[:vanne_id])
-      if @vanne.update_attribute(:valide, true)
+      if @vanne.update_attributes(:valide => true, :ultimate => params[:ultimate] || false)
 	redirect_to validation_vannes_path, :notice => "Vanne validee !"
       else
 	redirect_to validation_vannes_path, :alert => "Erreur lors de la validation de la vanne"

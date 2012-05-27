@@ -13,6 +13,7 @@
       
       <div class="pull-right">
 	<%= link_to vanne_validation_path(vanne), :class => "btn btn-primary btn-mini", :method => :post do %><i class="icon-ok icon-white"></i> Valider<% end %>
+	<%= link_to vanne_validation_path(vanne, :ultimate => true), :class => "btn btn-inverse btn-mini", :method => :post do %><i class="icon-star icon-white"></i> Valider + Ultimate<% end %>
 	<%= link_to vanne, :method => :delete, :confirm => "Etes vous sûr de vouloir supprimer cette vanne ?", :class => "btn btn-danger btn-mini" do %><i class="icon-remove icon-white"></i> Supprimer<% end %>
       </div>
       

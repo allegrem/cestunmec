@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407205621) do
+ActiveRecord::Schema.define(:version => 20120527122850) do
 
   create_table "feedbacks", :force => true do |t|
     t.string    "email"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120407205621) do
     t.timestamp "updated_at",                    :null => false
     t.integer   "lols_count", :default => 0
     t.boolean   "valide",     :default => false
+    t.boolean   "ultimate",   :default => false
   end
 
 end

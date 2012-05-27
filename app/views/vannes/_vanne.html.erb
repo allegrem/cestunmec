@@ -30,5 +30,6 @@
   <small>
     <%= link_to vanne.membre.pseudo, vanne.membre, :rel => "popover", :title => vanne.membre.pseudo, :data => { :content => vanne.membre.vannes_count.to_s+" vannes - "+vanne.membre.lols_count.to_s+" lols" } %> - 
     <time><%= link_to vanne.created_at.strftime("le %d/%m/%Y à %H:%M"), vanne %></time>
+    <% if vanne.ultimate %><span class="label label-inverse">ULTIMATE</span><% end %>
   </small>
 </blockquote>
