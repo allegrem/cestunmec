@@ -11,6 +11,37 @@ class Vanne < ActiveRecord::Base
   after_create :increase_vannes_count
   before_destroy :decrease_vannes_count
   
+  def get_type
+    r = self.contenu.match Vanne.regex
+    if r
+      r[3]
+    else
+      false
+    end
+  end
+  
+  def get_prenom
+    r = self.contenu.match Vanne.regex
+    if r
+      r[5]
+    else
+      false
+    end
+  end
+  
+  def get_chute
+    r = self.contenu.match Vanne.regex
+    if r
+      r[8]
+    else
+      false
+    end
+  end
+  
+  def Vanne.regex
+    /^([cC]'est (une?|des) ([^\s,]*),? (elle|il) s'appelle )([^\s,]*)(.*c'est (les?|la|l')?)(.*[^\s,])\b(\W*)$/
+  end
+  
   
   protected
   

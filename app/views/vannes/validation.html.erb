@@ -9,17 +9,20 @@
 <% else %>
   <% @vannes.each do |vanne| %>
     <blockquote id="vanne-<%= vanne.id %>">
-      <p><%= vanne.contenu %></p>
+      <% r = vanne.contenu.sub(Vanne.regex, '\1'+link_to('\5', vannes_path+'?q=\5')+'\6'+link_to('\8', vannes_path+'?q=\8')+'\9')  %>
+      <p><%= raw(r) %></p>
       
       <div class="pull-right">
 	<%= link_to vanne_validation_path(vanne), :class => "btn btn-primary btn-mini", :method => :post do %><i class="icon-ok icon-white"></i> Valider<% end %>
 	<%= link_to vanne_validation_path(vanne, :ultimate => true), :class => "btn btn-inverse btn-mini", :method => :post do %><i class="icon-star icon-white"></i> Valider + Ultimate<% end %>
+	<%= link_to edit_vanne_path(vanne), :class => "btn btn-mini" do %><i class="icon-pencil"></i> Editer<% end %>
 	<%= link_to vanne, :method => :delete, :confirm => "Etes vous sûr de vouloir supprimer cette vanne ?", :class => "btn btn-danger btn-mini" do %><i class="icon-remove icon-white"></i> Supprimer<% end %>
       </div>
       
       <small>
 	<%= link_to vanne.membre.pseudo, vanne.membre, :rel => "popover", :title => vanne.membre.pseudo, :data => { :content => vanne.membre.vannes_count.to_s+" vannes - "+vanne.membre.lols_count.to_s+" lols" } %> - 
 	<time><%= vanne.created_at.strftime("le %d/%m/%Y à %H:%M") %></time>
+	<span class="label label-info"><%= vanne.get_type %></span>
       </small>
     </blockquote>
   <% end %>
