@@ -24,19 +24,14 @@
     <% end %>
     
 
-<div class="row-fluid">
-  <div class="span6" id="left-col">
-    <% @vannes.values_at(* @vannes.each_index.select {|i| i.even?}).each do |v| %>
-      <%= render :partial => 'vanne', :locals => {:vanne => v} %>
-    <% end %>
-  </div>
+<% if @vannes.count == 0  %>
+  <div class="alert alert-error">Aucune vanne trouvée :(</div>
+<% else %>
+  <% @vannes.each do |v| %>
+    <%= render :partial => 'vanne', :locals => {:vanne => v} %>
+  <% end %>
+<% end %>
 
-  <div class="span6" id="right-col">
-    <% @vannes.values_at(* @vannes.each_index.select {|i| i.odd?}).each do |v| %>
-      <%= render :partial => 'vanne', :locals => {:vanne => v} %>
-    <% end %>
-  </div>
-</div>
 
 
 <% if @vannes_count > (params[:page].to_i + 1) * 20 %>

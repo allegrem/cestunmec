@@ -12,22 +12,34 @@
   
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <% @vannes_last.each do |v| %>
-	<%= render :partial => "vannes/vanne", :locals => {:vanne => v} %>
+      <% if @vannes_last.count == 0  %>
+	<div class="alert alert-error">Aucune vanne postée :(</div>
+      <% else %>
+	<% @vannes_last.each do |v| %>
+	  <%= render :partial => 'vannes/vanne', :locals => {:vanne => v} %>
+	<% end %>
       <% end %>
     </div>
     
     
     <div class="tab-pane" id="tab2">
-      <% @vannes_best.each do |v| %>
-	<%= render :partial => "vannes/vanne", :locals => {:vanne => v} %>
+      <% if @vannes_best.count == 0  %>
+	<div class="alert alert-error">Aucune vanne postée :(</div>
+      <% else %>
+	<% @vannes_best.each do |v| %>
+	  <%= render :partial => 'vannes/vanne', :locals => {:vanne => v} %>
+	<% end %>
       <% end %>
     </div>
     
     
     <div class="tab-pane" id="tab3">
-      <% @lols.each do |l| %>
-	<%= render :partial => "vannes/vanne", :locals => {:vanne => l.vanne} %>
+      <% if @lols.count == 0 %>
+	<div class="alert alert-error">Aucune vanne lolée :(</div>
+      <% else %>
+	<% @lols.each do |l| %>
+	  <%= render :partial => 'vannes/vanne', :locals => {:vanne => l.vanne} %>
+	<% end %>
       <% end %>
     </div>
   </div>
