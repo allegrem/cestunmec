@@ -68,7 +68,16 @@ blockquote {
 
 .alert-container {
   position: fixed;
-  top: @navbarHeight;
-  left: 0px;
+  top: @navbarHeight - 3;
   width: 100%;
+  text-align:center;
+  z-index: 99;
+  
+  .alert {
+    .ie7-inline-block();
+    display: inline-block;
+    text-align: center;
+    .opacity(90);
+  }
 }
+
