@@ -43,6 +43,9 @@ class VannesController < ApplicationController
   # GET /vannes/1
   def show
     @vanne = Vanne.find(params[:id])
+    unless @vanne.valide
+      redirect_to vannes_path, :error => "Cette vanne n'existe pas !"
+    end
   end
 
   
