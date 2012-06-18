@@ -22,6 +22,6 @@ jQuery ->
     
   #boutons réseaux sociaux s'affichent au survol
   $('blockquote').bind 'mouseover', (event) ->
-    $(this).find('.twitter-share-button').fadeTo(0,1)
+    $(this).find('.twitter-share-button, .fb-like').fadeTo(0,1)
   $('blockquote').bind 'mouseout', (event) ->
-    $(this).find('.twitter-share-button').fadeTo(0,0.1)
+    $(this).find('.twitter-share-button, .fb-like').fadeTo(0,0.1)
