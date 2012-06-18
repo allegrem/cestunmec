@@ -1,25 +1,35 @@
 <div class="row-fluid">
   <div class="span4">
   <div class="well">
+    <%= form_tag vannes_path, :method => :get do %>
+    
     <h3>Tri</h3>
-    Les dernières<br />
-    Les meilleures<br />
-    Aléatoire
+    <label class="radio">
+      <%= radio_button_tag :order, "last", (params[:order] == 'last') %> Les dernières
+    </label>
+    <label class="radio">
+      <%= radio_button_tag :order, "rand", (params[:order] == 'rand') %> Aléatoire
+    </label>
+    <label class="radio">
+      <%= radio_button_tag :order, "best", (params[:order] == 'best') %> Les meilleures
+    </label>
   
     <h3>Rechercher</h3>
-    
-    <%= form_tag vannes_path, :method => :get, :class => "form-search" do %>
-      <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query input-medium" %>
-      <%= submit_tag 'Go !', :class => "btn" %>
-    <% end %>
+    <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query" %>
     
     <h3>Tags</h3>
     
     <h3>Niveau de lolitude</h3>
     
     <h3>Options</h3>
-    Uniquement les ultimates<br />
+    <!--<%= link_to "Uniquement les ultimates", vannes_path(params.merge(:ultimate => params[:ultimate] == 'true' ? false : true)) %><br />-->
+    <label class="checkbox">
+      <%= check_box_tag :ultimate, "1", (params[:ultimate] == '1') %> Uniquement les ultimates
+    </label>
+    
     Auteur
+    
+    <% end %>
   </div>
   </div>
   
@@ -42,7 +52,7 @@
 	      <h1>Direct-vannes <small>Les dernières vannes postées</small></h1>
 	    </div>
 	  <% end 
-	elsif params[:q] %>
+	elsif params[:q] != "" %>
 	  <div class="page-header">
 	    <h1>Rechercher <small>Moteur de recherche n°1 pour les vannes françaises</small></h1>
 	  </div>

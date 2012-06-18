@@ -15,3 +15,6 @@ this.init_toggle_lol = init_toggle_lol = () ->  #syntaxe un peu lourde mais c'es
     
 jQuery ->
   init_toggle_lol()
+  
+  $('.well input').bind 'click', (event) ->
+    $(this).parent().parent().submit()

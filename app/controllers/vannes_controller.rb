@@ -9,6 +9,14 @@ class VannesController < ApplicationController
   def index
     @vannes = Vanne.where('valide = ?',true)
     
+    if params[:q] && params[:q] != ""
+      @vannes = @vannes.where('LOWER(contenu) LIKE ?','%'+params[:q].downcase+'%')
+    end
+    
+    if params[:ultimate] == "1"
+      @vannes = @vannes.where('ultimate = ?',true)
+    end
+    
     case params[:order]
       when 'best'
 	@vannes = @vannes.order('lols_count DESC, created_at DESC').limit(20).offset(20*params[:page].to_i)
@@ -16,13 +24,9 @@ class VannesController < ApplicationController
       when 'rand'
 	vannes_ids = @vannes.select('id').map( &:id )
 	@vannes = Vanne.find( (1..20).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
-      
+	
       else
 	@vannes = @vannes.order('created_at DESC').limit(20).offset(20*params[:page].to_i)
-    end
-    
-    if params[:q] && params[:q] != ""
-      @vannes = @vannes.where('LOWER(contenu) LIKE ?','%'+params[:q].downcase+'%')
     end
 
     respond_to do |format|
