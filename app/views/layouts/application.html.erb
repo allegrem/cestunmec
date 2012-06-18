@@ -2,11 +2,18 @@
 <html lang="fr">
 <head>
   <title>C'est un mec</title>
+  
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag :rss, vannes_url(:format => :rss) %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta property="og:title" content="<%= @vanne ? @vanne.contenu : "C'est un mec" %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://cestunmec-beta.heroku.com/" />
+  <meta property="og:site_name" content="C&#039;est un mec" />
+  <meta property="fb:admins" content="1600170985" />
 </head>
 <body>
 
