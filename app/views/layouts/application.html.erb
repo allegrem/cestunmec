@@ -9,11 +9,14 @@
   <%= auto_discovery_link_tag :rss, vannes_url(:format => :rss) %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta property="og:title" content="<%= @vanne ? @vanne.contenu : "C'est un mec" %>" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://cestunmec-beta.heroku.com/" />
-  <meta property="og:site_name" content="C&#039;est un mec" />
-  <meta property="fb:admins" content="1600170985" />
+  <% if params[:controller] == 'vannes' && params[:action] == 'show' %>
+    <meta property="og:title" content="<%= @vanne.contenu %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="C&#039;est un mec" />
+    <meta property="fb:admins" content="1600170985" />
+    <meta property="og:description"
+          content="Posté <%= @vanne.created_at.strftime("le %d/%m/%Y à %H:%M") %> par <%= @vanne.membre.pseudo %> sur C'est un mec, le site numéro 1 des blagues commençant par c'est un mec !!"/>
+  <% end %>
 </head>
 <body>
 
