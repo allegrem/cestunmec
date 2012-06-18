@@ -1,40 +1,71 @@
-<% if params[:order]
-    case params[:order]
-      when 'best' %>
-	<div class="page-header">
-	  <h1>Lol of Fame <small>Les meilleures de tous les temps</small></h1>
-	</div>
-      <% when 'rand' %>
-	<div class="page-header">
-	  <h1>Random Vanne <small>Des vannes, au hasard</small></h1>
-	</div>
-      <% when 'last' %>
-	<div class="page-header">
-	  <h1>Direct-vannes <small>Les dernières vannes postées</small></h1>
-	</div>
-      <% end 
-    elsif params[:q] %>
-      <div class="page-header">
-	<h1>Rechercher <small>Moteur de recherche n°1 pour les vannes françaises</small></h1>
-      </div>
+<div class="row-fluid">
+  <div class="span4">
+  <div class="well">
+    <h3>Tri</h3>
+    Les dernières<br />
+    Les meilleures<br />
+    Aléatoire
+  
+    <h3>Rechercher</h3>
+    
+    <%= form_tag vannes_path, :method => :get, :class => "form-search" do %>
+      <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query input-medium" %>
+      <%= submit_tag 'Go !', :class => "btn" %>
     <% end %>
     
-
-<% if @vannes.count == 0  %>
-
-  <div class="alert alert-error">Aucune vanne trouvée :(</div>
-  
-<% else %>
-
-  <% @vannes.each do |v| %>
-    <%= render :partial => 'vanne', :locals => {:vanne => v} %>
-  <% end %>
-  
-  <div id="plus_vannes" style="text-align:center;">
-    <%= link_to 'Encore plus de vannes ...', vannes_path(:order => params[:order], :page => params[:page].to_i + 1, :q => params[:q]), :remote => true, :class => "btn btn-large" %>
+    <h3>Tags</h3>
+    
+    <h3>Niveau de lolitude</h3>
+    
+    <h3>Options</h3>
+    Uniquement les ultimates<br />
+    Auteur
   </div>
+  </div>
+  
+  
+  
+  <div class="span8">
 
-<% end %>
+    <% if params[:order]
+	case params[:order]
+	  when 'best' %>
+	    <div class="page-header">
+	      <h1>Lol of Fame <small>Les meilleures de tous les temps</small></h1>
+	    </div>
+	  <% when 'rand' %>
+	    <div class="page-header">
+	      <h1>Random Vanne <small>Des vannes, au hasard</small></h1>
+	    </div>
+	  <% when 'last' %>
+	    <div class="page-header">
+	      <h1>Direct-vannes <small>Les dernières vannes postées</small></h1>
+	    </div>
+	  <% end 
+	elsif params[:q] %>
+	  <div class="page-header">
+	    <h1>Rechercher <small>Moteur de recherche n°1 pour les vannes françaises</small></h1>
+	  </div>
+	<% end %>
+	
 
+    <% if @vannes.count == 0  %>
 
+      <div class="alert alert-error">Aucune vanne trouvée :(</div>
+      
+    <% else %>
+
+      <% @vannes.each do |v| %>
+	<%= render :partial => 'vanne', :locals => {:vanne => v} %>
+      <% end %>
+      
+      <div id="plus_vannes" style="text-align:center;">
+	<%= link_to 'Encore plus de vannes ...', vannes_path(:order => params[:order], :page => params[:page].to_i + 1, :q => params[:q]), :remote => true, :class => "btn btn-large" %>
+      </div>
+
+    <% end %>
+
+    
+  </div>
+</div>
 
