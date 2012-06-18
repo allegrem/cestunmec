@@ -1,4 +1,6 @@
 <blockquote id="vanne-<%= vanne.id %>">
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-url="<%= vanne_path vanne %>" data-via="cestunmec" data-text="<%= vanne.contenu %>" data-count="none">Tweet</a>
+
   <p><%= vanne.contenu %></p>
   
   <% c = vanne.lols_count.to_i
