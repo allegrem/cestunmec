@@ -1,18 +1,77 @@
-<%= render :partial => 'vanne', :locals => {:vanne => @vanne} %>
+<% c = @vanne.lols_count.to_i
+  if c > 10
+    vanne_text = 'L' + c.to_s + 'O' + 'L'
+  elsif c > 0
+    vanne_text = 'L' + 'O'*c + 'L'
+  else
+    vanne_text = 'Sois le premier à dire LOL !'
+  end
+  
+  lol = @vanne.lols.where("membre_id = ?",@current_membre.id)  if @current_membre
+  
+  class_btn = ""
+  if @current_membre.nil?
+    class_btn = "disabled"
+    message = "Il faut être connecté pour pouvoir loler une vanne !"
+  elsif @current_membre && lol.any?
+    class_btn = "disabled btn-success"
+  end
+  %>
+
+
+<div class="hero-unit">
+  <div style="text-align:left; font-size:100px; left:-50px; top:-40px; position:relative; color:rgb(200,200,200); font-style:italic;">«</div>
+  
+  <p><%= @vanne.contenu %></p>
+  
+  <time><em><%= @vanne.created_at.strftime("le %d/%m/%Y à %H:%M") %></em></time> <br />
+  
+  <%= link_to @vanne.get_type, vannes_path(:q => @vanne.get_type), :class => "label label-info" %>
+  
+  <% if @vanne.ultimate %><%= link_to 'ULTIMATE', vannes_path(:ultimate => '1'), :class => 'label label-inverse' %><% end %>
+  
+  <% if @current_membre && lol.any? %>
+    <%= link_to vanne_text, vanne_lol_path(@vanne, lol.first), :method => :delete, :remote => true, :class => "bouton-unlol btn btn-mini "+class_btn, :confirm => "Es-tu sûr de ne plus aimer cette vanne ?", :data => { :content => vanne_text } %>
+  <% else %>
+    <%= link_to vanne_text, vanne_lols_path(@vanne), :method => :post, :remote => true, :class => "btn btn-mini "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
+  <% end %>
+  
+  <div style="text-align:right; font-size:100px; left:50px; top:15px; position:relative; color:rgb(200,200,200); font-style:italic;">»</div>
+</div>
+
+
+<h2>Le vanneur</h2>
+<p>
+  <%= render :partial => "membres/membre", :locals => {:membre => @vanne.membre} %>
+</p>
+
 
 <% if @vanne.lols_count > 0 %>
-  <strong>Ils ont LOLé :</strong>
-  <% @vanne.lols.each do |l| %>
-    <%= link_to l.membre.pseudo, l.membre %> 
+<h2>Ils ont LOLé</h2>
+
+<div class="row-fluid">
+  <div class="span6">
+  <% @vanne.lols.values_at(* @vanne.lols.each_index.select {|i| i.even?}).each do |l| %>
+    <%= render :partial => "membres/membre", :locals => {:membre => l.membre} %>
   <% end %>
+  </div>
+  
+  <div class="span6">
+  <% @vanne.lols.values_at(* @vanne.lols.each_index.select {|i| i.odd?}).each do |l| %>
+    <%= render :partial => "membres/membre", :locals => {:membre => l.membre} %>
+  <% end %>
+  </div>
+</div>
 <% end %>
+
+
 
 <% if @current_membre && @current_membre.admin %>
   <hr />
-  <h2>Admninistration</h2>
   <p>
-    <%= link_to 'Rendre ultimate', vanne_validation_path(@vanne, :ultimate => (not @vanne.ultimate)), :method => :post %><br />
-    <%= link_to 'Modifier cette vanne', edit_vanne_path(@vanne) %><br />
+    <strong>Administration : </strong> 
+    <%= link_to 'Rendre/Retirer ultimate', vanne_validation_path(@vanne, :ultimate => (not @vanne.ultimate)), :method => :post %> | 
+    <%= link_to 'Modifier cette vanne', edit_vanne_path(@vanne) %> | 
     <%= link_to 'Supprimer cette vanne', @vanne, :method => :delete, :confirm => "Etes vous sur de vouloir supprimer cette vanne ?" %>
   </p>
 <% end %>
