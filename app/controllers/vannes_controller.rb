@@ -17,6 +17,21 @@ class VannesController < ApplicationController
       @vannes = @vannes.where('ultimate = ?',true)
     end
     
+    case params[:lolitude]
+      when '0'
+	@vannes = @vannes.where('lols_count < ?', 10)
+      when '1'
+	@vannes = @vannes.where(:lols_count => 10..20)
+      when '2'
+	@vannes = @vannes.where(:lols_count => 20..30)
+      when '3'
+	@vannes = @vannes.where(:lols_count => 30..40)
+      when '4'
+	@vannes = @vannes.where(:lols_count => 40..50)
+      when '5'
+	@vannes = @vannes.where('lols_count > ?', 50)
+    end
+    
     case params[:order]
       when 'best'
 	@vannes = @vannes.order('lols_count DESC, created_at DESC').limit(20).offset(20*params[:page].to_i)
