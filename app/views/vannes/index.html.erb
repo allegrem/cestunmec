@@ -5,7 +5,7 @@
     
     <h3>Tri</h3>
     <label class="radio">
-      <%= radio_button_tag :order, "last", (params[:order] == 'last') %> Les dernières
+      <%= radio_button_tag :order, "last", ((not params[:order]) || params[:order] == 'last') %> Les dernières
     </label>
     <label class="radio">
       <%= radio_button_tag :order, "rand", (params[:order] == 'rand') %> Aléatoire
@@ -17,7 +17,8 @@
     <h3>Rechercher</h3>
     <%= text_field_tag :q, params[:q], :placeholder => 'Rechercher parmi les vannes ...', :class => "search-query" %>
     
-    <h3>Tags</h3>
+    <!-- TODO !! 
+    <h3>Tags</h3>-->
     
     <h3>Niveau de lolitude</h3>
     <label class="radio">
@@ -47,7 +48,8 @@
       <%= check_box_tag :ultimate, "1", (params[:ultimate] == '1') %> Uniquement les ultimates
     </label>
     
-    Auteur
+    <!--TODO !!
+    Auteur-->
     
     <% end %>
   </div>
