@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120527122850) do
+ActiveRecord::Schema.define(:version => 20120625210952) do
 
   create_table "feedbacks", :force => true do |t|
     t.string    "email"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120527122850) do
     t.boolean   "admin",         :default => false
     t.integer   "lols_count"
     t.integer   "vannes_count"
+    t.string    "cookie"
   end
 
   create_table "vannes", :force => true do |t|
