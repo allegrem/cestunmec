@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :get_membre, :require_login, :require_admin
+  before_filter :auto_login, :get_membre, :require_login, :require_admin
   protect_from_forgery
   
   protected
@@ -21,5 +21,21 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Vous devez etre admin pour afficher cette page"
       redirect_to root_path
     end
+  end
+  
+  def auto_login
+    if @current_membre.nil? && cookies[:secret] && cookies[:membre_id] 
+      membre = Membre.find(cookies[:membre_id])
+      if membre && membre.cookie == cookies[:secret]
+	session[:membre_id] = membre.id
+	regenerate_cookie(membre)
+      end
+    end
+  end
+  
+  def regenerate_cookie(membre)
+    cookies[:membre_id] = membre.id
+    cookies[:secret] = (0...20).map{65.+(rand(25)).chr}.join
+    membre.update_attribute(:cookie, cookies[:secret])
   end
 end
