@@ -11,9 +11,7 @@ class SessionsController < ApplicationController
       session[:membre_id] = membre.id
       
       if params[:cookies] == '1'
-	cookies[:membre_id] = membre.id
-	cookies[:secret] = (0...20).map{65.+(rand(25)).chr}.join
-	membre.update_attribute(:cookie, cookies[:cookie])
+	regenerate_cookie(membre)
       end
       
       redirect_to root_url, :notice => "Salut "+membre.pseudo+" ! Une nouvelle vanne ?"
@@ -29,7 +27,7 @@ class SessionsController < ApplicationController
     #on supprime les cookies
     cookies.delete(:membre_id)
     cookies.delete(:secret)
-    membre.update_attribute(:cookie, "")
+    @current_membre.update_attribute(:cookie, "")
     
     redirect_to root_url, :notice => "Au revoir ;)"
   end
