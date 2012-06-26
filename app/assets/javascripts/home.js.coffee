@@ -3,8 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready () ->
-#   $('.hero-unit').css('background-image', 'url("assets/background.png")')
-#     .css('background-position', '0px 0px')
+  #on differe le chargement de l'image de fond
   img = new Image()
   img.onload = () -> 
     $(".hero-unit").addClass("home-background")
