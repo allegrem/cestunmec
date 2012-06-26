@@ -4,12 +4,12 @@
 
 this.init_toggle_lol = init_toggle_lol = () ->  #syntaxe un peu lourde mais c'est pour rendre la fonction accessible depuis l'appel ajax
   $('a[class*=bouton-unlol]').bind 'mouseover', (event) -> 
-    $(this).html("UN"+$(this).data('content'))
+    $(this).html("UN"+$(this).data('lol-text'))
     $(this).removeClass("btn-success disabled")
     $(this).addClass("btn-danger")
     
   $('a[class*=bouton-unlol]').bind 'mouseout', (event) -> 
-    $(this).html($(this).data('content'))
+    $(this).html($(this).data('lol-text'))
     $(this).removeClass("btn-danger")
     $(this).addClass("btn-success disabled")
     
@@ -19,9 +19,3 @@ jQuery ->
   #éléments du formulaire dans la colonne de navigation soumettent le formulaire immédiatement
   $('.well input').bind 'click', (event) ->
     $(this).parent().parent().submit()
-    
-  #boutons réseaux sociaux s'affichent au survol
-  $('blockquote').bind 'mouseover', (event) ->
-    $(this).find('.twitter-share-button, .fb-like').fadeTo(0,1)
-  $('blockquote').bind 'mouseout', (event) ->
-    $(this).find('.twitter-share-button, .fb-like').fadeTo(0,0.1)
