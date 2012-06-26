@@ -1,1 +1,7 @@
 $("#vanne-<%= @lol.vanne.id %>").replaceWith("<%= escape_javascript(render(:partial => "vannes/vanne", :locals => {:vanne => @lol.vanne})) %>");
+                                             
+//on relance les popovers et tooltips
+$("a[rel=popover]").popover()
+$(".tooltip").tooltip()
+$("a[rel=tooltip]").tooltip()
+$("a[rel='tooltip nofollow']").tooltip()  //hack pour pouvoir utiliser un tooltip sur un lien ajax

@@ -20,20 +20,14 @@
 
 
 <blockquote id="vanne-<%= vanne.id %>">
-  <div class="social-buttons">
-    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-url="<%= vanne_url vanne %>" data-via="cestunmec" data-text="<%= vanne.contenu %>" data-count="none">Tweet</a><br />
-    
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" href="<%= vanne_url vanne %>"></div><br />
-    
-    <% if @current_membre && lol.any? %>
-      <%= link_to vanne_text, vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "bouton-unlol btn btn-mini pull-right "+class_btn, :confirm => "Es-tu sûr de ne plus aimer cette vanne ?", :data => { :content => vanne_text } %>
-    <% else %>
-      <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
-    <% end %>
-  </div>
-  
-
   <p><%= vanne.contenu %></p>
+  
+  
+  <% if @current_membre && lol.any? %>
+    <%= link_to vanne_text, vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "bouton-unlol btn btn-mini pull-right "+class_btn, :confirm => "Es-tu sûr de ne plus aimer cette vanne ?", :data => { :'lol-text' => vanne_text } %>
+  <% else %>
+    <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
+  <% end %>
   
   
   <small>
