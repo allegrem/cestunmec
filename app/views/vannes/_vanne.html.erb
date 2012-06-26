@@ -1,31 +1,40 @@
+<% c = vanne.lols_count.to_i
+  if c > 10
+    vanne_text = 'L' + c.to_s + 'O' + 'L'
+  elsif c > 0
+    vanne_text = 'L' + 'O'*c + 'L'
+  else
+    vanne_text = 'Sois le premier à dire LOL !'
+  end
+  
+  lol = vanne.lols.where("membre_id = ?",@current_membre.id)  if @current_membre
+  
+  class_btn = ""
+  if @current_membre.nil?
+    class_btn = "disabled"
+    message = "Il faut être connecté pour pouvoir loler une vanne !"
+  elsif @current_membre && lol.any?
+    class_btn = "disabled btn-success"
+  end
+  %>
+
+
 <blockquote id="vanne-<%= vanne.id %>">
+  <div class="social-buttons">
+    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-url="<%= vanne_url vanne %>" data-via="cestunmec" data-text="<%= vanne.contenu %>" data-count="none">Tweet</a><br />
+    
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" href="<%= vanne_url vanne %>"></div><br />
+    
+    <% if @current_membre && lol.any? %>
+      <%= link_to vanne_text, vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "bouton-unlol btn btn-mini pull-right "+class_btn, :confirm => "Es-tu sûr de ne plus aimer cette vanne ?", :data => { :content => vanne_text } %>
+    <% else %>
+      <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
+    <% end %>
+  </div>
+  
+
   <p><%= vanne.contenu %></p>
   
-  <% c = vanne.lols_count.to_i
-    if c > 10
-      vanne_text = 'L' + c.to_s + 'O' + 'L'
-    elsif c > 0
-      vanne_text = 'L' + 'O'*c + 'L'
-    else
-      vanne_text = 'Sois le premier à dire LOL !'
-    end
-    
-    lol = vanne.lols.where("membre_id = ?",@current_membre.id)  if @current_membre
-    
-    class_btn = ""
-    if @current_membre.nil?
-      class_btn = "disabled"
-      message = "Il faut être connecté pour pouvoir loler une vanne !"
-    elsif @current_membre && lol.any?
-      class_btn = "disabled btn-success"
-    end
-    %>
-    
-  <% if @current_membre && lol.any? %>
-    <%= link_to vanne_text, vanne_lol_path(vanne, lol.first), :method => :delete, :remote => true, :class => "bouton-unlol btn btn-mini pull-right "+class_btn, :confirm => "Es-tu sûr de ne plus aimer cette vanne ?", :data => { :content => vanne_text } %>
-  <% else %>
-    <%= link_to vanne_text, vanne_lols_path(vanne), :method => :post, :remote => true, :class => "btn btn-mini pull-right "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
-  <% end %>
   
   <small>
     <%= link_to vanne.membre.pseudo, vanne.membre, :rel => "popover", :title => vanne.membre.pseudo, :data => { :content => vanne.membre.vannes_count.to_s+" vannes - "+vanne.membre.lols_count.to_s+" lols" } %> - 

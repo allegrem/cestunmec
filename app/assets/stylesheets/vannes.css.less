@@ -1,2 +1,29 @@
 // Place all the styles related to the vannes controller here.
 // They will automatically be included in application.css.
+
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+
+.social-buttons {
+  float: right;
+  margin-left: 5px;
+  text-align: right;
+  margin-bottom: 5px;
+  
+  .twitter-share-button, .fb-like {
+    .opacity(10);
+  }
+
+}
+
+.show-vanne {
+  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-left: 80px;
+}
+
+blockquote {
+  .transition(all .3s linear);
+  &:hover { border-left: 5px solid @gray; }
+  clear: both;
+}

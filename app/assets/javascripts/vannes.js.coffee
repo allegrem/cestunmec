@@ -16,5 +16,12 @@ this.init_toggle_lol = init_toggle_lol = () ->  #syntaxe un peu lourde mais c'es
 jQuery ->
   init_toggle_lol()
   
+  #éléments du formulaire dans la colonne de navigation soumettent le formulaire immédiatement
   $('.well input').bind 'click', (event) ->
     $(this).parent().parent().submit()
+    
+  #boutons réseaux sociaux s'affichent au survol
+  $('blockquote').bind 'mouseover', (event) ->
+    $(this).find('.twitter-share-button, .fb-like').fadeTo(0,1)
+  $('blockquote').bind 'mouseout', (event) ->
+    $(this).find('.twitter-share-button, .fb-like').fadeTo(0,0.1)

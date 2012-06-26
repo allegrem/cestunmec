@@ -19,8 +19,8 @@
   %>
 
 
-<div class="hero-unit">
-  <div style="text-align:left; font-size:100px; left:-50px; top:-40px; position:relative; color:rgb(200,200,200); font-style:italic;">«</div>
+<div class="hero-unit show-vanne">
+  <div style="text-align:left; font-size:100px; left:-70px; position:relative; color:rgb(200,200,200); font-style:italic;">«</div>
   
   <p><%= @vanne.contenu %></p>
   
@@ -35,10 +35,19 @@
   <% else %>
     <%= link_to vanne_text, vanne_lols_path(@vanne), :method => :post, :remote => true, :class => "btn btn-mini "+class_btn, :rel => "tooltip", :title => message, :data => { :placement => 'bottom' } %>
   <% end %>
+
   
-  <div style="text-align:right; font-size:100px; left:50px; top:15px; position:relative; color:rgb(200,200,200); font-style:italic;">»</div>
+  <div style="text-align:right; font-size:100px; left:50px; top:-35px; position:relative; color:rgb(200,200,200); font-style:italic;">»</div>
 </div>
 
+
+<h2>Partager</h2>
+<p>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="fr" data-url="<%= vanne_path @vanne %>" data-via="cestunmec" data-text="<%= @vanne.contenu %>" data-count="horizontal">Tweet</a>
+  
+  <div class="fb-like" data-send="false" data-layout="standard" data-width="55" data-show-faces="false" href="<%= vanne_url @vanne %>"></div>
+</p>
+  
 
 <h2>Le vanneur</h2>
 <p>
