@@ -58,6 +58,11 @@ class MembresController < ApplicationController
       end
     end
     
+    #changement d'avatar
+    if params[:avatar] && params[:avatar] != ""
+      # TODO 
+    end
+    
     #edition normale
     redirect_current_membre_or_admin
     if @membre.update_attributes(params[:membre])

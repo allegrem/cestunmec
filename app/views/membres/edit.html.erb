@@ -18,6 +18,19 @@
   <div class="span6">
     <h2>Modifier mon avatar</h2>
     
+    <div class="row-fluid">
+      <div class="span4">
+	<%= link_to image_tag("avatar.png", :alt => @membre.pseudo), @membre, :class => "thumbnail" %>
+      </div>
+      <div class="span8">
+	<%= form_tag({:action => :edit}, :multipart => true, :class => "well") do %>
+	  <label for="avatar">Choisis ta nouvelle tête : 
+	    <%= file_field_tag 'avatar' %>
+	  </label>
+	  <%= submit_tag 'Change de tête !', :class => "btn btn-primary", :id => "avatar-submit-button" %>
+	<% end %>
+      </div>
+    </div>
     
     <h2>Réseaux sociaux</h2>
     <p>TODO !!</p>
