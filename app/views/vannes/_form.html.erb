@@ -22,9 +22,7 @@
       </p>
     <% end %>
 
-    <div class="field">
-      <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!", :autofocus => "autofocus" %>
-    </div>
+    <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!", :autofocus => "autofocus", :style => "width:90%" %>
   <% if modal %></div><% end %>
   
   <div class="action <%= 'modal-footer' if modal %>">
