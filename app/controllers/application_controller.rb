@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
   end
   
   def regenerate_cookie(membre)
-    cookies[:membre_id] = membre.id
-    cookies[:secret] = (0...20).map{65.+(rand(25)).chr}.join
+    cookies[:membre_id] = { :value => membre.id, :expires => 1.month.from_now }
+    cookies[:secret] =  { :value => (0...20).map{65.+(rand(25)).chr}.join, :expires => 1.month.from_now }
     membre.update_attribute(:cookie, cookies[:secret])
   end
 end
