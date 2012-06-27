@@ -11,7 +11,7 @@
     
     <h2>Supprimer mon compte</h2>
     
-    <%= link_to 'Oui je suis prêt à commetre l\'irréparable !!', @membre, :confirm => 'Attention ! La suppression de ton compte est une décision irréversible. Tes vannes seront cependant conservées sous le nom \'Anonymous\'. Es-tu sûr de vouloir continuer ?', :method => :delete %>
+    <%= link_to @membre, :confirm => 'Attention ! La suppression de ton compte est une décision irréversible. Tes vannes seront cependant conservées sous le nom \'Anonymous\'. Es-tu sûr de vouloir continuer ?', :method => :delete, :class => "btn btn-danger" do %><i class="icon-trash icon-white"></i> Oui je suis prêt à commettre l'irréparable !!<% end %>
   </div>
   
   
