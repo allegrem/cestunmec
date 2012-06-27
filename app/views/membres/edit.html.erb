@@ -1,9 +1,27 @@
-<div id="main_frame">
-
-<h1>Modifier mon profil</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Supprimer mon compte', @membre, :confirm => 'Attention ! La suppression de ton compte est une décision irréversible. Tes vannes seront cependant conservées sous le nom \'Anonyme\'. Es-tu sûr de vouloir continuer ?', :method => :delete %>
-
+<div class="page-header">
+  <h1>Modifier mon profil</h1>
 </div>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h2>Informations personnelles</h2>
+    
+    <%= render 'form' %>
+    
+    
+    <h2>Supprimer mon compte</h2>
+    
+    <%= link_to 'Oui je suis prêt à commetre l\'irréparable !!', @membre, :confirm => 'Attention ! La suppression de ton compte est une décision irréversible. Tes vannes seront cependant conservées sous le nom \'Anonymous\'. Es-tu sûr de vouloir continuer ?', :method => :delete %>
+  </div>
+  
+  
+  <div class="span6">
+    <h2>Modifier mon avatar</h2>
+    
+    
+    <h2>Réseaux sociaux</h2>
+    <p>TODO !!</p>
+  </div>
+</div>
+
+
