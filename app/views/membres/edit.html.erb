@@ -46,7 +46,7 @@
 	<%= form_tag(membre_path(@membre), :method => :put, :class => "well") do %>
 	  <% if @membre.twitter && @membre.twitter != "" %>
 	    <label class="radio" for="avatar_twitter">
-	      <%= radio_button_tag :avatar, "twitter" %>
+	      <%= radio_button_tag :avatar, "twitter", @membre.avatar == "twitter" %>
 	      Utilise ta photo de profil Twitter
 	      <%= image_tag avatar_url('twitter', @membre.twitter), :alt => @membre.twitter, :class => "thumbnail" %>
 	    </label>
@@ -54,7 +54,7 @@
 	  
 	  <% if @membre.facebook && @membre.facebook != "" %>
 	    <label class="radio" for="avatar_facebook">
-	      <%= radio_button_tag :avatar, "facebook" %>
+	      <%= radio_button_tag :avatar, "facebook", @membre.avatar == "facebook" %>
 	      Utilise ta photo de profil Facebook
 	      <%= image_tag avatar_url('facebook', @membre.facebook), :alt => @membre.facebook, :class => "thumbnail" %>
 	    </label>
@@ -66,7 +66,7 @@
 	  </label>
 	  
 	  <label class="radio" for="avatar_defaut">
-	    <%= radio_button_tag :avatar, "defaut" %>
+	    <%= radio_button_tag :avatar, "defaut", @membre.avatar == "defaut" %>
 	    Utilise l'avatar par défaut
 	    <%= image_tag "avatar.png", :alt => "avatar par defaut", :class => "thumbnail", :width => "50" %>
 	  </label>

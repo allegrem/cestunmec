@@ -54,9 +54,9 @@ class Membre < ActiveRecord::Base
   
   def get_avatar_url
     if self.avatar == 'twitter'  &&  self.twitter  &&  self.twitter != ""
-      avatar_url('twitter', self.twitter)
+      avatar_url('twitter', self.twitter+"?size=large")
     elsif self.avatar == 'facebook'  &&  self.facebook  &&  self.facebook != ""
-      avatar_url('facebook', self.facebook)
+      avatar_url('facebook', self.facebook+"?size=large")
     else
       "avatar.png"
     end

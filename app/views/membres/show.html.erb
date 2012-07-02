@@ -1,19 +1,27 @@
-<div class="page-header">
-  <h1><%= @membre.pseudo %> <small><%= @membre.vannes_count %> vannes - <%= @membre.lols_count %> lols</small></h1>
-  
-  <p class="pull-right">
-    <% if @membre.facebook && @membre.facebook != "" %>
-      <%= link_to "http://www.facebook.com/"+@membre.facebook, :class => "btn btn-small btn-facebook" do %><i class="icon-facebook"></i> Facebook<% end %>
-    <% end %>
+<div class="row-fluid">
+  <div class="span2" style="margin-top:18px">
+    <%= image_tag @membre.get_avatar_url, :alt => @membre.pseudo, :width => 100, :class => "thumbnail" %>
+  </div>
+
+  <div class="span10">
+    <div class="page-header">
+      <h1><%= @membre.pseudo %> <small><%= @membre.vannes_count %> vannes - <%= @membre.lols_count %> lols</small></h1>
+    </div>
     
-    <% if @membre.twitter && @membre.twitter != "" %>
-      <%= link_to "http://www.twitter.com/"+@membre.twitter, :class => "btn btn-small btn-twitter" do %><i class="icon-twitter"></i> Twitter<% end %>
-    <% end %>
-  </p>
+    <p>
+      <% if @membre.facebook && @membre.facebook != "" %>
+	<%= link_to "http://www.facebook.com/"+@membre.facebook, :class => "btn btn-small btn-facebook" do %><i class="icon-facebook"></i> Facebook<% end %>
+      <% end %>
+      
+      <% if @membre.twitter && @membre.twitter != "" %>
+	<%= link_to "http://www.twitter.com/"+@membre.twitter, :class => "btn btn-small btn-twitter" do %><i class="icon-twitter"></i> Twitter<% end %>
+      <% end %>
+    </p>
+  </div>
 </div>
 
 
-<div class="tabbable">
+<div class="tabbable" style="margin-top:20px">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Ses dernières</a></li>
     <li><a href="#tab2" data-toggle="tab">Ses meilleures</a></li>
