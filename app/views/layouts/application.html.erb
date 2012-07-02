@@ -49,33 +49,33 @@
 	
 	<ul class="nav pull-right">
 	<% if @current_membre %>
-	
-	  <% if @current_membre.admin %>
-	    <li class="dropdown">
-	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-	    <ul class="dropdown-menu">
-	      <li><%= link_to validation_vannes_path do %>
-		Validation <span class="badge pull-right"><%= Vanne.where("valide = ?",false).count.to_s %></span>
-		<% end %>
-	      </li>
-	      <li><%= link_to feedbacks_path do%>
-		Feedback <span class="badge pull-right"><%= Feedback.where("lu = ?",false).count.to_s %></span>
-		<% end %>
-	      </li>
-	    </ul>
-	  </li>
-	  <% end %>
-	
 	  <li class="dropdown">
-	    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_membre.pseudo %><b class="caret"></b></a>
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag @current_membre.get_avatar_url, :alt => @current_membre.pseudo, :width => 20 %> <%= @current_membre.pseudo %><b class="caret"></b></a>
 	    <ul class="dropdown-menu">
 	      <li><%= link_to membre_path(@current_membre) do %>
 		<i class="icon-user"></i> Mon profil
 	      <% end %></li>
+	      
 	      <li><%= link_to edit_membre_path(@current_membre) do %>
 		<i class="icon-pencil"></i> Modifier mon profil
 	      <% end %></li>
+	      
 	      <li class="divider"></li>
+	      
+	      <% if @current_membre.admin %>
+		<li><%= link_to validation_vannes_path do %>
+		  <i class="icon-ok-circle"></i> Validation <span class="badge pull-right"><%= Vanne.where("valide = ?",false).count.to_s %></span>
+		  <% end %>
+		</li>
+		
+		<li><%= link_to feedbacks_path do %>
+		  <i class="icon-exclamation-sign"></i> Feedback <span class="badge pull-right"><%= Feedback.where("lu = ?",false).count.to_s %></span>
+		  <% end %>
+		</li>
+		
+		<li class="divider"></li>
+	      <% end %>
+	      
 	      <li><%= link_to logout_url, :method => :delete do %>
 		<i class="icon-off"></i> Déconnexion
 	      <% end %></li>
