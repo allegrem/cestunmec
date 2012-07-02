@@ -1,0 +1,35 @@
+// Place all the styles related to the membres controller here.
+// They will automatically be included in application.css.
+
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+
+.icon-facebook {
+  background-image: url("facebook-mini.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.btn-facebook {
+  color: @white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  .buttonBackground(#6d85b4, #3b5b99);
+  &:hover {
+    color: @white;
+  }
+}
+
+.icon-twitter {
+  background-image: url("twitter-mini.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.btn-twitter {
+  color: @white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  .buttonBackground(#7cceed, #00aced);
+  &:hover {
+    color: @white;
+  }
+}

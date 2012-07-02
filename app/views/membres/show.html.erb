@@ -1,6 +1,17 @@
 <div class="page-header">
   <h1><%= @membre.pseudo %> <small><%= @membre.vannes_count %> vannes - <%= @membre.lols_count %> lols</small></h1>
+  
+  <p class="pull-right">
+    <% if @membre.facebook && @membre.facebook != "" %>
+      <%= link_to "http://www.facebook.com/"+@membre.facebook, :class => "btn btn-small btn-facebook" do %><i class="icon-facebook"></i> Facebook<% end %>
+    <% end %>
+    
+    <% if @membre.twitter && @membre.twitter != "" %>
+      <%= link_to "http://www.twitter.com/"+@membre.twitter, :class => "btn btn-small btn-twitter" do %><i class="icon-twitter"></i> Twitter<% end %>
+    <% end %>
+  </p>
 </div>
+
 
 <div class="tabbable">
   <ul class="nav nav-tabs">
