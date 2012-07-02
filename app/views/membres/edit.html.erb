@@ -37,16 +37,16 @@
     <hr />
     
     <h2>Réseaux sociaux</h2>
-      <%= form_for @membre, :html => {:class => "well"} do |f| %>
+      <%= form_tag(membre_path(@membre), :method => :put, :class => "well") do %>
 	  <label for="facebook">Pseudo Facebook <small>(tu peux le trouver sur ta page Facebook : http://www.facebook.com/ton.nom.facebook)</small>
-	    <%= f.text_field :facebook, :placeholder => "jean.dupont" %>
+	    <%= text_field_tag :facebook, @membre.facebook, :placeholder => "jean.dupont" %>
 	  </label>
 	  
 	  <label for="facebook">Pseudo Twitter <small>(sans le @)</small>
-	    <%= f.text_field :twitter, :placeholder => "jeandupont" %>
+	    <%= text_field_tag :twitter, @membre.twitter, :placeholder => "jeandupont" %>
 	  </label>
 	  
-	  <%= f.submit 'Mettre à jour', :class => "btn btn-primary" %>
+	  <%= submit_tag 'Mettre à jour', :class => "btn btn-primary" %>
 	<% end %>
   </div>
 </div>

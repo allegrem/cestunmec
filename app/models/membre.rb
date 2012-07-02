@@ -14,14 +14,14 @@ class Membre < ActiveRecord::Base
   validates_format_of :email, :with => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/, :message => "Le truc que tu m'as poste ne ressemble pas a un email. Enfin je crois pas ..."
   
   validates_confirmation_of :passwd, :message => "Soit je lis tres mal, soit les deux mots de passe que tu as entre sont differents ... Essaie encore !"
-  validates_length_of :passwd, :minimum => 4, :message => "Tu crois vraiment avoir un mot de passe sur avec moins de 4 caracteres ??"
+  validates_length_of :passwd, :minimum => 4, :unless => "passwd.nil? || passwd == ''", :message => "Tu crois vraiment avoir un mot de passe sur avec moins de 4 caracteres ??"
   validate :passwd_must_be_present
   
   
   attr_accessor :passwd_confirmation
   attr_reader :passwd
-  attr_accessible :pseudo, :email, :passwd, :passwd_confirmation
-  attr_accessible :pseudo, :email, :passwd, :passwd_confirmation, :admin, :as => :admin
+  attr_accessible :pseudo, :email, :passwd, :passwd_confirmation, :twitter, :facebook
+  attr_accessible :pseudo, :email, :passwd, :passwd_confirmation, :twitter, :facebook, :admin, :as => :admin
   
   
   before_destroy :decrease_lols_count

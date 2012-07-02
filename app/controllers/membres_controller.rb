@@ -38,7 +38,7 @@ class MembresController < ApplicationController
 
     if @membre.save
       session[:membre_id] = @membre.id  #on connecte automatiquement
-      redirect_to @membre, :notice => "Yeah !! Bienvenue dans la grande communaute de C'est un mec !"
+      redirect_to edit_membre_path(@membre), :notice => "Yeah !! Bienvenue dans la grande communaute de C'est un mec ! Tu peux des maintenant mettre a jour tes informations."
     else
       render :action => "new", :alert => "Whoops !! Il y a eu un petit probleme apparemment ..."
     end
@@ -48,6 +48,7 @@ class MembresController < ApplicationController
   # PUT /membres/1
   def update
     @membre = Membre.find(params[:id])
+    redirect_current_membre_or_admin
     
     #changement de statut admin
     if params[:admin]  &&  @current_membre.admin?
@@ -56,19 +57,30 @@ class MembresController < ApplicationController
       else
 	redirect_to @membre, :notice => "Erreur lors du changement de statut administrateur"
       end
-    end
     
     #changement d'avatar
-    if params[:avatar] && params[:avatar] != ""
+    elsif params[:avatar] && params[:avatar] != ""
       # TODO 
-    end
+    
+    #changements reseaux sociaux
+    elsif params[:facebook] && params[:twitter]
+      if @membre.update_attributes({:facebook => params[:facebook], :twitter => params[:twitter]})
+	redirect_to @membre, :notice => "Okay changements bien notes !"
+	puts "ok 69 !!!"
+      else
+	puts "error 71 !!!"
+	render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme"
+      end
     
     #edition normale
-    redirect_current_membre_or_admin
-    if @membre.update_attributes(params[:membre])
-      redirect_to @membre, :notice => "Okay changements bien notes !"
-    else
-      render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme"
+    elsif params[:membre]
+      if @membre.update_attributes(params[:membre])
+	puts "ok 78 !!!"
+	redirect_to @membre, :notice => "Okay changements bien notes !"
+      else
+	puts "error 81 !!!"
+	render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme"
+      end
     end
   end
   
