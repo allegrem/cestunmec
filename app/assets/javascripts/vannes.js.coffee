@@ -17,5 +17,5 @@ jQuery ->
   init_toggle_lol()
   
   #éléments du formulaire dans la colonne de navigation soumettent le formulaire immédiatement
-  $('.well input').bind 'click', (event) ->
+  $('#nav-vannes input').bind 'click', (event) ->
     $(this).parent().parent().submit()
