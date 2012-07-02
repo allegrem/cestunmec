@@ -27,8 +27,10 @@
     </div>
     
     <div class="control-group">
-      <%= f.label :passwd, :class => ("control-label"  unless defined? condensed) do %>
-	Mot de passe <%= "*" if params[:action] == "edit" %>
+      <% unless defined? condensed %>
+	<%= f.label :passwd, :class => "control-label" do %>
+	  Mot de passe <%= "*" if params[:action] == "edit" %>
+	<% end %>
       <% end %>
       <div class="controls">
 	<%= f.password_field :passwd, :placeholder => "Mot de passe" %>
@@ -36,15 +38,19 @@
     </div>
     
     <div class="control-group">
-      <%= f.label :passwd_confirmation, :class => ("control-label"  unless defined? condensed) do %>
-	Confirmation <%= "*" if params[:action] == "edit" %>
+      <% unless defined? condensed %>
+	<%= f.label :passwd_confirmation, :class => "control-label" do %>
+	  Confirmation <%= "*" if params[:action] == "edit" %>
+	<% end %>
       <% end %>
       <div class="controls">
 	<%= f.password_field :passwd_confirmation, :placeholder => "Confirmation" %>
       </div>
     </div>
     
-    <p><small>* : Laisser vide pour conserver l'ancien mot de passe</small></p>
+    <% unless defined? condensed %>
+      <p><small>* : Laisser vide pour conserver l'ancien mot de passe</small></p>
+    <% end %>
     
     <%= f.submit params[:action] == 'edit' ? 'Mettre à jour' : 'Deviens un vanneur !', :class => "btn btn-primary" %>
     
