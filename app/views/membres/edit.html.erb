@@ -36,7 +36,7 @@
     <div class="row-fluid">
       <div class="span4">
 	<div class="thumbnail">
-	  <%= image_tag("avatar.png", :alt => @membre.pseudo) %>
+	  <%= image_tag(@membre.get_avatar_url, :alt => @membre.pseudo) %>
 	  <div class="caption">
 	    Ton avatar actuel
 	  </div>
@@ -72,6 +72,13 @@
 	  </label>
 	  
 	  <%= submit_tag 'Change de tête !', :class => "btn btn-primary", :id => "avatar-submit-button" %>
+	  
+	  <% unless (@membre.facebook && @membre.facebook != "") || (@membre.twitter && @membre.twitter != "") %>
+	    <hr />
+	    <p>
+	      <small><strong>Petit conseil :</strong> enregistre ton pseudo Facebook et/ou Twitter pour pouvoir récupérer automatiquement l'avatar que tu utilises sur ces sites.</small>
+	    </p>
+	  <% end %>
 	<% end %>
       </div>
     </div>

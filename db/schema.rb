@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120702191337) do
+ActiveRecord::Schema.define(:version => 20120702204855) do
 
   create_table "feedbacks", :force => true do |t|
     t.string    "email"
@@ -33,14 +33,15 @@ ActiveRecord::Schema.define(:version => 20120702191337) do
     t.string   "hashed_passwd"
     t.string   "salt"
     t.string   "email"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.boolean  "admin",         :default => false
     t.integer  "lols_count",    :default => 0
     t.integer  "vannes_count",  :default => 0
     t.string   "cookie"
     t.string   "facebook"
     t.string   "twitter"
+    t.string   "avatar",        :default => "defaut"
   end
 
   create_table "vannes", :force => true do |t|

@@ -52,6 +52,16 @@ class Membre < ActiveRecord::Base
     !(self.admin == false  ||  self.admin == nil  ||  self.admin == 'f')
   end
   
+  def get_avatar_url
+    if self.avatar == 'twitter'  &&  self.twitter  &&  self.twitter != ""
+      avatar_url('twitter', self.twitter)
+    elsif self.avatar == 'facebook'  &&  self.facebook  &&  self.facebook != ""
+      avatar_url('facebook', self.facebook)
+    else
+      "avatar.png"
+    end
+  end
+  
   
   private
   def passwd_must_be_present

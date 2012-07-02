@@ -52,7 +52,7 @@ class MembresController < ApplicationController
     
     #changement de statut admin
     if params[:admin]  &&  @current_membre.admin?
-      if @membre.update_attribute :admin, params[:admin] == "yes" ? true : false
+      if @membre.update_attribute :admin, (params[:admin] == "yes" ? true : false)
 	redirect_to @membre, :notice => "Changement du statut administrateur effectue"
       else
 	redirect_to @membre, :notice => "Erreur lors du changement de statut administrateur"
@@ -60,25 +60,30 @@ class MembresController < ApplicationController
     
     #changement d'avatar
     elsif params[:avatar] && params[:avatar] != ""
-      # TODO 
+      if params[:avatar] == 'twitter' || params[:avatar] == 'facebook'
+	@membre.avatar = params[:avatar]
+      else
+	@membre.avatar = 'defaut'
+      end
+      if @membre.save
+	redirect_to @membre, :notice => "Okay changements bien notes !"
+      else
+	render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme"
+      end
     
     #changements reseaux sociaux
     elsif params[:facebook] && params[:twitter]
       if @membre.update_attributes({:facebook => params[:facebook], :twitter => params[:twitter]})
 	redirect_to @membre, :notice => "Okay changements bien notes !"
-	puts "ok 69 !!!"
       else
-	puts "error 71 !!!"
 	render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme"
       end
     
     #edition normale
     elsif params[:membre]
       if @membre.update_attributes(params[:membre])
-	puts "ok 78 !!!"
 	redirect_to @membre, :notice => "Okay changements bien notes !"
       else
-	puts "error 81 !!!"
 	render :action => "edit", :alert => "Whoops ! Il semblerait qu'il y ait eu un petit probleme"
       end
     end
