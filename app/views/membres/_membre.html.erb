@@ -1,6 +1,6 @@
 <div class="row-fluid" style="padding-bottom:10px;">
   <div class="span4" style="max-width:70px">
-  <%= link_to image_tag("avatar.png", :alt => membre.pseudo), membre, :class => "thumbnail" %>
+  <%= link_to image_tag(membre.get_avatar_url, :alt => membre.pseudo, :width => 100), membre, :class => "thumbnail" %>
   </div>
   
   <div class="span8">
