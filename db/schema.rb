@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625210952) do
+ActiveRecord::Schema.define(:version => 20120702171121) do
 
   create_table "feedbacks", :force => true do |t|
     t.string    "email"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20120625210952) do
     t.integer   "lols_count"
     t.integer   "vannes_count"
     t.string    "cookie"
+    t.string    "facebook"
+    t.string    "twitter"
   end
 
   create_table "vannes", :force => true do |t|
