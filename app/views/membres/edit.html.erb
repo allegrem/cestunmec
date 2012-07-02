@@ -10,9 +10,23 @@
     
     <hr />
     
-    <h2>Supprimer mon compte</h2>
-    
-    <%= link_to @membre, :confirm => 'Attention ! La suppression de ton compte est une décision irréversible. Tes vannes seront cependant conservées sous le nom \'Anonymous\'. Es-tu sûr de vouloir continuer ?', :method => :delete, :class => "btn btn-danger" do %><i class="icon-trash icon-white"></i> Oui je suis prêt à commettre l'irréparable !!<% end %>
+    <h2>Réseaux sociaux</h2>
+    <%= form_tag(membre_path(@membre), :method => :put, :class => "well") do %>
+	<label for="facebook">Pseudo Facebook *
+	  <%= text_field_tag :facebook, @membre.facebook, :placeholder => "jean.dupont" %>
+	</label>
+	
+	<label for="twitter">Pseudo Twitter **
+	  <%= text_field_tag :twitter, @membre.twitter, :placeholder => "jeandupont" %>
+	</label>
+	
+	<p>
+	  <small>* : tu peux le trouver sur ta page Facebook : http://www.facebook.com/ton.nom.facebook<br />
+	  ** : sans le @</small>
+	</p>
+	
+	<%= submit_tag 'Mettre à jour', :class => "btn btn-primary" %>
+      <% end %>
   </div>
   
   
@@ -21,12 +35,40 @@
     
     <div class="row-fluid">
       <div class="span4">
-	<%= link_to image_tag("avatar.png", :alt => @membre.pseudo), @membre, :class => "thumbnail" %>
+	<div class="thumbnail">
+	  <%= image_tag("avatar.png", :alt => @membre.pseudo) %>
+	  <div class="caption">
+	    Ton avatar actuel
+	  </div>
+	</div>
       </div>
       <div class="span8">
-	<%= form_tag({:action => :edit}, :multipart => true, :class => "well") do %>
-	  <label for="avatar">Choisis ta nouvelle tête : 
-	    <%= file_field_tag 'avatar' %>
+	<%= form_tag(membre_path(@membre), :method => :put, :class => "well") do %>
+	  <% if @membre.twitter && @membre.twitter != "" %>
+	    <label class="radio" for="avatar_twitter">
+	      <%= radio_button_tag :avatar, "twitter" %>
+	      Utilise ta photo de profil Twitter
+	      <%= image_tag avatar_url('twitter', @membre.twitter), :alt => @membre.twitter, :class => "thumbnail" %>
+	    </label>
+	  <% end %>
+	  
+	  <% if @membre.facebook && @membre.facebook != "" %>
+	    <label class="radio" for="avatar_facebook">
+	      <%= radio_button_tag :avatar, "facebook" %>
+	      Utilise ta photo de profil Facebook
+	      <%= image_tag avatar_url('facebook', @membre.facebook), :alt => @membre.facebook, :class => "thumbnail" %>
+	    </label>
+	  <% end %>
+	  
+	  <label class="radio" for="avatar_perso" id="avatar-perso-label">
+	    <%= radio_button_tag :avatar, "perso", false, :disabled => true %>
+	    Utilise une photo personnalisée
+	  </label>
+	  
+	  <label class="radio" for="avatar_defaut">
+	    <%= radio_button_tag :avatar, "defaut" %>
+	    Utilise l'avatar par défaut
+	    <%= image_tag "avatar.png", :alt => "avatar par defaut", :class => "thumbnail", :width => "50" %>
 	  </label>
 	  
 	  <%= submit_tag 'Change de tête !', :class => "btn btn-primary", :id => "avatar-submit-button" %>
@@ -36,23 +78,10 @@
     
     <hr />
     
-    <h2>Réseaux sociaux</h2>
-      <%= form_tag(membre_path(@membre), :method => :put, :class => "well") do %>
-	  <label for="facebook">Pseudo Facebook *
-	    <%= text_field_tag :facebook, @membre.facebook, :placeholder => "jean.dupont" %>
-	  </label>
-	  
-	  <label for="twitter">Pseudo Twitter **
-	    <%= text_field_tag :twitter, @membre.twitter, :placeholder => "jeandupont" %>
-	  </label>
-	  
-	  <p>
-	    <small>* : tu peux le trouver sur ta page Facebook : http://www.facebook.com/ton.nom.facebook<br />
-	    ** : sans le @</small>
-	  </p>
-	  
-	  <%= submit_tag 'Mettre à jour', :class => "btn btn-primary" %>
-	<% end %>
+    <h2>Supprimer mon compte</h2>
+    
+    <%= link_to @membre, :confirm => 'Attention ! La suppression de ton compte est une décision irréversible. Tes vannes seront cependant conservées sous le nom \'Anonymous\'. Es-tu sûr de vouloir continuer ?', :method => :delete, :class => "btn btn-danger" do %><i class="icon-trash icon-white"></i> Oui je suis prêt à commettre l'irréparable !!<% end %>
+    
   </div>
 </div>
 

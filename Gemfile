@@ -42,3 +42,6 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 gem 'pg'
+
+gem 'avatars.io'
+

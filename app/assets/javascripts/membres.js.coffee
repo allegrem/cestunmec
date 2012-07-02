@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('#avatar-submit-button').bind 'click', (e) =>
+  $('#avatar-perso-label').bind 'click', (e) =>
     alert("Désolé ! Cette fonctionnalité n'est pas disponible pour le moment :(")
     e.preventDefault()
