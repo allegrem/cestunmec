@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Modifier mon profil</h1>
+  <h1>Modifier le profil de <%= link_to @membre.pseudo, @membre %></h1>
 </div>
 
 <div class="row-fluid">
@@ -8,6 +8,7 @@
     
     <%= render 'form' %>
     
+    <hr />
     
     <h2>Supprimer mon compte</h2>
     
@@ -27,13 +28,26 @@
 	  <label for="avatar">Choisis ta nouvelle tête : 
 	    <%= file_field_tag 'avatar' %>
 	  </label>
+	  
 	  <%= submit_tag 'Change de tête !', :class => "btn btn-primary", :id => "avatar-submit-button" %>
 	<% end %>
       </div>
     </div>
     
+    <hr />
+    
     <h2>Réseaux sociaux</h2>
-    <p>TODO !!</p>
+      <%= form_for @membre, :html => {:class => "well"} do |f| %>
+	  <label for="facebook">Pseudo Facebook <small>(tu peux le trouver sur ta page Facebook : http://www.facebook.com/ton.nom.facebook)</small>
+	    <%= f.text_field :facebook, :placeholder => "jean.dupont" %>
+	  </label>
+	  
+	  <label for="facebook">Pseudo Twitter <small>(sans le @)</small>
+	    <%= f.text_field :twitter, :placeholder => "jeandupont" %>
+	  </label>
+	  
+	  <%= f.submit 'Mettre à jour', :class => "btn btn-primary" %>
+	<% end %>
   </div>
 </div>
 

@@ -1,6 +1,5 @@
-<%= form_for @membre, :class => "form-horizontal" do |f| %>
+<%= form_for @membre, :html => {:class => ("form-horizontal well" unless defined? condensed)} do |f| %>
 
-  <fieldset>
     <% if @membre.errors.any? %>
       <div id="error_explanation">
 	<h2>Whoops !! Il y a quelques problèmes ...</h2>
@@ -41,11 +40,6 @@
       </div>
     </div>
     
-    <div class="<%= defined? condensed ? 'control-group' : 'form-actions' %>">
-      <%= f.submit 'Deviens un vanneur !', :class => "btn btn-primary" %>
-      <%= button_to 'Annuler', root_path, :class => "btn"  unless defined? condensed %>
-    </div>
+    <%= f.submit params[:action] == 'edit' ? 'Mettre à jour' : 'Deviens un vanneur !', :class => "btn btn-primary" %>
     
-  </fieldset>
-  
 <% end %>
