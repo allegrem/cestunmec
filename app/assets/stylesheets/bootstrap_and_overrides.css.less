@@ -23,6 +23,14 @@ body { padding-top: 60px; }
   a:not(.btn) {
     .transition(all .2s linear);
   }
+  
+  //logo
+  .navbar-inner {
+    background-image: url("logo_top.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 30px;
+  }
 
   //navbar search
   .navbar-search .search-query:focus {
@@ -102,6 +110,11 @@ footer {
   color: @gray;
   padding: 20px;
   padding-top: 10px;
+  background-image: url("fond_footer.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  
   a {
     color: @grayLight;
     &:hover {
