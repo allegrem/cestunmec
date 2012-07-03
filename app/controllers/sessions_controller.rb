@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   
   
   def new
+    @titre = "Connexion"
   end
 
   

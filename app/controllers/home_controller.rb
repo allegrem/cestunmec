@@ -2,6 +2,8 @@ class HomeController < ApplicationController
   skip_before_filter :require_login, :require_admin
   
   def index
+    @titre = "Bienvenue"
+    
     @membre = Membre.new
     
     @nbre_vanneurs = Membre.count

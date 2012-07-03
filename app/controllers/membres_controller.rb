@@ -5,6 +5,7 @@ class MembresController < ApplicationController
   
   # GET /membres
   def index
+    @titre = "Tous les vanneurs"
     @membres = Membre.order("lols_count * vannes_count DESC")
   end
 
@@ -12,6 +13,7 @@ class MembresController < ApplicationController
   # GET /membres/1
   def show
     @membre = Membre.find(params[:id])
+    @titre = @membre.pseudo
     
     @vannes_best = @membre.vannes.where('valide = ?',true).order('lols_count DESC, created_at DESC').limit(10)
     @vannes_last = @membre.vannes.where('valide = ?',true).order('created_at DESC').limit(10)
@@ -21,12 +23,14 @@ class MembresController < ApplicationController
   
   # GET /membres/new
   def new
+    @titre = "Rejoins nous"
     @membre = Membre.new
   end
 
   
   # GET /membres/1/edit
   def edit
+    @titre = "Modifier mon profil"
     @membre = Membre.find(params[:id])
     redirect_current_membre_or_admin
   end

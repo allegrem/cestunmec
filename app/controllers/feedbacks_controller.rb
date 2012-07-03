@@ -10,6 +10,7 @@ class FeedbacksController < ApplicationController
   
   # GET /feedbacks/new
   def new
+    @titre = "Une remarque ?"
     @feedback = Feedback.new
   end
   

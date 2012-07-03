@@ -35,13 +35,16 @@ class VannesController < ApplicationController
     case params[:order]
       when 'best'
 	@vannes = @vannes.order('lols_count DESC, created_at DESC').limit(20).offset(20*params[:page].to_i)
+	@titre = "Les meilleures vannes"
 	
       when 'rand'
 	vannes_ids = @vannes.select('id').map( &:id )
 	@vannes = Vanne.find( (1..20).map { vannes_ids.delete_at( vannes_ids.size * rand ) } )
+	@titre = "Des vannes au hasard"
 	
       else
 	@vannes = @vannes.order('created_at DESC').limit(20).offset(20*params[:page].to_i)
+	@titre = "Les dernières vannes"
     end
 
     respond_to do |format|
@@ -55,6 +58,7 @@ class VannesController < ApplicationController
   # GET /vannes/1
   def show
     @vanne = Vanne.find(params[:id])
+    @titre = @vanne.membre.pseudo + " : " + @vanne.contenu[0..50] + "..."
     unless @vanne.valide
       redirect_to vannes_path, :error => "Cette vanne n'existe pas !"
     end
@@ -63,6 +67,7 @@ class VannesController < ApplicationController
   
   # GET /vannes/new
   def new
+    @titre = "Poste ta vanne"
     @vanne = Vanne.new
   end
 
