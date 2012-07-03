@@ -44,7 +44,7 @@ class VannesController < ApplicationController
 	
       else
 	@vannes = @vannes.order('created_at DESC').limit(20).offset(20*params[:page].to_i)
-	@titre = "Les dernières vannes"
+	@titre = "Les dernieres vannes"
     end
 
     respond_to do |format|
