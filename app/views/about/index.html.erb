@@ -1,20 +1,37 @@
-<div id="main_frame">
-  <h2>A propos de <em>C'est un mec</em></h2>
+<div class="page-header">
+  <h1>A propos de <em>C'est un mec</em></h1>
+</div>
+
+
+<div class="row-fluid">
+  <div class="span7">
+    <h2>La genèse du site</h2>
+    
+    <p style="text-align:justify">
+      <em>C'est un mec</em> est un site créé début 2012 par un jeune étudiant à l'humour incompris. Après avoir vu le merveilleux film <em><%= link_to 'Astérix : Mission Cléopatre', 'http://www.allocine.fr/film/fichefilm_gen_cfilm=28537.html' %></em>, il compris rapidement que son destin était de répandre le plus largement possible l'humour décapant de <%= link_to 'Jamel Debbouze', 'http://www.jameldebbouze.fr/' %>, dont la meilleure blague est incontestablement : <em><%= link_to "« C'est un mec, il s'appelle On et il a un phare, c'est le pharaon !! »", 'http://www.youtube.com/watch?v=_NXogl4Oaa4' %></em>. <br />
+      La simplicité et l'efficacité de cette blague deviennent clairement à ses yeux une arme de vannification massive. Très vite, il invente ses premières blagues inspirées du chef d'œuvre Debouzien, tout en essayant de rallier ses connaissances à sa cause humouristique. 
+    </p>
+  </div>
   
-  <h3>La genèse du site</h3>
-  
-  <p style="text-align:justify">
-    <em>C'est un mec</em> est un site créé début 2012 par un jeune étudiant à l'humour incompris. Après avoir vu le merveilleux film <em><%= link_to 'Astérix : Mission Cléopatre', 'http://www.allocine.fr/film/fichefilm_gen_cfilm=28537.html' %></em>, il compris rapidement que son destin était de répandre le plus largement possible l'humour décapant de <%= link_to 'Jamel Debbouze', 'http://www.jameldebbouze.fr/' %>, dont la meilleure blague est incontestablement : <em><%= link_to "« C'est un mec, il s'appelle On et il a un phare, c'est le pharaon !! »", 'http://www.youtube.com/watch?v=_NXogl4Oaa4' %></em>. <br />
-    La simplicité et l'efficacité de cette blague deviennent clairement à ses yeux une arme de vannification massive. Très vite, il invente ses premières blagues inspirées du chef d'œuvre Debouzien, tout en essayant de rallier ses connaissances à sa cause humouristique. 
-  </p>
-  
-  
-  <h3>La théorie de la vanne parfaite</h3>
-  
-  <p style="text-align:justify">
-    Voici quelques éléments théoriques indispensables pour réaliser une bonne vanne :
-  </p>
-  <ul style="text-align:justify">
+  <div class="span5">
+    <div class="thumbnail" style="margin-bottom:10px">
+      <%= image_tag "film_pharaon.jpg", :alt => "Jamel Debbouze dans Astérix : Mission Cléopatre", :style => "width:100%;" %>
+      <div class="caption">
+	« C'est un mec, il s'appelle On et il a un phare, c'est le pharaon !! »
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row-fluid">
+  <div class="span7">
+    <h2>La théorie de la vanne parfaite</h2>
+
+    <p style="text-align:justify">
+      Voici quelques éléments théoriques indispensables pour réaliser une bonne vanne :
+    </p>
+    <ul style="text-align:justify">
       <li>La vanne doit évidemment commencer par <em>« C'est un mec, il s'appelle ... »</em>. On pourra adopter la variante <em>« C'est une fille, elle s'appelle ... »</em> uniquement si le prénom l'impose.</li>
       <li>Le prénom qui suit doit être dans l'idéal un prénom existant. On tolère cependant assez bien des prénoms exotiques, voire carrément inédits.</li>
       <li>De même, on s'efforcera de trouver un objet existant, bien que là encore, une certaine liberté soit accordée aux vanneurs.</li>
@@ -26,10 +43,23 @@
       En résumé, voilà l'anatomie d'une vanne réussie :<br />
       <div style="font-family:'Comic Sans MS';align:center;padding-bottom:20px;">C'est un mec, il s'appelle [prénom] et il a un [objet], c'est le [objet + à + prénom] !!</div>
     </p>
-    
-    
-    <h3>L'échelle de la vannitude</h3>
-    
+  </div>
+
+  <div class="span5">
+    <div class="thumbnail">
+      <%= image_tag "film_otis.jpg", :alt => "Otis dans Astérix : Mission Cléopatre", :style => "width:100%;" %>
+      <div class="caption">
+	« Vous savez, moi je ne crois pas qu'il y ait de bonne ou de mauvaise vanne. »
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row-fluid">
+  <div class="span7">
+    <h2>L'échelle de la vannitude</h2>
+
     <p style="text-align:justify">
       Une question a longtemps turlupiné les scientifiques : <em>Comment évaluer la vannitude d'une vanne ?</em> C'est après de longs mois de recherche qu'il réussit à mettre au point une échelle permettant de restituer assez fidèlement l'effet que peut théoriquement produire une vanne donnée chez un individu <em>Lambda</em>. On l'appelle <em>l'échelle de la vannitude</em> : 
     </p>
@@ -40,4 +70,14 @@
       <li><strong>La Casual Vanne</strong> : dur de rire à une <em>Casual Vanne</em>, mais ça arrive, sans qu'on comprenne bien pourquoi le plus souvent. Là il n'y a même plus de conditions tellement c'est moyen ! <br /><em>Effet produit : Lambda attend bêtement la suite car il n'a pas compris que la vanne était finie. Parfois il demande de la répéter (mais c'est que vous êtes tombé sur un Lambda plutôt sympa).</em></li>
       <li><strong>La Bad Vanne</strong> : personne n'a jamais ri à une <em>Bad Vanne</em>, parce que ce n'est jamais drôle. Non seulement rien n'existe, mais en plus ça triche en utilisant une feinte du genre <em>« C'est un mec, il a pas de nom ... »</em> ou <em>« C'est un mec, il a rien ... »</em>. Bref, à proscrire ! <br /><em>Effet produit : Lambda ... euh ... Damned ! Lambda est parti !!</em></li>
     </ul>
+  </div>
+
+  <div class="span5">
+    <div class="thumbnail">
+      <%= image_tag "film_rire.jpg", :alt => "Fou rire dans Astérix : Mission Cléopatre", :style => "width:100%;" %>
+      <div class="caption">
+	Effet produit par une Ultimate Vanne.
+      </div>
+    </div>
+  </div>
 </div>
