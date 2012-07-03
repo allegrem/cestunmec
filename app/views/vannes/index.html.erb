@@ -22,22 +22,22 @@
     
     <h3>Niveau de lolitude</h3>
     <label class="radio">
-      <%= radio_button_tag :lolitude, "0", (params[:lolitude] == '0') %> Bof (moins de 10 lols)
+      <%= radio_button_tag :lolitude, "0", (params[:lolitude] == '0') %> Bof (moins de <%= @step_lolitude %> lols)
     </label>
     <label class="radio">
-      <%= radio_button_tag :lolitude, "1", (params[:lolitude] == '1') %> Mouef (entre 10 et 20 lols)
+      <%= radio_button_tag :lolitude, "1", (params[:lolitude] == '1') %> Mouef (entre <%= @step_lolitude %> et <%= 2*@step_lolitude %> lols)
     </label>
     <label class="radio">
-      <%= radio_button_tag :lolitude, "2", (params[:lolitude] == '2') %> Pas mal (entre 20 et 30 lols)
+      <%= radio_button_tag :lolitude, "2", (params[:lolitude] == '2') %> Pas mal (entre <%= 2*@step_lolitude %> et <%= 3*@step_lolitude %> lols)
     </label>
     <label class="radio">
-      <%= radio_button_tag :lolitude, "3", (params[:lolitude] == '3') %> Cool (entre 30 et 40 lols)
+      <%= radio_button_tag :lolitude, "3", (params[:lolitude] == '3') %> Cool (entre <%= 3*@step_lolitude %> et <%= 4*@step_lolitude %> lols)
     </label>
     <label class="radio">
-      <%= radio_button_tag :lolitude, "4", (params[:lolitude] == '4') %> Bien marrante (entre 40 et 50 lols)
+      <%= radio_button_tag :lolitude, "4", (params[:lolitude] == '4') %> Bien marrante (entre <%= 4*@step_lolitude %> et <%= 5*@step_lolitude %> lols)
     </label>
     <label class="radio">
-      <%= radio_button_tag :lolitude, "5", (params[:lolitude] == '5') %> Enormissime (plus de 50 lols)
+      <%= radio_button_tag :lolitude, "5", (params[:lolitude] == '5') %> Enormissime (plus de <%= 5*@step_lolitude %> lols)
     </label>
     <label class="radio">
       <%= radio_button_tag :lolitude, "", ((not params[:lolitude]) || params[:lolitude] == '') %> Je veux tout voir !!

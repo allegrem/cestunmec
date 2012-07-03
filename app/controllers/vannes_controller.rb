@@ -9,6 +9,8 @@ class VannesController < ApplicationController
   def index
     @vannes = Vanne.where('valide = ?',true)
     
+    @step_lolitude = (Vanne.order('lols_count DESC').first.lols_count / 8).floor
+    
     if params[:q] && params[:q] != ""
       @vannes = @vannes.where('LOWER(contenu) LIKE ?','%'+params[:q].downcase+'%')
     end
@@ -19,17 +21,17 @@ class VannesController < ApplicationController
     
     case params[:lolitude]
       when '0'
-	@vannes = @vannes.where('lols_count < ?', 10)
+	@vannes = @vannes.where('lols_count < ?', @step_lolitude)
       when '1'
-	@vannes = @vannes.where(:lols_count => 10..20)
+	@vannes = @vannes.where(:lols_count => @step_lolitude..2*@step_lolitude)
       when '2'
-	@vannes = @vannes.where(:lols_count => 20..30)
+	@vannes = @vannes.where(:lols_count => 2*@step_lolitude..3*@step_lolitude)
       when '3'
-	@vannes = @vannes.where(:lols_count => 30..40)
+	@vannes = @vannes.where(:lols_count => 3*@step_lolitude..4*@step_lolitude)
       when '4'
-	@vannes = @vannes.where(:lols_count => 40..50)
+	@vannes = @vannes.where(:lols_count => 4*@step_lolitude..5*@step_lolitude)
       when '5'
-	@vannes = @vannes.where('lols_count > ?', 50)
+	@vannes = @vannes.where('lols_count > ?', 5*@step_lolitude)
     end
     
     case params[:order]
