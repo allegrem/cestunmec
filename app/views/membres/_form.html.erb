@@ -1,8 +1,8 @@
 <%= form_for @membre, :html => {:class => ("form-horizontal well" unless defined? condensed)} do |f| %>
 
     <% if @membre.errors.any? %>
-      <div id="error_explanation">
-	<h2>Whoops !! Il y a quelques problèmes ...</h2>
+      <div class="alert alert-error">
+	<h4 class="alert-heading">Whoops !! Il y a quelques problèmes ...</h4>
 
 	<ul>
 	<% @membre.errors.each do |field, msg| %>
@@ -48,7 +48,7 @@
       </div>
     </div>
     
-    <% unless defined? condensed %>
+    <% unless (defined? condensed) || params[:action] == "new" %>
       <p><small>* : Laisser vide pour conserver l'ancien mot de passe</small></p>
     <% end %>
     

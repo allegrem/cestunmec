@@ -5,8 +5,8 @@
   <% if modal %><div class="modal-body"><% end %>
   
     <% if @vanne.errors.any? %>
-      <div id="error_explanation">
-	<h2>Whoops !! Il y a quelques problèmes ...</h2>
+      <div class="alert alert-error">
+	<h4 class="alert-heading">Whoops !! Il y a quelques problèmes ...</h4>
 
 	<ul>
 	<% @vanne.errors.each do |field, msg| %>
@@ -17,9 +17,10 @@
     <% end %>
     
     <% if not (@current_membre && @current_membre.vannes.count > 5) %>
-      <p>
+      <div class="alert alert-info">
+	<strong>Tu débutes ?</strong>
 	Avant de poster pour la première fois, prend le temps de <%= link_to 'lire quelques conseils', about_path %> pour écrire la meilleure vanne possible !
-      </p>
+      </div>
     <% end %>
 
     <%= f.text_area :contenu, :rows => 5, :placeholder => "Entre ta vanne ici !!", :autofocus => "autofocus", :style => "width:90%" %>

@@ -9,8 +9,8 @@
   <%= auto_discovery_link_tag :rss, vannes_url(:format => :rss) %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
   
   <% if params[:controller] == 'vannes' && params[:action] == 'show' %>
     <meta property="og:title" content="<%= @vanne.contenu %>" />
