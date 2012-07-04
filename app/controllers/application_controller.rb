@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
   
   def auto_login
-    if @current_membre.nil? && cookies[:secret] && cookies[:membre_id] 
+    if session[:membre_id].nil? && cookies[:secret] && cookies[:membre_id] 
       membre = Membre.find(cookies[:membre_id])
       if membre && membre.cookie == cookies[:secret]
 	session[:membre_id] = membre.id
