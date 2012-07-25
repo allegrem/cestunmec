@@ -22,6 +22,16 @@
           content="Posté <%= @vanne.created_at.strftime("le %d/%m/%Y à %H:%M") %> par <%= @vanne.membre.pseudo %> sur C'est un mec, le site numéro 1 des blagues commençant par c'est un mec !!"/>
   <% end %>
   
+  <% if params[:controller] == 'home' %>
+    <meta property="og:title" content="C'est un mec" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="C&#039;est un mec" />
+    <meta property="og:url" content="<%= root_url %>"/>
+    <meta property="fb:admins" content="1600170985" />
+    <meta property="og:description" content="C'est un mec, le site numéro 1 des blagues commençant par c'est un mec !!"/>
+    <meta property="og:image:type" content="<%= image_tag('logo.png') %>" />
+  <% end %>
+  
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', '<%= ENV['ANALYTICS_CODE'] %>']);
