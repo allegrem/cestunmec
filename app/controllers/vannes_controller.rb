@@ -134,7 +134,7 @@ class VannesController < ApplicationController
       end
       
     else
-      @vannes = Vanne.where(:valide => false)
+      @vannes = Vanne.where(:valide => false).order("updated_at")
     end
   end
   
