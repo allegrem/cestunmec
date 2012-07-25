@@ -5,7 +5,7 @@
 
   <div class="span10">
     <div class="page-header">
-      <h1><%= @membre.pseudo %> <small><%= @membre.vannes_count %> vannes - <%= @membre.lols_count %> lols</small></h1>
+      <h1><%= @membre.pseudo %> <small><%= @membre.vannes.where("valide = ?",true).count %> vannes - <%= @membre.lols_count %> lols</small></h1>
     </div>
     
     <p>

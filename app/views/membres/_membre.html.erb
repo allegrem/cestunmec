@@ -8,7 +8,7 @@
     <%= link_to membre.pseudo, membre %> 
     <% if membre.admin %><small>Admin</small><% end %>
     <br />
-    <%= membre.vannes_count %> vannes - <%= membre.lols_count %> lols
+    <%= membre.vannes.where("valide = ?",true).count %> vannes - <%= membre.lols_count %> lols
     </p>
   </div>
 </div>
