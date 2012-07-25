@@ -39,7 +39,7 @@ class Vanne < ActiveRecord::Base
   end
   
   def Vanne.regex
-    /^([cC]'est (une?|des) ([^\s,]*),? (elle|il) s'appelle )([^\s,]*)(.*c'est (les?|la|l')?)(.*[^\s,])\b(\W*)$/
+    /^([cC]'est (une?|des) ([^\s,]*),? (elle|il) s'appelle )([^\s,]*)(.*c'est (les? |la |l')?)(.*[^\s,])\b(\W*)$/
   end
   
   
